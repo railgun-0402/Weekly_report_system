@@ -1,0 +1,354 @@
+﻿# A5:ER FORMAT:14
+# A5:ER ENCODING:UTF8
+# A5:ER Mk-1 Copyright (C)2007 m.matsubara
+# A5:SQL Mk-2 Copyright (C)1997 m.matsubara
+#  https://a5m2.mmatsubara.com
+
+[Manager]
+ProjectName=週報
+Author=
+MaxEntityRowShow=1000
+ReadOnlyRecommend=0
+Page=Main
+PageInfo="Main",7,"A3Landscape",$FFFFFF
+LogicalView=1
+DecodeDomain=0
+ViewModePageIndividually=1
+ViewMode=7
+ViewFormat=0
+UseNondependenceDashLine=0
+FontName=Tahoma
+FontSize=6
+PaperSize=A4Landscape
+HeaderLeft=
+HeaderCenter=
+HeaderRight=
+FooterLeft=
+FooterCenter=
+FooterRight=
+ShowPageoutRelation=1
+RDBMSType=5
+RDBMSTypeName=MySQL
+DefaultPkName=%0:s_PKC
+DefaultPkIndexName=%0:s_PKI
+DefaultIndexName=%0:s_IX%1:d
+DefaultFkName=%0:s_FK%1:d
+SqlSeparator=0
+UpperCaseKeyword=0
+ShowTag=1
+ShowCommonAttributes=0
+
+[Entity]
+PName=users
+LName=ユーザーマスタ
+Comment=
+TableOption=
+Page=MAIN
+Left=850
+Top=350
+Field="id","id","bigint unsigned auto_increment","NOT NULL",0,"","登録順に自動採番",$000000FF,""
+Field="ユーザーコード","code","string","NOT NULL",,"","",$FFFFFFFF,""
+Field="ロールコード（FK)","role_code","string","NOT NULL",,"","roles 参照",$FFFFFFFF,""
+Field="ユーザー名","name","string","NOT NULL",,"","",$FFFFFFFF,""
+Field="Eメール","email","string","NOT NULL",,"","",$FFFFFFFF,""
+Field="氏名","username","string","NOT NULL",,"","",$FFFFFFFF,""
+Field="作成日時","created_at","timestamps","NOT NULL",,"","",$FFFFFFFF,""
+Field="更新日時","updated_at","timestamps","NOT NULL",,"","",$FFFFFFFF,""
+Field="論理削除","deleted_at","softDeletes",,,"","nullable",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20201109182920
+Position="MAIN",850,350,565,292
+ZOrder=1
+
+[Entity]
+PName=questions
+LName=質問
+Comment=
+TableOption=
+Page=MAIN
+Left=750
+Top=1200
+Field="質問グループ","question_group","string","NOT NULL",,"","",$FFFFFFFF,""
+Field="フォームコード","form_types_code","string","NOT NULL",,"","テキスト入力の場合 0",$FFFFFFFF,""
+Field="ユーザーコード","user_code","string","NOT NULL",,"","",$FFFFFFFF,""
+Field="権限マスタコード","role_code","string","NOT NULL",,"","権限",$FFFFFFFF,""
+Field="回答選択肢の数","selectable_item","string","NOT NULL",,"0","回答が選択肢の場合有効（例）□良い, □普通, □悪い の場合 → 3",$FFFFFFFF,""
+Field="選択肢の文章内容1","item_content1","string",,,"","nullable 例）大変良い",$FFFFFFFF,""
+Field="選択肢の文章内容2","item_content2","string",,,"","nullable 例）良い",$FFFFFFFF,""
+Field="選択肢の文章内容3","item_content3","string",,,"","nullable 例）普通",$FFFFFFFF,""
+Field="選択肢の文章内容4","item_content4","string",,,"","nullable 例）悪い",$FFFFFFFF,""
+Field="選択肢の文章内容5","item_content5","string",,,"","nullable 例）非常に悪い",$FFFFFFFF,""
+Field="質問内容","content","string(255)","NOT NULL",,"","",$FFFFFFFF,""
+Field="作成日時","created_at","timestamps","NOT NULL",,"","",$FFFFFFFF,""
+Field="更新日時","updated_at","timestamps","NOT NULL",,"","",$FFFFFFFF,""
+Field="論理削除","deleted_at","softDeletes",,,"","nullable",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20201203115742
+Position="MAIN",750,1200
+ZOrder=2
+
+[Entity]
+PName=answers
+LName=回答
+Comment=
+TableOption=
+Page=MAIN
+Left=1800
+Top=950
+Field="id","id","bigint unsigned auto_increment","NOT NULL",0,"","登録順に自動採番",$000000FF,""
+Field="質問ID（FK）","question_id","bigint","NOT NULL",,"","",$FFFFFFFF,""
+Field="ユーザーコード","user_code","string","NOT NULL",,"","",$FFFFFFFF,""
+Field="回答内容","content","string","NOT NULL",,"","",$FFFFFFFF,""
+Field="作成日時","created_at","timestamps","NOT NULL",,"","",$FFFFFFFF,""
+Field="更新日時","updated_at","timestamps","NOT NULL",,"","",$FFFFFFFF,""
+Field="論理削除","deleted_at","softDeletes",,,"","nullable",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20201112130207
+Position="MAIN",1800,950,564,178
+ZOrder=3
+
+[Relation]
+Entity1=users
+Entity2=answers
+RelationType1=2
+RelationType2=3
+Fields1=code
+Fields2=user_code
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,7314,6991,2991,R,R,""
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20201106155459
+LineMode=0
+Bar1=731
+Bar2=699
+Bar3=299
+TermPos1=R
+TermPos2=R
+ZOrder=4
+
+[Relation]
+Entity1=users
+Entity2=questions
+RelationType1=2
+RelationType2=3
+Fields1=code
+Fields2=user_code
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,4691,6215,5572,R,R,""
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20201109123257
+LineMode=0
+Bar1=469
+Bar2=622
+Bar3=557
+TermPos1=R
+TermPos2=R
+ZOrder=9
+
+[Entity]
+PName=roles
+LName=権限マスタ
+Comment=
+TableOption=
+Page=MAIN
+Left=150
+Top=800
+Field="id","id","bigint unsigned auto_increment","NOT NULL",0,"","",$000000FF,""
+Field="ロールコード","code","string","NOT NULL",,"","例）\qADMIN\q, \qORDINARY\q",$FFFFFFFF,""
+Field="ロール名","name","string","NOT NULL",,"","\q管理者\q、\q一般ユーザー\q",$FFFFFFFF,""
+Field="作成日時","created_at","timestamps","NOT NULL",,"","",$FFFFFFFF,""
+Field="更新日時","updated_at","timestamps","NOT NULL",,"","",$FFFFFFFF,""
+Field="論理削除","deleted_at","softDeletes",,,"","nullable",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20201109153820
+Position="MAIN",150,800,458,152
+ZOrder=12
+
+[Relation]
+Entity1=roles
+Entity2=users
+RelationType1=2
+RelationType2=3
+Fields1=code
+Fields2=role_code
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,1733,8267,4226,R,R,""
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20201109161218
+LineMode=0
+Bar1=173
+Bar2=827
+Bar3=423
+TermPos1=R
+TermPos2=R
+ZOrder=13
+
+[Relation]
+Entity1=questions
+Entity2=answers
+RelationType1=2
+RelationType2=3
+Fields1=id
+Fields2=question_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,3620,4695,8579,R,R,""
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20201109161634
+LineMode=0
+Bar1=362
+Bar2=470
+Bar3=858
+TermPos1=R
+TermPos2=R
+ZOrder=14
+
+[Entity]
+PName=form_types
+LName=フォームマスタ
+Comment=
+TableOption=
+Page=MAIN
+Left=1800
+Top=1300
+Field="id","id","bigint unsigned auto_increment","NOT NULL",0,"","",$000000FF,""
+Field="フォームコード","code","string","NOT NULL",,"","",$FFFFFFFF,""
+Field="フォーム名","name","string","NOT NULL",,"","",$FFFFFFFF,""
+Field="作成日時","created_at","timestamps","NOT NULL",,"","",$FFFFFFFF,""
+Field="更新日時","updated_at","timestamps","NOT NULL",,"","",$FFFFFFFF,""
+Field="論理削除","deleted_at","softDeletes",,,"","nullable",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20201111105641
+Position="MAIN",1800,1300
+ZOrder=16
+
+[Relation]
+Entity1=form_types
+Entity2=questions
+RelationType1=2
+RelationType2=2
+Fields1=code
+Fields2=form_types_code
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,6243,3757,6359,R,R,""
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20201109183919
+LineMode=0
+Bar1=624
+Bar2=376
+Bar3=636
+TermPos1=R
+TermPos2=R
+ZOrder=18
+
+[Relation]
+Entity1=roles
+Entity2=users
+RelationType1=2
+RelationType2=3
+Fields1=code
+Fields2=role_code
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,1733,8267,4226,R,R,""
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20201109161218
+LineMode=0
+Bar1=173
+Bar2=827
+Bar3=423
+TermPos1=R
+TermPos2=R
+ZOrder=19
+
+[Relation]
+Entity1=roles
+Entity2=users
+RelationType1=2
+RelationType2=3
+Fields1=code
+Fields2=role_code
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,1733,8267,4226,R,R,""
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20201109161218
+LineMode=0
+Bar1=173
+Bar2=827
+Bar3=423
+TermPos1=R
+TermPos2=R
+ZOrder=20
+
+[Relation]
+Entity1=roles
+Entity2=users
+RelationType1=2
+RelationType2=3
+Fields1=code
+Fields2=role_code
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,1733,8267,4226,R,R,""
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20201109161218
+LineMode=0
+Bar1=173
+Bar2=827
+Bar3=423
+TermPos1=R
+TermPos2=R
+ZOrder=21
+
+[Relation]
+Entity1=questions
+Entity2=roles
+RelationType1=4
+RelationType2=2
+Fields1=role_code
+Fields2=id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,3135,6865,4931,R,R,""
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20201203120016
+LineMode=0
+Bar1=314
+Bar2=686
+Bar3=493
+TermPos1=R
+TermPos2=R
+ZOrder=24
