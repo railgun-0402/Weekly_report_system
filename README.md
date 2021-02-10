@@ -1,4 +1,4 @@
-# weekly_report
+# new_weekly_report
 
 ## 環境構築
 
