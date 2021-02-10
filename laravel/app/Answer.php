@@ -15,11 +15,14 @@ class Answer extends Model
     protected $table = 'answers';
 
     // 書き換えることが出来るカラムをホワイトリスト形式で指定
-    protected $fillable = [
-        'question_id',
-        'user_code',
-        'content'
-    ];
+    // protected $fillable = [
+    //     'question_id',
+    //     'user_code',
+    //     'content'
+    // ];
+
+    protected $guarded = []; //一旦これ
+
 
     // timestampの自動更新を利用する
     public $timestamps = true;

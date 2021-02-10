@@ -15,18 +15,21 @@ class Question extends Model
     protected $table = 'questions';
 
     // 書き換えることが出来るカラムをホワイトリスト形式で指定
-    protected $fillable = [
-        'question_group',
-        'form_types_code',
-        'user_code',
-        'selectable_item',
-        'item_content1',
-        'item_content2',
-        'item_content3',
-        'item_content4',
-        'item_content5',
-        'content'
-    ];
+    // protected $fillable = [
+    //     'question_group',
+    //     'form_types_code',
+    //     'user_code',
+    //     'selectable_item',
+    //     'item_content1',
+    //     'item_content2',
+    //     'item_content3',
+    //     'item_content4',
+    //     'item_content5',
+    //     'content'
+    // ];
+    protected $guarded = []; //一旦これ
+
+
 
     // timestampの自動更新を利用する
     public $timestamps = true;

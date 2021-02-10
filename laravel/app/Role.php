@@ -15,10 +15,11 @@ class Role extends Model
     protected $table = 'roles';
 
     // 書き換えることが出来るカラムをホワイトリスト形式で指定
-    protected $fillable = [
-        'code',
-        'name'
-    ];
+    // protected $fillable = [
+    //     'code',
+    //     'name'
+    // ];
+    protected $guarded = []; //一旦これ
 
     // timestampの自動更新を利用する
     public $timestamps = true;

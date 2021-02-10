@@ -15,11 +15,10 @@ class CreateAnswersTable extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('question_id');
-            $table->string('user_code');
-            $table->string('content');
+            $table->string('question_id')->nullable();
+            $table->string('user_code')->nullable();
+            $table->string('content')->nullable();
             $table->timestamps();
-            // 論理削除フラグ
             $table->softDeletes();
 
         });

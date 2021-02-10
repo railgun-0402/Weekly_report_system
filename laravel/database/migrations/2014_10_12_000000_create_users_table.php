@@ -14,19 +14,16 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            // TODO: 一時的に nullable 指定のカラム設定中
             $table->bigIncrements('id');
             $table->string('code')->nullable();
             $table->string('role_code')->nullable();
             $table->string('name')->nullable();
-            // $table->string('email')->unique(); もともとの設定
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('full_name')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            // 論理削除フラグ
             $table->softDeletes();
 
         });

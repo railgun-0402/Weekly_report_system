@@ -19,6 +19,8 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+    /*
     protected $fillable = [
         // 'id',
         'code',
@@ -33,6 +35,8 @@ class User extends Authenticatable
         // 'updated_at',
         // 'deleted_at',
     ];
+    */
+    protected $guarded = []; //一旦これ
 
     /**
      * The attributes that should be hidden for arrays.
