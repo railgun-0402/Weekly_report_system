@@ -33,14 +33,13 @@ php artisan migrate:fresh
 php artisan migrate:fresh --seed
 ```
 
-■必要であれば以下実施（clone元で実行されていればやらなくてOK）
+■以下もうやってあるので、やらなくてOK（備忘の為、コマンドは書いておく）
 ```
+# laravelUIとbootstrap導入
 composer require laravel/ui:~2.0
 php artisan ui bootstrap --auth
-```
 
-■必要であれば以下実施（clone元で実行されていればやらなくてOK）
-```
+# フロントのモジュールインストール
 apt update
 apt install nodejs npm
 npm install
