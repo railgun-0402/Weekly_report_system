@@ -22,7 +22,7 @@ composer install
 
 ■キャッシュファイル作成とAPPキー生成
 ```
-php artisan config:cache && php artisan key:generate &&php artisan config:cache
+php artisan config:cache && php artisan key:generate && php artisan config:cache
 ```
 ■DBマイグレーション（接続確認）
 ```
