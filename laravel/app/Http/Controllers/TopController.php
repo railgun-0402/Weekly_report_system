@@ -20,7 +20,7 @@ class TopController extends Controller
         } elseif ($user->role_code === 'ADMIN') {
             return view('/admin/top');
         } elseif (!$user->role_code) {
-            return view('/user/top');
+            Auth::logout();
         } else {
             Auth::logout();
         }

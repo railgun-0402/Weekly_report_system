@@ -58,14 +58,9 @@ class AdminController extends Controller
 
     /**
      * アカウント作成処理
+     * RegisterController に任せる
      */
-    public function accountStore(Request $req)
-    {
-        $user = new User;
-        $data = $req->all();
-        $user->fill($data)->save();
-        return redirect('/admin/account/list');
-    }
+
 
     /**
      * アカウント削除

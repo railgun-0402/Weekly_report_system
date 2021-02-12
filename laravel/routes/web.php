@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function() {
-    // 管理者とユーザーを権限によって振り分け
-    Route::get('/', 'TopController@index');
+
+    // Route::get('/', 'TopController@index'); // 管理者とユーザーを権限によって振り分け
 
     // 一般ユーザー
     Route::get('/user/top', 'UserController@top'); //一般ユーザーTOP画面
@@ -37,8 +37,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/admin/account/list', 'AdminController@accountList'); // アカウント一覧
     Route::get('/admin/account/edit/{id}', 'AdminController@accountEdit'); // アカウント編集
     Route::patch('/admin/account/edit/{id}', 'AdminController@accountUpdate'); // アカウント更新
-    // Route::get('/admin/account/create', 'AdminController@accountCreate'); // TODO: アカウント作成
-    // Route::post('/admin/account/create', 'AdminController@accountStore'); // TODO: アカウント作成処理
+    Route::get('/admin/account/create', 'AdminController@accountCreate'); // アカウント新規登録（標準機能）
     Route::delete('/admin/account/list/{user}', 'AdminController@accountDestroy'); // アカウント削除
 
     Route::get('/admin/enquete/list', 'AdminController@enqueteList'); // 出題（予定）アンケート一覧
