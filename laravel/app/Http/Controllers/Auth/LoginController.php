@@ -31,6 +31,7 @@ class LoginController extends Controller
 
     protected function redirectTo()
     {
+        var_dump('loginController'); // ログイン後通らない
         $user = \Auth::user();
         if ($user->role_code === 'ADMIN') {
             return view('/admin/account/list');
@@ -38,6 +39,7 @@ class LoginController extends Controller
             return view('/user/account/index');
         } else {
             Auth::logout();
+            return view('/login');
         }
     }
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Question;
+use App\FormType;
 
 class AdminController extends Controller
 {
@@ -78,10 +79,11 @@ class AdminController extends Controller
     public function enqueteList()
     {
         // TODO: 仮のアンケート名をべた書きしてますアンケート名を入れるテーブルもしくはカラムが必要かもしれないです
-        $enqueteNames = [
-            '雛形１', '雛形２', '雛形３', '雛形４', '雛形５', '雛形６', '雛形７', '雛形８', '雛形９', '雛形１０',
-        ];
-        return view('/admin/enquete/list')->with('enqueteNames', $enqueteNames);
+        // $enqueteNames = [
+        //     '雛形１', '雛形２', '雛形３', '雛形４', '雛形５', '雛形６', '雛形７', '雛形８', '雛形９', '雛形１０',
+        // ];
+        // return view('/admin/enquete/list')->with('enqueteNames', $enqueteNames);
+        return view('/admin/enquete/list');
     }
 
     /**
@@ -89,7 +91,8 @@ class AdminController extends Controller
      */
     public function enqueteCreate()
     {
-        return view('/admin/enquete/create');
+        $form_types = FormType::get();
+        return view('/admin/enquete/create')->with('form_types', $form_types);
     }
 
     /**

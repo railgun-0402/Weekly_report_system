@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth'], function() {
 
-    // Route::get('/', 'TopController@index'); // 管理者とユーザーを権限によって振り分け
+    Route::get('/', 'TopController@index'); // 管理者とユーザーを権限によって振り分け
 
     // 一般ユーザー
     Route::get('/user/top', 'UserController@top'); //一般ユーザーTOP画面
