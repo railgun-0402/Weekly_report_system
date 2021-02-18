@@ -24,7 +24,7 @@ $factory->define(Question::class, function (Faker $faker) {
                 "体調の悪いところがあれば記述してください"];
 
     return [
-        'question_group' => $faker->numberBetween(1, 10),
+        'question_group' => '202102' . mt_rand(10, 13),
         'form_types_code' => mt_rand(1, 4),
         'user_code' => $faker->unique()->randomNumber(2),
         'selectable_item' => mt_rand(1, 5),
@@ -33,7 +33,6 @@ $factory->define(Question::class, function (Faker $faker) {
         'item_content3' => '普通-' . $c++,
         'item_content4' => 'やや悪い-' . $d++,
         'item_content5' => '悪い-' . $e++,
-        //'content' => '慣れましたか？-' . $f++,
         'content' => $contents[array_rand($contents)] . $f++,
 
     ];

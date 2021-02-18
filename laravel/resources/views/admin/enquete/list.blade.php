@@ -11,12 +11,16 @@
             <table class="table table-sm">
                 <tr>
                     <th scope="col">更新日</th>
-                    <th scope="col">アンケート名</th>
+                    <th scope="col">アンケート内容（質問のかたまり）</th>
                 </tr>
+
+                @foreach ($questions as $key => $question)
                 <tr>
-                    <td>yyyy/mm/dd</td>
-                    <td><a href="">アンケート①</a></td>
+                    <td>{{$question->question_group}}</td>
+                    <td><a href="/admin/enquete/show/{{$question->question_group}}">アンケート{{$key+1}}</a></td>
                 </tr>
+                @endforeach
+
             </table>
         </div>
         <div class="col">

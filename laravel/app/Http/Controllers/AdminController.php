@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
@@ -78,13 +79,21 @@ class AdminController extends Controller
      */
     public function enqueteList()
     {
-        // TODO: 仮のアンケート名をべた書きしてますアンケート名を入れるテーブルもしくはカラムが必要かもしれないです
-        // $enqueteNames = [
-        //     '雛形１', '雛形２', '雛形３', '雛形４', '雛形５', '雛形６', '雛形７', '雛形８', '雛形９', '雛形１０',
-        // ];
-        // return view('/admin/enquete/list')->with('enqueteNames', $enqueteNames);
-        return view('/admin/enquete/list');
+        $questions = Question::orderBy('created_at', 'desc')->get();
+        return view('/admin/enquete/list')->with('questions', $questions);
     }
+
+    /**
+     * 配信（予定）アンケート詳細
+     */
+    public function enqueteShow($question_group)
+    {
+        $questions = Question::where('question_group', '=', $question_group)->get();
+        $form_types = FormType::get();
+
+        return view('/admin/enquete/show', compact('questions', 'form_types'));
+    }
+
 
     /**
      * 出題（予定）アンケート作成
@@ -94,6 +103,33 @@ class AdminController extends Controller
         $form_types = FormType::get();
         return view('/admin/enquete/create')->with('form_types', $form_types);
     }
+
+    /**
+     * 出題（予定）アンケート作成 処理
+     */
+    public function enqueteStore(Request $req)
+    {
+        // $numbers_of_questions = $req->number_of_questions; //質問の数
+        // ===============================================================
+        // １問の登録のみならこちらでOK
+        // $questions = new Question();
+        // $data = $req->all();
+        // $questions->fill($data)->save();
+        // return redirect('/admin/enquete/list');
+        // １問の登録のみならこちらでOK
+        // ===============================================================
+
+        // 質問を３つ登録
+        $insertData = [
+            ['question_group' => $req->question_group, 'content' => $req->content1, 'form_types_code' => $req->form_types_code1, 'item_content1' => $req->item_content11, 'item_content2' => $req->item_content21, 'item_content3' => $req->item_content31, 'item_content4' => $req->item_content41, 'item_content5' => $req->item_content51, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['question_group' => $req->question_group, 'content' => $req->content2, 'form_types_code' => $req->form_types_code2, 'item_content1' => $req->item_content12, 'item_content2' => $req->item_content22, 'item_content3' => $req->item_content32, 'item_content4' => $req->item_content42, 'item_content5' => $req->item_content52, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['question_group' => $req->question_group, 'content' => $req->content3, 'form_types_code' => $req->form_types_code3, 'item_content1' => $req->item_content13, 'item_content2' => $req->item_content23, 'item_content3' => $req->item_content33, 'item_content4' => $req->item_content43, 'item_content5' => $req->item_content53, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]
+        ];
+        DB::table('questions')->insert($insertData);
+        return redirect('/admin/enquete/list');
+    }
+
+
 
     /**
      * 出題（予定）アンケート編集
