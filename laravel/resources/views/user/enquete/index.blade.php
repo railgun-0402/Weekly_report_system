@@ -41,83 +41,50 @@ $dropNumber = 0;
                         @php $radioNumber = $radioNumber + 1 @endphp
                         <div class="form-group">
                             <label><span class="badge badge-danger">必須</span>&nbsp;Q{{ $key }}.&nbsp;{{ $item->content }}</label><br>
-                            
-                            <!-- @for ($i = 1; $i <= 5; $i++)
-                                <div class="form-group">
-                                    <input class="form-check-input" type="radio" name="radio{{ $key }}" id="radio{{ $key }}{{ $i }}" value="">
-                                    <label class="form-check-label" for="radio{{ $key }}{{ $i }}">
-                                        {{ $item -> item_content2 }}
-                                    </label>
-                                </div>
-
-                            @endfor -->
 
                             @for ($i = 1; $i <= $item->selectable_item; $i++)
                                     
                                 @php $item_contents = "item_content".$i @endphp
-                                <div class="form-group">
-                                    <lavel class="form-check-label" for="radio{{ $radioNumber }}">
-                                        <input type="radio" name="radio{{ $radioNumber }}" id="radio{{ $radioNumber }}" value="">
-                                        {{ $item -> $item_contents }}
-                                    </lavel>
+                                <div class="form-group">                                
+                                    <input type="radio" name="radio{{ $radioNumber }}" id="radio{{ $key }}{{ $i }}" value="{{ $item -> $item_contents }}">
+                                    <label class="form-check-label" for="radio{{ $key }}{{ $i }}">{{ $item -> $item_contents }}</label>                                    
                                 </div>
                             @endfor
-
-                            
-                            <!-- @for ($i = 1; $i <= $item->selectable_item; $i++) -->
-                                <!-- @foreach ($itemsArray as $itemArray)
-
-                                    @if (!empty($itemArray['item_content1']))
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="radio{{ $key }}" id="radio{{ $key }}{{ $i }}" value="">
-                                        <label class="form-check-label" for="radio{{ $key }}{{ $i }}">
-                                            {{ $itemArray['item_content1'] }}
-                                        </label>
-                                    </div>
-                                    @elseif (!empty($itemArray['item_content1']))
-
-                                    @else
-
-                                    @endif
-
-                                @endforeach -->
-
-                                
-
-
-
-
-
-
-
-
-                            <!-- @endfor -->
                         </div>
+
                     @elseif ($item->form_types_code === '3') {{-- <!-- チェックボックス --> --}}
+                        @php $checkNumber = $checkNumber + 1 @endphp
                         <div class="form-group">
                             <label><span class="badge badge-danger">必須</span>&nbsp;Q{{ $key }}.&nbsp;{{ $item->content }}</label>
                             @for ($i = 1; $i <= $item->selectable_item; $i++)
+                            @php $item_contents = "item_content".$i @endphp
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="checkbox{{ $key }}" value="" id="checkbox{{ $key }}{{ $i }}">
-                                    <label class="form-check-label" for="checkbox{{ $key }}{{ $i }}">{{ $i }}-：標準のチェックボックス</label>
+                                    <input class="form-check-input" type="checkbox" name="checkbox{{ $checkNumber }}[]" id="checkbox{{ $key }}{{ $i }}" value="{{ $item -> $item_contents }}">
+                                    <label class="form-check-label" for="checkbox{{ $key }}{{ $i }}">{{ $item -> $item_contents }}</label>
                                 </div>
                             @endfor
                         </div>
+
                     @elseif ($item->form_types_code === '4') {{-- <!-- ドロップダウンメニュー --> --}}
+                        @php $dropNumber = $dropNumber + 1 @endphp
+
                         <div class="form-group">
                             <label><span class="badge badge-danger">必須</span>&nbsp;Q{{ $key }}.&nbsp;{{ $item->content }}</label>
-                            <select id="" name="selects{{ $key }}" class="form-control" required>
+                            <select id="" name="selects{{ $dropNumber }}" class="form-control" required>
                                 <option value="">選択してください</option>
                                 @for ($i = 1; $i <= $item->selectable_item; $i++)
-                                    <option value="{{$key}}{{$i}}">選択肢{{$key}}{{$i}}</option>
+                                    @php $drop_item_contents = "item_content".$i @endphp 
+                                    <option value="{{ $item -> $drop_item_contents }}">{{ $item -> $drop_item_contents }}</option>
                                 @endfor
                             </select>
                         </div>
+
                     @else
                         <p style="color: red;">質問が存在しません。</p>
                     @endif
+
                 @endforeach                
-                <a class="btn btn-secondary mr-1" href="{{ url('/user/enquete/list') }}">戻る</a>
+                <a class="btn btn-secondary mr-1" href="{{ url('/user/top') }}">戻る</a>
             <button type="submit" class="btn btn-success">送信する</button>
         </div>
     </form>

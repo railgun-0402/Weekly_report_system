@@ -30,7 +30,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/user/enquete/list', 'QuestionController@questionList'); //アンケート回答一覧
     Route::get('/user/enquete/index', 'QuestionController@questionIndex'); //アンケート回答画面
     Route::post('/user/enquete/confirmation', 'QuestionController@questionConfirmation');//アンケート回答確認画面
-    Route::post('/user/enquete/complete', 'UserController@complete'); //完了画面
+    // Route::patch('/user/enquete/confirmation/{conf}', 'QuestionController@questionUpdate');//アンケート回答処理
+    // Route::post('/user/enquete/complete', 'UserController@complete'); //完了画面
+    Route::post('/user/enquete/complete', 'QuestionController@complete'); //完了画面
 
     // 管理者
     Route::get('/admin/top', 'AdminController@top'); // 管理者TOP画面
@@ -46,8 +48,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/admin/enquete/edit/{id}', 'AdminController@enqueteEdit'); // 出題（予定）アンケート編集
     Route::patch('/admin/enquete/edit/{id}', 'AdminController@enqueteUpdate'); // 出題（予定）アンケート更新 TODO: 途中
     Route::delete('/admin/enquete/list/{question}', 'AdminController@enqueteDestroy'); // アカウント削除 TODO: 途中
-
-
+    Route::get('/admin/enquete/answerList', 'AdminController@enqueteAnswerList');//回答済アンケート参照画面
+    Route::get('/admin/enquete/answerList/answerUserList', 'AdminController@enquetAnswerUser');//アンケート回答者一覧画面
+    Route::get('/admin/enquete/answerList/answerUserList/{id}', 'AdminController@answer');//アンケート内容確認画面
 
 });
 Auth::routes();

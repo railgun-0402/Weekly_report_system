@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function top()
     {
-        return view('/user/top');
+        return view('/user/top')->with('user', $user);
     }
 
     public function accountIndex()
@@ -32,7 +32,7 @@ class UserController extends Controller
         return redirect('/user/account/index'); // TODO: フラッシュメッセージを出したい
     }
 
-    public function complete()
+    public function complete(Request $req)
     {
         return view('/user/enquete/complete');
     }

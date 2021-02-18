@@ -4,6 +4,8 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Session\TokenMismatchException;
+use Exception;
 
 class Handler extends ExceptionHandler
 {
@@ -50,6 +52,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+
+        if ($exception instanceof TokenMismatchException) {
+            \Session::flash('flash_error_message', '30分以上放置していたせいで、セッションが切れました。');
+            return redirect()->route('login');
+        }
+
         return parent::render($request, $exception);
     }
 }

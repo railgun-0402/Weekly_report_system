@@ -21,8 +21,9 @@ class QuestionController extends Controller
     public function questionIndex(Request $request)
     {
         // TODO: １回分のアンケート（question_groupが同一値）whereは仮
-        $items = \App\Question::where('question_group', mt_rand(1, 10))->get();
-
+        // $items = \App\Question::where('question_group', mt_rand(1, 10))->get();
+        $items = \DB::table('questions')->get();
+        // dd($items);
         $itemsArray = $items->toArray();
 
         // 受け取りデータ渡し
@@ -44,18 +45,72 @@ class QuestionController extends Controller
     public function questionConfirmation(Request $request)
     {
         // アンケート取得
-        $items = \App\Question::where('question_group', 2)->get();
+        // $items = \App\Question::where('question_group', 2)->get();
+        $items = \DB::table('questions')->get();
 
         $itemsArray = $items->toArray();
+        // dd($itemsArray);
 
          // 受け取りデータ渡し
-         $data = PostRequest::all();                  
+         $data = PostRequest::all();         
+        // dd($data);         
 
         return view('/user/enquete/confirmation')
                 ->with('items', $items)
                 ->with('itemsArray', $itemsArray)
                 ->with('request', $request)
-                ->with(compact('data'));
+                ->compact('data');
     }
 
+    public function complete(Request $request)
+    {
+        // ユーザー
+        $user = \Auth::user();
+        // これがanswerテーブルのuser_codeにあたる
+        $user_code = $user->code;
+
+        // 質問FK
+        $items = \DB::table('questions')->get();
+        $itemsArray = $items->toArray();
+        // dd($itemsArray);
+
+        // 質問は複数あるので、foreachで回せる
+        // foreach ($itemsArray as $item)
+        // {
+        //     $test = $item -> id;
+        //     dd($test);
+        // }
+
+        // 答え
+        $answer = PostRequest::all();
+        $data = \DB::table('answers')->get();
+        // dd($answer);
+        // dd(array_slice($answer,2,1));
+        // dd(count($answer));
+
+        $key = 1;
+
+        // answersマスタへ、DBに追加
+        // answerは配列なので、一つずつ取り出す
+        // 必要物：
+        // 「question_id」 「user_code」 「content」
+        foreach ($itemsArray as $item)
+        {
+            $key = $key + 1;
+            $add_answer = array_slice($answer, $key, 1);
+            \DB::table('answers')->save([
+                'question_id' =>  $item,
+                'user_code' => $user_code,
+                'content' => $add_answer]);    
+        }
+    }
+
+    // questionのマスタからidをもらう
+    // answersのマスタへデータを加え、上記idも同様に入れる
+    // public function questionUpdate(Request $request, $conf)
+    // {
+    //     $answer = App\Question::findOrFail($conf);
+    //     dd($answer);
+    //     $data = $request->all();
+    // }
 }

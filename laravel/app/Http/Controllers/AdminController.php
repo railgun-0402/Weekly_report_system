@@ -127,4 +127,38 @@ class AdminController extends Controller
         return redirect('/admin/enquete/list');
     }
 
+    /**
+     * 回答済アンケート
+     */
+    // TODO: 途中
+    public function enqueteAnswerList()
+    {
+        //DB値取得
+        $questions = Question::orderBy('id', 'desc')->paginate(5);
+        return view('/admin/enquete/answerList')->with('questions', $questions);
+
+        // $users = User::orderBy('id', 'desc')->paginate(12);
+        // return view('/admin/account/list')->with('users', $users);
+    }
+
+    public function enquetAnswerUser()
+    {
+        $users = User::orderBy('id', 'desc')->paginate(12);
+        // dd($users);
+        return view('/admin/enquete/answerUserList')->with('users', $users);
+    }
+    
+    public function answer($id)
+    {
+        $user = User::findOrFail($id);
+        // dd($users);
+        // $users = User::orderBy('id', 'desc')->paginate(12);
+        $questions = Question::orderBy('id', 'desc')->paginate(5);
+        // デバッグ
+        // dd($questions);
+        // return view('/admin/enquete/answerList/answerUserList/answer')->with('questions', $questions);
+        return view('/admin/enquete/answer')->with('questions', $questions)->with('user', $user);
+    }
+
+
 }
