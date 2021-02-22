@@ -59,7 +59,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20210210171230
-Position="MAIN",850,550,565,292
+Position="MAIN",850,550,639,292
 ZOrder=1
 
 [Entity]
@@ -68,9 +68,9 @@ LName=質問
 Comment=
 TableOption=
 Page=MAIN
-Left=750
-Top=950
-Field="質問グループ","question_group","string","NOT NULL",,"","",$FFFFFFFF,""
+Left=700
+Top=1000
+Field="質問グループ","question_group","string","NOT NULL",,"","日付がbetterかも",$FFFFFFFF,""
 Field="フォームコード","form_types_code","string","NOT NULL",,"","テキスト入力の場合 0",$FFFFFFFF,""
 Field="ユーザーコード","user_code","string","NOT NULL",,"","",$FFFFFFFF,""
 Field="権限マスタコード","role_code","string","NOT NULL",,"","権限",$FFFFFFFF,""
@@ -87,8 +87,8 @@ Field="論理削除","deleted_at","softDeletes",,,"","nullable",$FFFFFFFF,""
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20201203115742
-Position="MAIN",750,950
+ModifiedDateTime=20210216112858
+Position="MAIN",700,1000,688,356
 ZOrder=2
 
 [Entity]
@@ -163,8 +163,8 @@ LName=権限マスタ
 Comment=
 TableOption=
 Page=MAIN
-Left=250
-Top=750
+Left=200
+Top=850
 Field="id","id","bigint unsigned auto_increment","NOT NULL",0,"","",$000000FF,""
 Field="ロールコード","code","string","NOT NULL",,"","0: 管理者、1: 一般",$FFFFFFFF,""
 Field="ロール名","name","string","NOT NULL",,"","\q管理者\q、\q一般ユーザー\q",$FFFFFFFF,""
@@ -175,7 +175,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20210210171558
-Position="MAIN",250,750,458,152
+Position="MAIN",200,850,458,152
 ZOrder=12
 
 [Relation]

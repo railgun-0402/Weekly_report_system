@@ -1,15 +1,15 @@
 $(function() {
     accountDestroy();
     inactivateInputTag();
+    confirmAlert('#regist', '登録');
 
 });
 
 
 $(window).on('load', function() {
-    // getQuestionNumber();
+    reloadInactiveInputTag();
 
 });
-
 
 
  // アカウント削除
@@ -26,18 +26,50 @@ function accountDestroy() {
     }
 }
 
+// 確認アラート
+function confirmAlert(elem, word) {
+    $(elem).on('click', function(e) {
+        if (!confirm(word + 'します。宜しいですか？')) {
+            e.preventDefault();
+            return false;
+        } else {
+            $(this).submit();
+        }
+    });
+}
+
 
 // inputタグ無効/有効
 function inactivateInputTag() {
-    $('input[type=radio]').on('click', function() {
+    $('input[name^=form_types_code]').on('click', function() {
         var id = $(this).attr('id'); // idの値 qxy
-        var id_last = $(this).attr('id').slice(-1); // idの値末尾 y
+        var id_last = id.slice(-1); // idの値末尾 y
         var id_second_last = id.slice(-2); // idの値末尾から2つ xy
         var id_row = id_second_last.slice(0, 1); // idの値末尾から2つ xy の先頭1つ目 x
+
         if (id_last == '1') {
+            console.log("OK");
             $('.not_radio' + id_row).attr('readonly', true);
         } else {
             $('.not_radio' + id_row).attr('readonly', false);
+        }
+    });
+}
+
+
+// reload時のinputタグ無効/有効
+function reloadInactiveInputTag() {
+    var inputs = $('input[name^=form_types_code]').get();
+    $.each(inputs, function(index, elem) {
+        if ($(elem).attr('checked') == 'checked') {
+            var chk = $(elem).attr('id').slice(-1); // idの値末尾 y
+            var chk_second_last = chk.slice(-2); // idの値末尾から2つ xy
+            var chk_row = chk_second_last.slice(0, 1); // idの値末尾から2つ xy の先頭1つ目 x
+            if (chk_row == '1') {
+                $('.not_radio' + chk_row).attr('readonly', true);
+            } else {
+                $('.not_radio' + chk_row).attr('readonly', false);
+            }
         }
     });
 }
