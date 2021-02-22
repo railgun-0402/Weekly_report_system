@@ -63,7 +63,7 @@
                         </table>
                         <div class="item form-group text-center">
                             <div class="bd-example">
-                                <a href="/admin/enquete/list" class="btn btn-secondary mx-3">戻る</a>
+                                <a href="/admin/top" class="btn btn-secondary mx-3">戻る</a>
                                 <input type="submit" id="regist" class="btn btn-primary mx-3" value="登録">
                             </div>
                         </div>

@@ -74,6 +74,22 @@ function reloadInactiveInputTag() {
     });
 }
 
+// clearInputContent();
+// function clearInputContent() {
+
+//     $('#clear_input_content').on('click', function(e) {
+//         e.preventDefault();
+//         console.log("OK");
+
+//         var inputs = $('form').find('input').not('input[type=submit]', 'input[type=radio]').get();
+//         $.each(inputs, function(index, elem){
+//             $(elem).val('').attr('checked', false);
+//         });
+
+//     });
+
+// }
+
 
 // DOM描画後、質問の総数を取得しhiddenで渡すinputタグを挿入
 function getQuestionNumber() {
