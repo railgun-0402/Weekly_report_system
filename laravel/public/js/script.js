@@ -2,6 +2,8 @@ $(function() {
     accountDestroy();
     inactivateInputTag();
     confirmAlert('#regist', '登録');
+    hideElement();
+    buttonAction();
 
 });
 
@@ -38,7 +40,6 @@ function confirmAlert(elem, word) {
     });
 }
 
-
 // inputタグ無効/有効
 function inactivateInputTag() {
     $('input[name^=form_types_code]').on('click', function() {
@@ -46,7 +47,6 @@ function inactivateInputTag() {
         var id_last = id.slice(-1); // idの値末尾 y
         var id_second_last = id.slice(-2); // idの値末尾から2つ xy
         var id_row = id_second_last.slice(0, 1); // idの値末尾から2つ xy の先頭1つ目 x
-
         if (id_last == '1') {
             console.log("OK");
             $('.not_radio' + id_row).attr('readonly', true);
@@ -55,7 +55,6 @@ function inactivateInputTag() {
         }
     });
 }
-
 
 // reload時のinputタグ無効/有効
 function reloadInactiveInputTag() {
@@ -74,22 +73,37 @@ function reloadInactiveInputTag() {
     });
 }
 
-// clearInputContent();
-// function clearInputContent() {
+// ページ読み込み時に質問4～7が空なら要素を隠す
+function hideElement() {
+    var tr_tag_array = $('tbody').children('tr').get();
+    $.each(tr_tag_array, function (index, elem) {
+        if (index == 3 || index == 4 || index == 5 || index == 6) {
+            if ($(elem).find('textarea').val().length == 0) {
+                $(elem).hide();
+            }
+        }
+    });
+}
 
-//     $('#clear_input_content').on('click', function(e) {
-//         e.preventDefault();
-//         console.log("OK");
-
-//         var inputs = $('form').find('input').not('input[type=submit]', 'input[type=radio]').get();
-//         $.each(inputs, function(index, elem){
-//             $(elem).val('').attr('checked', false);
-//         });
-
-//     });
-
-// }
-
+// +ボタンクリック時に要素を表示し限界まで表示したらボタンを隠す
+function buttonAction() {
+    $('#plus').on('click', function () {
+        var tr_tag_array = $('tbody').children('tr').get();
+        $.each(tr_tag_array, function (i, e) {
+            if ($(e).attr('style') != 'display: none;' && i == 5) {
+                $('#plus').hide();
+            }
+        });
+        $.each(tr_tag_array, function (index, elem) {
+            if (index == 3 || index == 4 || index == 5 || index == 6) {
+                if ($(elem).attr('style') == 'display: none;') {
+                    $(elem).show();
+                    return false;
+                }
+            }
+        });
+    });
+}
 
 // DOM描画後、質問の総数を取得しhiddenで渡すinputタグを挿入
 function getQuestionNumber() {

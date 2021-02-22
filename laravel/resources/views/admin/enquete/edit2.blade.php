@@ -63,6 +63,7 @@
 
                             </tbody>
                         </table>
+                        <button id="plus" type="button" class="btn btn-primary rounded-circle p-0" style="width:2rem;height:2rem;">＋</button>
                         <div class="item form-group text-center">
                             <div class="bd-example">
                                 <a href="/admin/top" class="btn btn-secondary mx-3">戻る</a>
