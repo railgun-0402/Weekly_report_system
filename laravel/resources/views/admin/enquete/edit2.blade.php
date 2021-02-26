@@ -10,7 +10,7 @@
                         @csrf
                         @method('patch')
 
-                        <input type="hidden" name="question_group" value="<?php echo date("Ymd"); ?>">
+                        <input type="hidden" name="question_group" value="{{$now}}">
 
                         <table class="table">
                             <thead>
