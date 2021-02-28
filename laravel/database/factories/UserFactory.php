@@ -36,10 +36,9 @@ $factory->define(User::class, function (Faker $faker) {
 
         // 以下追加
         'name' => $name,
-        'code' => $faker->unique()->randomNumber(2),
+        'code' => sprintf('%03d', $faker->unique()->numberBetween(003, 050)),
         'role_code' => $roleCode,
         'full_name' => $faker->name,
-        'code' => $faker->dayOfMonth,
 
     ];
 });

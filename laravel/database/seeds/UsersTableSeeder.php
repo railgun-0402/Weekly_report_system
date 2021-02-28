@@ -14,32 +14,31 @@ class UsersTableSeeder extends Seeder
     {
         \DB::table('users')->insert([
             [
-                'code' => 1,
+                'code' => '001',
                 'role_code' => 'ORDINARY',
                 'name' => 'user',
                 'remember_token' => Str::random(10),
                 'email' => 'example@example.com',
                 'email_verified_at' => now(),
-                'full_name' => 'full_name',
+                'full_name' => 'user_full_name',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'code' => 2,
+                'code' => '002',
                 'role_code' => 'ADMIN',
                 'name' => 'admin',
                 'remember_token' => Str::random(10),
                 'email' => 'examplee@example.com',
                 'email_verified_at' => now(),
-                'full_name' => 'full_name',
+                'full_name' => 'admin_full_name',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
 
         ]);
-
-        factory(\App\User::class, 48)->create();
+        factory(\App\User::class, 28)->create();
     }
 }

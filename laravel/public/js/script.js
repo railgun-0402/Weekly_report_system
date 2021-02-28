@@ -103,11 +103,9 @@ function buttonAction() {
             }
         });
     });
-}
-
-// DOM描画後、質問の総数を取得しhiddenで渡すinputタグを挿入
-function getQuestionNumber() {
-    var len = $('td[scope=row]').length;
-    var get_question_num = '<input type="hidden" name="number_of_questions" value="' + len + '">';
-    $('form').prepend(get_question_num);
+    // 最後のテキストエリアに値があれば＋ボタンを隠す
+    var t_array = $('textarea[name^=content]').get();
+    if (t_array[t_array.length - 1].textContent != '') {
+        $('#plus').hide();
+    }
 }
