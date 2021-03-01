@@ -29,7 +29,10 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
+
+     // アカウント新規登録後のリダイレクト先
+    protected $redirectTo = ('/admin/account/list');
 
     /**
      * Create a new controller instance.
@@ -38,8 +41,9 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        // 下記設定にすると登録ユーザーのみ新規ユーザー登録が出来るようになります。
-        $this->middleware('auth'); // 元は $this->middleware('guest');
+        // ログイン可能ユーザーのみ新規登録可能にする
+        // $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     /**

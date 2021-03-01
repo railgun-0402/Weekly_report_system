@@ -11,7 +11,7 @@ $dropNumber = 0;
 <style>
 </style>
 <div class="container">
-    <form action="{{ action('QuestionController@complete') }}" method="POST" class="row">
+    <form action="{{ action('QuestionController@complete') }}" method="GET" class="row">
     @csrf
         <div class="kakuninn">
             <h4 class="mb">回答内容確認</h4><br>

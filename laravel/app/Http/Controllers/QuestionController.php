@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Request as PostRequest;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use Request;
+// use Request as PostRequest;
 
 
 class QuestionController extends Controller
@@ -23,7 +25,7 @@ class QuestionController extends Controller
         // TODO: １回分のアンケート（question_groupが同一値）whereは仮
         // $items = \App\Question::where('question_group', mt_rand(1, 10))->get();
         $items = \DB::table('questions')->get();
-        // dd($items);
+
         $itemsArray = $items->toArray();
 
         // 受け取りデータ渡し
@@ -52,14 +54,14 @@ class QuestionController extends Controller
         // dd($itemsArray);
 
          // 受け取りデータ渡し
-         $data = PostRequest::all();         
+         $data = Request::all();         
         // dd($data);         
 
         return view('/user/enquete/confirmation')
                 ->with('items', $items)
                 ->with('itemsArray', $itemsArray)
                 ->with('request', $request)
-                ->compact('data');
+                ->with(compact('data'));
     }
 
     public function complete(Request $request)
@@ -73,22 +75,15 @@ class QuestionController extends Controller
         $items = \DB::table('questions')->get();
         $itemsArray = $items->toArray();
         // dd($itemsArray);
-
-        // 質問は複数あるので、foreachで回せる
-        // foreach ($itemsArray as $item)
-        // {
-        //     $test = $item -> id;
-        //     dd($test);
-        // }
-
+        // dd(count($itemsArray));
+        
         // 答え
-        $answer = PostRequest::all();
+        $answer = Request::all();
         $data = \DB::table('answers')->get();
-        // dd($answer);
-        // dd(array_slice($answer,2,1));
-        // dd(count($answer));
 
-        $key = 1;
+        $key = 0;
+        $con = '';
+        // dd($answer);
 
         // answersマスタへ、DBに追加
         // answerは配列なので、一つずつ取り出す
@@ -97,20 +92,29 @@ class QuestionController extends Controller
         foreach ($itemsArray as $item)
         {
             $key = $key + 1;
+            # 答えの配列から一つずつ取り出し
             $add_answer = array_slice($answer, $key, 1);
-            \DB::table('answers')->save([
-                'question_id' =>  $item,
-                'user_code' => $user_code,
-                'content' => $add_answer]);    
-        }
-    }
+            # でてくる値は配列なので先頭をとりだしてやる
+            $first_array = array_shift($add_answer);
+            # チェックボックスの場合、複数あることから配列になるので判断する
+            $judge = is_array($first_array);
+            
+            # 配列すなわちチェックボックスの場合
+            # 全部取り出してやる
+            if ($judge == 'true'){
+                foreach ($first_array as $arr){
+                    // $con += '・' + $arr;                    
+                    $update = ['question_id' => $item->question_group, 'user_code' => $user_code, 'content' => $arr, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
+                    DB::table('answers')->insert($update);            
+                }
+            }
+            # 配列でない場合、先頭だけ取ればよい
+            else {
+                $update = ['question_id' => $item->question_group, 'user_code' => $user_code, 'content' => $first_array, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
+                DB::table('answers')->insert($update);       
+            }
 
-    // questionのマスタからidをもらう
-    // answersのマスタへデータを加え、上記idも同様に入れる
-    // public function questionUpdate(Request $request, $conf)
-    // {
-    //     $answer = App\Question::findOrFail($conf);
-    //     dd($answer);
-    //     $data = $request->all();
-    // }
+        }
+        return view('/user/enquete/complete');
+    }
 }

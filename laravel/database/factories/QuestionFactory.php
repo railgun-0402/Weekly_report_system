@@ -47,5 +47,5 @@ $factory->define(Question::class, function (Faker $faker) {
     //     //'content' => '慣れましたか？-' . $f++,
     //     'content' => $contents[array_rand($contents)] . $f++,
 
-    ];
+    // ];
 });

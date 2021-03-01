@@ -41,5 +41,5 @@ $factory->define(User::class, function (Faker $faker) {
     //     'full_name' => $faker->name,
     //     'code' => $faker->dayOfMonth,
 
-    ];
+    //];
 });

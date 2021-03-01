@@ -15,16 +15,16 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('question_group');
-            $table->string('form_types_code');
-            $table->string('user_code');
-            $table->string('selectable_item');
-            $table->string('item_content1');
-            $table->string('item_content2');
-            $table->string('item_content3');
-            $table->string('item_content4');
-            $table->string('item_content5');
-            $table->string('content');
+            $table->string('question_group')->nullable();
+            $table->string('form_types_code')->nullable();
+            $table->string('user_code')->nullable();
+            $table->string('selectable_item')->nullable();
+            $table->string('item_content1')->nullable();
+            $table->string('item_content2')->nullable();
+            $table->string('item_content3')->nullable();
+            $table->string('item_content4')->nullable();
+            $table->string('item_content5')->nullable();
+            $table->string('content')->nullable();
             $table->timestamps();
             // 論理削除フラグ
             $table->softDeletes();

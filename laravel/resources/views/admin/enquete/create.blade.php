@@ -1,150 +1,72 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('アンケート新規登録') }}</div>
-
                 <div class="card-body">
-                    <form method="POST" action="#">
+                    <form method="POST" action="{{url('/admin/enquete/create')}}">
                         @csrf
+                        <input type="hidden" name="question_group" value="<?php echo date('Ymd'); ?>">
 
-                        {{-- questionsテーブルのカラム
-                        id, question_group, form_types_code, user_code, selectable_item,
-                        item_content1, item_content2, item_content3, item_content4, item_content5,
-                        content, created_at, updated_at, deleted_at --}}
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">出題する質問</th>
+                                    <th scope="col">回答させる形式</th>
+                                    <th scope="col">ラジオボタンで回答者が選ぶ選択肢</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                        {{-- ・質問する文章を入力してください。 --}}
-                        <div class="form-group">
-                            <label for="content" class="">{{ __('質問する文章を入力してください。') }}</label>
-                            <div class="col-md-12">
-                                <textarea id="content" type="text" class="form-control @error('content') is-invalid @enderror" name="content" value="" required autocomplete="off" autofocus>{{ old('content') }}</textarea>
-                                @error('content')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            {{-- 初期値３問 --}}
+                            @for ($i = 0; $i < 3; $i++)
+                                <tr>
+                                    <td scope="row">{{$i+1}}</td>
+                                    <td>
+                                        <div class="form-group">
+                                            <textarea class="form-control" name="content{{$i+1}}" rows="2">{{old('content')}}</textarea>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        @foreach ($form_types as $key => $form_type)
+                                        <div class="form-check my-1">
+                                            <input class="form-check-input" type="radio" name="form_types_code{{$i+1}}" id="q{{$i+1}}{{$key+1}}" value="{{$form_type->code}}">
+                                            <label class="form-check-label" for="q{{$i+1}}{{$key+1}}">{{$form_type->name}}</label>
+                                        </div>
+                                        @endforeach
+                                    </td>
+                                    <td>
+                                        <div class="form-group row">
+                                            <div class="col-sm-12"><input type="text" name="item_content1{{$i+1}}" class="form-control form-control-sm not_radio{{$i+1}}" placeholder="例）大変良好" value="{{old('item_content1')}}"></div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-12"><input type="text" name="item_content2{{$i+1}}" class="form-control form-control-sm not_radio{{$i+1}}" placeholder="例）良好" value="{{old('item_content2')}}"></div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-12"><input type="text" name="item_content3{{$i+1}}" class="form-control form-control-sm not_radio{{$i+1}}" placeholder="例）どちらともいえない" value="{{old('item_content3')}}"></div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-12"><input type="text" name="item_content4{{$i+1}}" class="form-control form-control-sm not_radio{{$i+1}}" placeholder="例）悪い" value="{{old('item_content4')}}"></div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-12"><input type="text" name="item_content5{{$i+1}}" class="form-control form-control-sm not_radio{{$i+1}}" placeholder="例）非常に悪い" value="{{old('item_content5')}}"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endfor
+                            {{-- 初期値３問 --}}
+
+                            </tbody>
+                        </table>
+                        <div class="item form-group text-center">
+                            <div class="bd-example">
+                                <a href="/admin/top" class="btn btn-secondary mx-3">戻る</a>
+                                <input type="submit" id="regist" class="btn btn-primary mx-3" value="登録">
                             </div>
                         </div>
-
-                        {{-- <div class="form-group">
-                            <label for="exampleInputEmail1">質問する文章を入力してください。</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                        </div> --}}
-
-
-
-
-
-
-                        {{-- ・どの形式で回答してもらうか選択してください。
-                        ・回答してもらう、選択肢の内容を入力してください。 --}}
-
-
-
-
-
-
-
-                        {{-- ログインID入力欄 --}}
-                        {{-- <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('ログインID') }}</label>
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="off" autofocus>
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div> --}}
-
-                        {{-- 社員コード入力欄 --}}
-                        {{-- <div class="form-group row">
-                            <label for="code" class="col-md-4 col-form-label text-md-right">{{ __('社員コード') }}</label>
-                            <div class="col-md-6">
-                                <input id="code" type="text" class="form-control @error('phone') is-invalid @enderror" name="code" value="{{ old('code') }}" required autocomplete="off">
-                                @error('code')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div> --}}
-
-                        {{-- 登録ユーザーの種別入力欄 --}}
-                        {{-- <div class="form-group row">
-                            <label for="role_code" class="col-md-4 col-form-label text-md-right">{{ __('登録ユーザーの種別') }}</label>
-                            <div class="col-md-6">
-                                <select id="role_code" name="role_code" class="form-control" required>
-                                    <option value="">選択してください</option>
-                                    <option value="ORDINARY">一般の従業員</option>
-                                    <option value="ADMIN">管理者</option>
-                                </select>
-                            </div>
-                        </div> --}}
-
-                        {{-- E-Mail アドレス入力欄 --}}
-                        {{-- <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail アドレス') }}</label>
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div> --}}
-
-                        {{-- 氏　名入力欄 --}}
-                        {{-- <div class="form-group row">
-                            <label for="full_name" class="col-md-4 col-form-label text-md-right">{{ __('氏　名') }}</label>
-                            <div class="col-md-6">
-                                <input id="full_name" type="text" class="form-control @error('phone') is-invalid @enderror" name="full_name" value="{{ old('full_name') }}" required autocomplete="off">
-                                @error('full_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div> --}}
-
-                        {{-- パスワード入力欄 --}}
-                        {{-- <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('パスワード') }}</label>
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div> --}}
-
-                        {{-- パスワード（確認）入力欄 --}}
-                        {{-- <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('パスワード（確認）') }}</label>
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div> --}}
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('新規登録') }}
-                                </button>
-                            </div>
-                        </div>
-
                     </form>
                 </div>
             </div>
