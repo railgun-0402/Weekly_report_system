@@ -202,34 +202,24 @@ class AdminController extends Controller
      */
     public function answeredDate($id)
     {
-
         $user = User::findOrFail($id); // 該当idのユーザー全情報
-        $user_code = $user->code;      // 該当idのユーザーのcode（誰の回答を出力するか）
-
-        // $answers = Answer::where($user_code);
-        // Question::where('question_group', '=', $question_group)->get();
-
-
-
+        $answers = Answer::where('user_code', '=', $user->code)->get(); // 該当ユーザーの回答内容情報
 
         return view('/admin/answered/date', compact('user', 'answers'));
     }
 
     /**
-     * アンケート回答者日付一覧
+     * アンケート回答者の内容
      */
-    public function answeredShow()
+    public function answeredShow($id)
     {
-        // $answers = Answer::findOrFail($answers);
-        // dd($answers);
-        return view('/admin/answered/show');
+        $user = User::findOrFail($id); // 該当idのユーザー全情報
+        $answers = Answer::where('user_code', '=', $user->code)->get(); // 該当ユーザーの回答内容情報
+        $questions = Question::all();
+        // dd($questions);
+
+        return view('/admin/answered/show', compact('user', 'answers', 'questions'));
     }
-
-
-
-
-
-
 
 
 

@@ -1,9 +1,11 @@
 <?php
-
-dump($user);
-dump($answers);
-
-
+    // answers.question_id をテーブル要素内に表示。重複は表示しない
+    $question_id_array = [];
+    foreach ($answers->toArray() as $answer)
+    {
+        array_push($question_id_array, $answer['question_id']);
+    }
+    $question_ids = array_unique($question_id_array);
 ?>
 @extends('layouts.app')
 @section('title', '回答日時一覧')
@@ -19,12 +21,15 @@ dump($answers);
                     <tr>
                         <th scope="col">日時を選択してください</th>
                     </tr>
-                    <tr>
-                        <td><a href="/admin/answered/show">yyyy-mm-dd</a></td>
-                    </tr>
+
+                    <?php foreach ($question_ids as $question_id) : ?>
+                        <tr>
+                            <td><a href="/admin/answered/show/{{$user->id}}">{{$question_id}}</a></td>
+                        </tr>
+                    <?php endforeach; ?>
+
                 </table>
             </div>
-            {{-- <div class="paginate">{{$users->links()}}</div> --}}
         <div class="col">
             <div id="example"></div>
         </div>

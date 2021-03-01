@@ -44,10 +44,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/admin/enquete/edit', 'AdminController@enqueteEdit');                      // アンケート編集
     Route::patch('/admin/enquete/edit','AdminController@enqueteUpdate');                   // アンケート更新
 
-
     Route::get('/admin/answered/list', 'AdminController@answeredList');             // アンケート回答者一覧
     Route::get('/admin/answered/date/{id}', 'AdminController@answeredDate');        // アンケート回答者日付一覧
-    Route::get('/admin/answered/show', 'AdminController@answeredShow');             // アンケート回答内容確認
+    // Route::get('/admin/answered/show/{id}', 'AdminController@answeredShow');             // アンケート回答内容確認
+    Route::get('/admin/answered/show/{answer}', 'AdminController@answeredShow');             // アンケート回答内容確認
 
 
 
