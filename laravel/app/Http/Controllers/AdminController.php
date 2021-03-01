@@ -74,7 +74,7 @@ class AdminController extends Controller
     /**
      * アンケート参照・編集
     */
-    public function enqueteEdit2()
+    public function enqueteEdit()
     {
         $questions = Question::all();
         $form_types = FormType::all();
@@ -157,15 +157,6 @@ class AdminController extends Controller
 
 
     /**
-     * アンケート参照・編集
-    */
-    public function enqueteEdit()
-    {
-        $questions = Question::groupBy('question_group')->get(['question_group']); // TODO: 登録降順に表示されないので要修正
-        return view('/admin/enquete/list')->with('questions', $questions);
-    }
-
-    /**
      * 配信（予定）アンケート詳細
      */
     public function enqueteShow($question_group)
@@ -177,7 +168,7 @@ class AdminController extends Controller
 
 
     /**
-     * アンケート更新
+     * アンケート更新（一応残す）
     */
     // public function enqueteUpdateSub(Request $req)
     // {
@@ -195,8 +186,6 @@ class AdminController extends Controller
     //     }
     //     return redirect('/admin/enquete/edit');
     // }
-
-
 
     /**
      * 回答済みアンケート参照
