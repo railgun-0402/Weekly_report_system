@@ -70,15 +70,16 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+
     /**
      * アンケート参照・編集
     */
-    public function enqueteEdit()
+    public function enqueteEdit2()
     {
         $questions = Question::all();
         $form_types = FormType::all();
         $now = date("Ymd");
-        return view('/admin/enquete/edit', compact('questions', 'form_types', 'now'));
+        return view('/admin/enquete/edit2', compact('questions', 'form_types', 'now'));
     }
 
     /**
@@ -86,20 +87,116 @@ class AdminController extends Controller
     */
     public function enqueteUpdate(Request $req)
     {
-        $updates = [
-            ['question_group' => $req->question_group, 'content' => $req->content1, 'form_types_code' => $req->form_types_code1, 'item_content1' => $req->item_content11, 'item_content2' => $req->item_content21, 'item_content3' => $req->item_content31, 'item_content4' => $req->item_content41, 'item_content5' => $req->item_content51, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-            ['question_group' => $req->question_group, 'content' => $req->content2, 'form_types_code' => $req->form_types_code2, 'item_content1' => $req->item_content12, 'item_content2' => $req->item_content22, 'item_content3' => $req->item_content32, 'item_content4' => $req->item_content42, 'item_content5' => $req->item_content52, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-            ['question_group' => $req->question_group, 'content' => $req->content3, 'form_types_code' => $req->form_types_code3, 'item_content1' => $req->item_content13, 'item_content2' => $req->item_content23, 'item_content3' => $req->item_content33, 'item_content4' => $req->item_content43, 'item_content5' => $req->item_content53, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-            ['question_group' => $req->question_group, 'content' => $req->content4, 'form_types_code' => $req->form_types_code4, 'item_content1' => $req->item_content14, 'item_content2' => $req->item_content24, 'item_content3' => $req->item_content34, 'item_content4' => $req->item_content44, 'item_content5' => $req->item_content54, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-            ['question_group' => $req->question_group, 'content' => $req->content5, 'form_types_code' => $req->form_types_code5, 'item_content1' => $req->item_content15, 'item_content2' => $req->item_content25, 'item_content3' => $req->item_content35, 'item_content4' => $req->item_content45, 'item_content5' => $req->item_content55, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-            ['question_group' => $req->question_group, 'content' => $req->content6, 'form_types_code' => $req->form_types_code6, 'item_content1' => $req->item_content16, 'item_content2' => $req->item_content26, 'item_content3' => $req->item_content36, 'item_content4' => $req->item_content46, 'item_content5' => $req->item_content56, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-            ['question_group' => $req->question_group, 'content' => $req->content7, 'form_types_code' => $req->form_types_code7, 'item_content1' => $req->item_content17, 'item_content2' => $req->item_content27, 'item_content3' => $req->item_content37, 'item_content4' => $req->item_content47, 'item_content5' => $req->item_content57, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-        ];
+        // ユーザー
+        $user = \Auth::user();
+        // これがanswerテーブルのuser_codeにあたる
+        $user_code = $user->code;
+
+        // 現在日(question_group)
+        $date = date("Ymd");
+
+        // 選択肢→nullではない数を数えるortextBox
         for ($i=1; $i<=7; $i++) {
-            DB::table('questions')->whereIn('id', [$i])->update($updates[$i-1]);
+            // 選択肢の数
+            $selectable_item = 5;
+
+            $req->form_types_code.$i; // メモ：リクエストを受け取る "$req->変数" の記述にインクリメントの$iを連結してもリクエストの値を取ってくれなかった
+
+            // 文字列を連結する
+            $content = 'content'.$i;
+            $form_types_code = 'form_types_code'.$i;
+            $form_types_code_num = $req->$form_types_code;
+            $item_contents1 = 'item_content1'.$i;
+            $item_contents2 = 'item_content2'.$i;
+            $item_contents3 = 'item_content3'.$i;
+            $item_contents4 = 'item_content4'.$i;
+            $item_contents5 = 'item_content5'.$i;
+            $outContent = $req->$content;
+
+            // 値を代入
+            $item_content1 = $req->$item_contents1;
+            $item_content2 = $req->$item_contents2;
+            $item_content3 = $req->$item_contents3;
+            $item_content4 = $req->$item_contents4;
+            $item_content5 = $req->$item_contents5;
+
+            // dd($form_types_code_num);
+
+            if ($form_types_code_num == 1)
+            {
+                $selectable_item = 0;
+            }
+            else
+            {
+                if ($item_content1 == null){
+                    $selectable_item -= 1;
+                }
+
+                if ($item_content2 == null){
+                    $selectable_item -= 1;
+                }
+
+                if ($item_content3 == null){
+                    $selectable_item -= 1;
+                }
+
+                if ($item_content4 == null){
+                    $selectable_item -= 1;
+                }
+
+                if ($item_content5 == null){
+                    $selectable_item -= 1;
+                }
+            }
+
+            $update = ['question_group' => $date, 'user_code' => $user_code, 'selectable_item' => $selectable_item, 'content' => $outContent, 'form_types_code' => $form_types_code_num, 'item_content1' => $item_content1, 'item_content2' => $item_content2, 'item_content3' => $item_content3, 'item_content4' => $item_content4, 'item_content5' => $item_content5, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
+            DB::table('questions')->whereIn('id', [$i])->update($update);
         }
-        return redirect('/admin/enquete/edit');
+        return redirect('/admin/enquete/edit2');
     }
+
+
+    /**
+     * アンケート参照・編集
+    */
+    public function enqueteEdit()
+    {
+        $questions = Question::groupBy('question_group')->get(['question_group']); // TODO: 登録降順に表示されないので要修正
+        return view('/admin/enquete/list')->with('questions', $questions);
+    }
+
+    /**
+     * 配信（予定）アンケート詳細
+     */
+    public function enqueteShow($question_group)
+    {
+        $questions = Question::where('question_group', '=', $question_group)->get();
+        $form_types = FormType::get();
+        return view('/admin/enquete/show', compact('questions', 'form_types'));
+    }
+
+
+    /**
+     * アンケート更新
+    */
+    // public function enqueteUpdateSub(Request $req)
+    // {
+    //     $updates = [
+    //         ['question_group' => $req->question_group, 'content' => $req->content1, 'form_types_code' => $req->form_types_code1, 'item_content1' => $req->item_content11, 'item_content2' => $req->item_content21, 'item_content3' => $req->item_content31, 'item_content4' => $req->item_content41, 'item_content5' => $req->item_content51, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+    //         ['question_group' => $req->question_group, 'content' => $req->content2, 'form_types_code' => $req->form_types_code2, 'item_content1' => $req->item_content12, 'item_content2' => $req->item_content22, 'item_content3' => $req->item_content32, 'item_content4' => $req->item_content42, 'item_content5' => $req->item_content52, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+    //         ['question_group' => $req->question_group, 'content' => $req->content3, 'form_types_code' => $req->form_types_code3, 'item_content1' => $req->item_content13, 'item_content2' => $req->item_content23, 'item_content3' => $req->item_content33, 'item_content4' => $req->item_content43, 'item_content5' => $req->item_content53, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+    //         ['question_group' => $req->question_group, 'content' => $req->content4, 'form_types_code' => $req->form_types_code4, 'item_content1' => $req->item_content14, 'item_content2' => $req->item_content24, 'item_content3' => $req->item_content34, 'item_content4' => $req->item_content44, 'item_content5' => $req->item_content54, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+    //         ['question_group' => $req->question_group, 'content' => $req->content5, 'form_types_code' => $req->form_types_code5, 'item_content1' => $req->item_content15, 'item_content2' => $req->item_content25, 'item_content3' => $req->item_content35, 'item_content4' => $req->item_content45, 'item_content5' => $req->item_content55, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+    //         ['question_group' => $req->question_group, 'content' => $req->content6, 'form_types_code' => $req->form_types_code6, 'item_content1' => $req->item_content16, 'item_content2' => $req->item_content26, 'item_content3' => $req->item_content36, 'item_content4' => $req->item_content46, 'item_content5' => $req->item_content56, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+    //         ['question_group' => $req->question_group, 'content' => $req->content7, 'form_types_code' => $req->form_types_code7, 'item_content1' => $req->item_content17, 'item_content2' => $req->item_content27, 'item_content3' => $req->item_content37, 'item_content4' => $req->item_content47, 'item_content5' => $req->item_content57, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+    //     ];
+    //     for ($i=1; $i<=7; $i++) {
+    //         DB::table('questions')->whereIn('id', [$i])->update($updates[$i-1]);
+    //     }
+    //     return redirect('/admin/enquete/edit');
+    // }
+
+
 
     /**
      * 回答済みアンケート参照

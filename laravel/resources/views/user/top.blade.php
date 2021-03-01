@@ -3,11 +3,8 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <div class="mb-3">メニュー</div>
-            <ul>
-                <li><a href="{{ url('/user/account/index') }}">アカウント情報</a></li>
-                <li><a href="{{ url('/user/enquete/list') }}">アンケート回答</a></li>
-            </ul>
+        <div class="mb-3">ユーザーTop画面</div>
+        <a href="{{ url('/user/enquete/index') }}">アンケートに回答する</a>
         </div>
         <div class="col">
             <div id="example"></div>

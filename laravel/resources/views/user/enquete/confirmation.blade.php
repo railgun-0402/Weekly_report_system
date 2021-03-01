@@ -11,7 +11,7 @@ $dropNumber = 0;
 <style>
 </style>
 <div class="container">
-    <form action="/user/enquete/complete" method="POST" class="row">
+    <form action="{{ action('QuestionController@complete') }}" method="GET" class="row">
     @csrf
         <div class="kakuninn">
             <h4 class="mb">回答内容確認</h4><br>
@@ -23,9 +23,12 @@ $dropNumber = 0;
                     @php $textNumber = $textNumber + 1 @endphp    
                     @php $texts = "text".$textNumber @endphp
                     <div class="form-group">
-                        <label for="text{{ $key }}">Q{{ $key }}.&nbsp;{{ $item->content }}<br>                            
+                    
+                        <label for="text{{ $key }}">Q{{ $key }}.&nbsp;{{ $item->content }}<br>   
+                                             
                             &emsp;{{ $data[$texts] }}
                         </label>
+                        <input type="hidden" name="text{{ $textNumber }}" value="{{ $data[$texts] }}">
                         
                     </div>
                     
@@ -34,24 +37,34 @@ $dropNumber = 0;
                     @php $item_contents = "radio".$radioNumber @endphp
                     <div class="form-group">
                         <label>Q{{ $key }}.&nbsp;{{ $item->content }}<br>
-                            <!--{{ $data[$item_contents] }} -->
-                            &emsp;OKです
-                        </label>
-                                                                                                            
+                        &emsp;{{ $data[$item_contents] }}                            
+                        </label>   
+                        <input type="hidden" name="radio{{ $radioNumber }}" value="{{ $data[$item_contents] }}">                                                                                                         
                     </div>
                     
                 @elseif ($item->form_types_code === '3') {{-- <!-- チェックボックス --> --}}
+                    @php $checkNumber = $checkNumber + 1 @endphp
+                    @php $check_item_contents = "checkbox".$checkNumber @endphp 
+                    @php $check_item = $_POST[$check_item_contents]; @endphp  
+                                                          
                     <div class="form-group">
                         <label>Q{{ $key }}.&nbsp;{{ $item->content }}<br>
-                            &emsp;普通
+                            @foreach ($check_item as $check)
+                                &emsp;{{ $check }}<br>
+                                <input type="hidden" name="check{{ $checkNumber }}[]" value="{{ $check }}">
+                            @endforeach
                         </label>
                         
                     </div>
+                    
                 @elseif ($item->form_types_code === '4') {{-- <!-- ドロップダウンメニュー --> --}}
+                    @php $dropNumber = $dropNumber + 1 @endphp
+                    @php $drop_item_contents = "selects".$dropNumber @endphp
                     <div class="form-group">
                         <label>Q{{ $key }}.&nbsp;{{ $item->content }}<br>
-                            &emsp;良いです
+                            &emsp;{{ $data[$drop_item_contents] }}
                         </label>
+                        <input type="hidden" name="drop{{ $dropNumber }}" value="{{ $data[$drop_item_contents] }}">     
                         
                     </div>
                 @else
