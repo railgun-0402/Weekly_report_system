@@ -1,3 +1,10 @@
+<?php
+
+dump($user);
+dump($answers);
+
+
+?>
 @extends('layouts.app')
 @section('title', '回答日時一覧')
 @section('content')

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 // 論理削除有効化 ： Eloquentのdestory,delete methodをした際に論理削除されるようになります。
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+
 class Answer extends Model
 {
     // 論理削除有効化 ： Eloquentのdestory,delete methodをした際に論理削除されるようになります。
@@ -30,5 +31,9 @@ class Answer extends Model
     // ==============================
     // リレーション定義
     // ==============================
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class, 'code');
+    // }
 
 }

@@ -48,4 +48,5 @@ $factory->define(Question::class, function (Faker $faker) {
     //     'content' => $contents[array_rand($contents)] . $f++,
 
     // ];
+
 });

@@ -62,5 +62,9 @@ class User extends Authenticatable
     // ==============================
     // リレーション定義
     // ==============================
+    // public function answers()
+    // {
+    //     return $this->hasMany(Answer::class, 'user_code');
+    // }
 
 }

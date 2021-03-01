@@ -11,5 +11,5 @@ $factory->define(Answer::class, function (Faker $faker) {
     //     'user_code' => $faker->randomNumber(2),
     //     'content' => str_replace(['。', '、'], '', $faker->realText(10)) . 'です',
 
-    //];
+    // ];
 });

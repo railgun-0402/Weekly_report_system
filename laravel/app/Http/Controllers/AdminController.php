@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Question;
 use App\FormType;
+use App\Answer;
 
 class AdminController extends Controller
 {
@@ -79,7 +80,7 @@ class AdminController extends Controller
         $questions = Question::all();
         $form_types = FormType::all();
         $now = date("Ymd");
-        return view('/admin/enquete/edit2', compact('questions', 'form_types', 'now'));
+        return view('/admin/enquete/edit', compact('questions', 'form_types', 'now'));
     }
 
     /**
@@ -152,7 +153,7 @@ class AdminController extends Controller
             $update = ['question_group' => $date, 'user_code' => $user_code, 'selectable_item' => $selectable_item, 'content' => $outContent, 'form_types_code' => $form_types_code_num, 'item_content1' => $item_content1, 'item_content2' => $item_content2, 'item_content3' => $item_content3, 'item_content4' => $item_content4, 'item_content5' => $item_content5, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
             DB::table('questions')->whereIn('id', [$i])->update($update);
         }
-        return redirect('/admin/enquete/edit2');
+        return redirect('/admin/enquete/edit');
     }
 
 
@@ -201,8 +202,17 @@ class AdminController extends Controller
      */
     public function answeredDate($id)
     {
-        $user = User::findOrFail($id);
-        return view('/admin/answered/date', compact('user'));
+
+        $user = User::findOrFail($id); // 該当idのユーザー全情報
+        $user_code = $user->code;      // 該当idのユーザーのcode（誰の回答を出力するか）
+
+        // $answers = Answer::where($user_code);
+        // Question::where('question_group', '=', $question_group)->get();
+
+
+
+
+        return view('/admin/answered/date', compact('user', 'answers'));
     }
 
     /**

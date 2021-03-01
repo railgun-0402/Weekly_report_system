@@ -48,7 +48,6 @@ function inactivateInputTag() {
         var id_second_last = id.slice(-2); // idの値末尾から2つ xy
         var id_row = id_second_last.slice(0, 1); // idの値末尾から2つ xy の先頭1つ目 x
         if (id_last == '1') {
-            console.log("OK");
             $('.not_radio' + id_row).attr('readonly', true);
         } else {
             $('.not_radio' + id_row).attr('readonly', false);
@@ -61,13 +60,20 @@ function reloadInactiveInputTag() {
     var inputs = $('input[name^=form_types_code]').get();
     $.each(inputs, function(index, elem) {
         if ($(elem).attr('checked') == 'checked') {
-            var chk = $(elem).attr('id').slice(-1); // idの値末尾 y
-            var chk_second_last = chk.slice(-2); // idの値末尾から2つ xy
-            var chk_row = chk_second_last.slice(0, 1); // idの値末尾から2つ xy の先頭1つ目 x
-            if (chk_row == '1') {
-                $('.not_radio' + chk_row).attr('readonly', true);
-            } else {
-                $('.not_radio' + chk_row).attr('readonly', false);
+            if ($(elem).attr('id') == 'q11') {
+                $('.not_radio1').attr('readonly', true);
+            } else if ($(elem).attr('id') == 'q21') {
+                $('.not_radio2').attr('readonly', true);
+            } else if ($(elem).attr('id') == 'q31') {
+                $('.not_radio3').attr('readonly', true);
+            } else if ($(elem).attr('id') == 'q41') {
+                $('.not_radio4').attr('readonly', true);
+            } else if ($(elem).attr('id') == 'q51') {
+                $('.not_radio5').attr('readonly', true);
+            } else if ($(elem).attr('id') == 'q61') {
+                $('.not_radio6').attr('readonly', true);
+            } else if ($(elem).attr('id') == 'q71') {
+                $('.not_radio7').attr('readonly', true);
             }
         }
     });
