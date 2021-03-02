@@ -16,8 +16,14 @@
                     <tr>
                         <th scope="col">閲覧したい回答日を選択してください</th>
                     </tr>
-                    @foreach ($answersArray as $ans)
 
+                    <?php if(empty($answersArray)):?>
+                    <tr>
+                        <td>回答した履歴がありません。</td>
+                    </tr>
+                    <?php endif; ?>
+
+                    @foreach ($answersArray as $ans)
                         @php
                             if ($checkDate != $ans->user_code){
                                 $date = '';
@@ -30,10 +36,7 @@
 
                             @if ($judge == true and $judge2 == true)
                             <tr>
-
-
                                 <td><a href="/admin/answered/show/{{$ans->question_id}}/{{$user->code}}">{{$ans->question_id}}</a></td>
-
                             </tr>
                             @endif
                         @php
