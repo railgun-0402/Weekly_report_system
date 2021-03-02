@@ -68,7 +68,7 @@ $dropNumber = 0;
                         
                     </div>
                 @else
-                    <p style="color: red;">質問が存在しません。</p>
+                    <p style="color: red;"></p>
                 @endif
             @endforeach
 

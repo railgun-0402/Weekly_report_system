@@ -7,7 +7,7 @@
             <ul>
                 <li><a href="{{url('/admin/enquete/edit2')}}">アンケート配信</a></li>
                 <li><a href="{{url('/admin/account/list')}}">アカウント一覧</a></li>
-                <li><a href="#">回答済みアンケート参照</a></li>
+                <li><a href="{{url('/admin/answered/list')}}">回答済みアンケート参照</a></li>
             </ul>
         </div>
         <div class="col">

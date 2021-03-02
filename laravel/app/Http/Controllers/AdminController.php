@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Question;
 use App\FormType;
+use App\Answer;
 
 class AdminController extends Controller
 {
@@ -24,9 +25,36 @@ class AdminController extends Controller
      */
     public function accountList()
     {
-        $users = User::orderBy('id', 'desc')->paginate(12);
-        return view('/admin/account/list')->with('users', $users);
+        $users = \DB::table('users')->get();
+        $usersArray = $users->toArray();
+        // $users = User::orderBy('id', 'asc');
+        foreach($usersArray as $user)
+        {
+            // 論理削除した個所を取り出す
+            $softDeleteSearch = $user->deleted_at;
+            if ($softDeleteSearch != null)
+            {
+                // dd($user->name);
+            }
+            $test = $user->email;
+        }
+
+        return view('/admin/account/list')
+        ->with('usersArray', $usersArray)
+        ->with('users', $users);
     }
+
+
+    /**
+     * 削除候補リスト一覧画面用
+     */
+    public function accountDeleteList()
+    {
+        $users = \DB::table('users')->get();
+        $usersArray = $users->toArray();
+        return view('/admin/account/deleteList')->with('usersArray', $usersArray);
+    }
+
 
     /**
      * アカウント編集
@@ -97,6 +125,7 @@ class AdminController extends Controller
 
         // 現在日(question_group)
         $date = date("Ymd");
+        // dd($req);
 
         // 選択肢→nullではない数を数えるortextBox
         for ($i=1; $i<=7; $i++) {
@@ -245,4 +274,63 @@ class AdminController extends Controller
         return redirect('/admin/enquete/list');
     }
 
+    /**
+     * 回答済みアンケート参照
+     */
+    public function answeredList()
+    {
+        $users = User::orderBy('code', 'asc')->get();
+        return view('/admin/answered/list', compact('users'));
+    }
+
+    
+    /**
+     * アンケート回答者日付一覧
+     */
+    public function answeredDate($id)
+    {
+        // 必要なものは
+        // 「user_code」「question_id(date)」
+
+        $user = User::findOrFail($id); // 該当idのユーザー全情報
+        $user_code = $user->code;      // 該当idのユーザーのcode（誰の回答を出力するか）
+
+        // question_group
+        $answers = \DB::table('answers')->get();
+        $answersArray = $answers->toArray();
+
+        // dd($answersArray);
+
+        // $answers = Answer::where($user_code);
+        // Question::where('question_group', '=', $question_group)->get();
+
+        return view('/admin/answered/date')
+        ->with('user', $user)
+        ->with('answersArray', $answersArray);
+    }
+
+    /**
+     * アンケート回答者日付一覧
+     * 第一引数：質問回答日「question_id」
+     * 第二引数：ユーザーコード「user_id」
+     */
+    public function answeredShow($question_id, $user_id)
+    {
+        // 質問を全部表示
+        $questions = \DB::table('questions')->get();
+        $questionsArray = $questions->toArray();
+                
+        // 回答した日「question_id」と誰の答え「user_code」がほしい
+        $answers = Answer::where('question_id', $question_id)
+                         ->where('user_code', $user_id)
+                         ->get();
+        
+        $answersArray = $answers->toArray();
+
+        return view('/admin/answered/show')
+        ->with('questions', $questions)
+        ->with('questionsArray', $questionsArray)
+        ->with('answers', $answers)
+        ->with('answersArray', $answersArray);
+    }
 }
