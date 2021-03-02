@@ -1,4 +1,7 @@
-@php $date = ''; @endphp
+@php
+    $date = '';
+    $checkDate = '';
+@endphp
 @extends('layouts.app')
 @section('title', '回答日時一覧')
 @section('content')
@@ -14,16 +17,29 @@
                         <th scope="col">閲覧したい回答日を選択してください</th>
                     </tr>
                     @foreach ($answersArray as $ans)
+
                         @php
-                            $user_code = $user->id;
+                            if ($checkDate != $ans->user_code){
+                                $date = '';
+                            }
+                            $user_code = (string)$user->id;
+                            $checkDate = $user_code;
+                            $judge = $ans->user_code == $user_code;
+                            $judge2 = $ans->question_id != $date;
                         @endphp
-                            @if ($ans->user_code == $user_code and $ans->question_id != $date)
+
+                            @if ($judge == true and $judge2 == true)
                             <tr>
+
+
                                 <td><a href="/admin/answered/show/{{$ans->question_id}}/{{$user->id}}">{{$ans->question_id}}</a></td>
 
                             </tr>
                             @endif
-                        @php $date = $ans->question_id; @endphp
+                        @php
+                            $date = $ans->question_id;
+                            $checkDate = $ans->user_code;
+                        @endphp
                     @endforeach
                 </table>
             </div>

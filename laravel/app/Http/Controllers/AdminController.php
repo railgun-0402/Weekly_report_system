@@ -224,43 +224,6 @@ class AdminController extends Controller
         $users = User::orderBy('code', 'asc')->get();
         return view('/admin/answered/list', compact('users'));
     }
-
-    /**
-     * アンケート回答者日付一覧
-     */
-    public function answeredDate($id)
-    {
-        $user = User::findOrFail($id); // 該当idのユーザー全情報
-        $answers = Answer::where('user_code', '=', $user->code)->get(); // 該当ユーザーの回答内容情報
-
-        return view('/admin/answered/date', compact('user', 'answers'));
-    }
-
-    /**
-     * アンケート回答者の内容
-     */
-    public function answeredShow($id)
-    {
-        $user = User::findOrFail($id); // 該当idのユーザー全情報
-        $answers = Answer::where('user_code', '=', $user->code)->get(); // 該当ユーザーの回答内容情報
-        $questions = Question::all();
-        // dd($questions);
-
-        return view('/admin/answered/show', compact('user', 'answers', 'questions'));
-    }
-
-
-
-    /**
-     * 回答済みアンケート参照
-     */
-    public function answeredList()
-    {
-        $users = User::orderBy('code', 'asc')->get();
-        return view('/admin/answered/list', compact('users'));
-    }
-
-    
     /**
      * アンケート回答者日付一覧
      */
@@ -296,12 +259,12 @@ class AdminController extends Controller
         // 質問を全部表示
         $questions = \DB::table('questions')->get();
         $questionsArray = $questions->toArray();
-                
+
         // 回答した日「question_id」と誰の答え「user_code」がほしい
         $answers = Answer::where('question_id', $question_id)
                          ->where('user_code', $user_id)
                          ->get();
-        
+
         $answersArray = $answers->toArray();
 
         return view('/admin/answered/show')
