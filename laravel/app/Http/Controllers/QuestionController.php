@@ -29,12 +29,6 @@ class QuestionController extends Controller
         $itemsArray = $items->toArray();
 
         // 受け取りデータ渡し
-        //$data = $request::all();
-
-        // use Illuminate\Support\Facades\DB;
-        // $itemsArray = DB::table('questions')->where('question_group', 2)->get();
-        // dd($itemsArray);
-
         return view('/user/enquete/index')
                 ->with('items', $items)
                 ->with('itemsArray', $itemsArray)
@@ -54,8 +48,7 @@ class QuestionController extends Controller
         // dd($itemsArray);
 
          // 受け取りデータ渡し
-         $data = Request::all();         
-        // dd($data);         
+         $data = Request::all(); 
 
         return view('/user/enquete/confirmation')
                 ->with('items', $items)
@@ -74,8 +67,6 @@ class QuestionController extends Controller
         // 質問FK
         $items = \DB::table('questions')->get();
         $itemsArray = $items->toArray();
-        // dd($itemsArray);
-        // dd(count($itemsArray));
         
         // 答え
         $answer = Request::all();
@@ -83,7 +74,6 @@ class QuestionController extends Controller
 
         $key = 0;
         $con = '';
-        // dd($answer);
 
         // answersマスタへ、DBに追加
         // answerは配列なので、一つずつ取り出す
@@ -102,11 +92,14 @@ class QuestionController extends Controller
             # 配列すなわちチェックボックスの場合
             # 全部取り出してやる
             if ($judge == 'true'){
+                $con = '';
                 foreach ($first_array as $arr){
-                    // $con += '・' + $arr;                    
-                    $update = ['question_id' => $item->question_group, 'user_code' => $user_code, 'content' => $arr, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
-                    DB::table('answers')->insert($update);            
+                    $con .= $arr . ' ' ;
+                    // dd($con);                                                    
                 }
+                // dd($con);
+                $update = ['question_id' => $item->question_group, 'user_code' => $user_code, 'content' => $con, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
+                DB::table('answers')->insert($update);
             }
             # 配列でない場合、先頭だけ取ればよい
             else {

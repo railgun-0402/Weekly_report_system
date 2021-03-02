@@ -21,6 +21,7 @@
                     @endforeach
                 </table>
             </div>
+            {{-- <div class="paginate">{{$users->links()}}</div> --}}
         <div class="col">
             <div id="example"></div>
         </div>

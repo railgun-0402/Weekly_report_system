@@ -44,10 +44,19 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/admin/enquete/edit', 'AdminController@enqueteEdit');                      // アンケート編集
     Route::patch('/admin/enquete/edit','AdminController@enqueteUpdate');                   // アンケート更新
 
+    Route::get('/admin/account/deleteList', 'AdminController@accountDeleteList');
+
     Route::get('/admin/answered/list', 'AdminController@answeredList');             // アンケート回答者一覧
     Route::get('/admin/answered/date/{id}', 'AdminController@answeredDate');        // アンケート回答者日付一覧
-    // Route::get('/admin/answered/show/{id}', 'AdminController@answeredShow');             // アンケート回答内容確認
-    Route::get('/admin/answered/show/{answer}', 'AdminController@answeredShow');             // アンケート回答内容確認
+    Route::get('/admin/answered/show/{question_id}/{id}', 'AdminController@answeredShow');             // アンケート回答内容確認
+
+    // Route::get('/admin/enquete/create', 'AdminController@enqueteCreate');          // 出題（予定）アンケート作成画面
+    // Route::post('/admin/enquete/create','AdminController@enqueteStore');           // 出題（予定）アンケート作成処理
+
+    // Route::get('/admin/enquete/show/{question_group}', 'AdminController@enqueteShow'); // 出題（予定）アンケート一覧
+    // Route::get('/admin/enquete/edit/{id}', 'AdminController@enqueteEdit'); // 出題（予定）アンケート編集
+    // Route::patch('/admin/enquete/edit/{id}', 'AdminController@enqueteUpdate'); // 出題（予定）アンケート更新 TODO: 途中
+    // Route::delete('/admin/enquete/list/{question}', 'AdminController@enqueteDestroy'); // アカウント削除 TODO: 途中
 
 
 
