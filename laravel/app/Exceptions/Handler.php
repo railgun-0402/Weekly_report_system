@@ -54,7 +54,7 @@ class Handler extends ExceptionHandler
     {
 
         if ($exception instanceof TokenMismatchException) {
-            \Session::flash('flash_error_message', '30分以上放置していたせいで、セッションが切れました。');
+            \Session::flash('flash_error_message', '一定時間経過した為、セッションを切断しました。');
             return redirect()->route('login');
         }
 

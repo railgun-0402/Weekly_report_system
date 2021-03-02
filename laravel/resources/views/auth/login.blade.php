@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+@if (Session::has('flash_error_message'))
+ <div class="container-fluid alert myAlert alert-warning">
+ <div class="container">
+   <div class="row">
+   <div class="col-xs-12 col-sm-12 col-md-12">
+  <div>{{ Session::get('flash_error_message') }}</div>
+  </div>
+ </div>
+    </div>
+ </div>
+@endif
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

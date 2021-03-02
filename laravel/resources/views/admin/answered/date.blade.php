@@ -22,7 +22,7 @@
                             if ($checkDate != $ans->user_code){
                                 $date = '';
                             }
-                            $user_code = (string)$user->id;
+                            $user_code = (string)$user->code;
                             $checkDate = $user_code;
                             $judge = $ans->user_code == $user_code;
                             $judge2 = $ans->question_id != $date;
@@ -32,7 +32,7 @@
                             <tr>
 
 
-                                <td><a href="/admin/answered/show/{{$ans->question_id}}/{{$user->id}}">{{$ans->question_id}}</a></td>
+                                <td><a href="/admin/answered/show/{{$ans->question_id}}/{{$user->code}}">{{$ans->question_id}}</a></td>
 
                             </tr>
                             @endif

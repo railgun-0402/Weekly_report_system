@@ -221,7 +221,7 @@ class AdminController extends Controller
      */
     public function answeredList()
     {
-        $users = User::orderBy('code', 'asc')->get();
+        $users = User::orderBy('code', 'asc')->where('role_code', 'ORDINARY')->get();
         return view('/admin/answered/list', compact('users'));
     }
     /**

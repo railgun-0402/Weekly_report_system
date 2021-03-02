@@ -25,29 +25,29 @@ $dropNumber = 0;
     <form action="/user/enquete/confirmation" method="POST" class="row">
     @csrf
         <div class="col-sm-8 col-sm-offset-2">
-            <h4 class="mb-3">アンケート（設問数：{{ count($items) }}）</h4>
+            <h4 class="mb-3">アンケート</h4>
                 @foreach ($items as $key => $item)
                     @php $key = $key + 1 @endphp
-                    
+
                     @if ($item->form_types_code === '1') {{-- <!-- テキストボックス --> --}}
                         @php $textNumber = $textNumber + 1 @endphp
                         <div class="form-group">
                             <label for="text{{ $textNumber }}"><span class="badge badge-danger">必須</span>&nbsp;Q{{ $key }}.&nbsp;{{ $item->content }}</label>
                             <textarea rows="3" value="" id="text{{ $textNumber }}" name="text{{ $textNumber }}" class="form-control" placeholder="placeholder" required></textarea>
-                              
+
                         </div>
-                        
+
                     @elseif ($item->form_types_code === '2') {{-- <!-- ラジオボタン --> --}}
                         @php $radioNumber = $radioNumber + 1 @endphp
                         <div class="form-group">
                             <label><span class="badge badge-danger">必須</span>&nbsp;Q{{ $key }}.&nbsp;{{ $item->content }}</label><br>
 
                             @for ($i = 1; $i <= $item->selectable_item; $i++)
-                                    
+
                                 @php $item_contents = "item_content".$i @endphp
-                                <div class="form-group">                                
+                                <div class="form-group">
                                     <input type="radio" name="radio{{ $radioNumber }}" id="radio{{ $key }}{{ $i }}" value="{{ $item -> $item_contents }}">
-                                    <label class="form-check-label" for="radio{{ $key }}{{ $i }}">{{ $item -> $item_contents }}</label>                                    
+                                    <label class="form-check-label" for="radio{{ $key }}{{ $i }}">{{ $item -> $item_contents }}</label>
                                 </div>
                             @endfor
                         </div>
@@ -73,7 +73,7 @@ $dropNumber = 0;
                             <select id="" name="selects{{ $dropNumber }}" class="form-control" required>
                                 <option value="">選択してください</option>
                                 @for ($i = 1; $i <= $item->selectable_item; $i++)
-                                    @php $drop_item_contents = "item_content".$i @endphp 
+                                    @php $drop_item_contents = "item_content".$i @endphp
                                     <option value="{{ $item -> $drop_item_contents }}">{{ $item -> $drop_item_contents }}</option>
                                 @endfor
                             </select>
@@ -83,7 +83,7 @@ $dropNumber = 0;
                         <p style="color: red;">質問が存在しません。</p>
                     @endif
 
-                @endforeach                
+                @endforeach
                 <a class="btn btn-secondary mr-1" href="{{ url('/user/top') }}">戻る</a>
             <button type="submit" class="btn btn-success">送信する</button>
         </div>
