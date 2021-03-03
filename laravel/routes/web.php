@@ -38,7 +38,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/admin/account/list', 'AdminController@accountList');                      // アカウント一覧
     Route::get('/admin/account/edit/{id}', 'AdminController@accountEdit');                 // アカウント編集
     Route::patch('/admin/account/edit/{id}', 'AdminController@accountUpdate');             // アカウント更新
-    Route::get('/admin/account/create', 'AdminController@accountCreate');                  // アカウント新規登録（標準機能）
+    // Route::get('/admin/account/create', 'AdminController@accountCreate');                  // アカウント新規登録（標準機能）
     Route::delete('/admin/account/list/{user}', 'AdminController@accountDestroy');         // アカウント削除
 
     Route::get('/admin/enquete/edit', 'AdminController@enqueteEdit');                      // アンケート編集
@@ -49,6 +49,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/admin/answered/list', 'AdminController@answeredList');             // アンケート回答者一覧
     Route::get('/admin/answered/date/{id}', 'AdminController@answeredDate');        // アンケート回答者日付一覧
     Route::get('/admin/answered/show/{question_id}/{id}', 'AdminController@answeredShow');             // アンケート回答内容確認
+
+
 
 });
 Auth::routes();

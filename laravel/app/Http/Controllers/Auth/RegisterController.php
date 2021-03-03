@@ -32,7 +32,7 @@ class RegisterController extends Controller
     // protected $redirectTo = RouteServiceProvider::HOME;
 
      // アカウント新規登録後のリダイレクト先
-    protected $redirectTo = ('/admin/account/list');
+    protected $redirectTo = '/admin/account/list';
 
     /**
      * Create a new controller instance.
@@ -55,7 +55,6 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            // TODO: バリデート設定する
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -72,10 +71,9 @@ class RegisterController extends Controller
     {
         return User::create([
             'code' => $data['code'],
-            'role_code' => $data['role_code'],
-            'name' => $data['name'],
-            'email' => $data['email'],
             'full_name' => $data['full_name'],
+            'email' => $data['email'],
+            'role_code' => $data['role_code'],
             'password' => Hash::make($data['password']),
         ]);
     }

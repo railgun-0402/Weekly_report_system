@@ -9,8 +9,7 @@ class UserController extends Controller
 {
     public function top()
     {
-        $user = \Auth::user();
-        return view('/user/top', compact('user'));
+        return view('/user/top');
     }
 
     public function accountIndex()
