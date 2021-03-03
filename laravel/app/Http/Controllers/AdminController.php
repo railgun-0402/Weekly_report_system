@@ -25,7 +25,7 @@ class AdminController extends Controller
      */
     public function accountList()
     {
-        $users = \DB::table('users')->get();
+        $users = DB::table('users')->orderBy('code', 'asc')->get();
         $usersArray = $users->toArray();
         // $users = User::orderBy('id', 'asc');
         foreach($usersArray as $user)

@@ -29,21 +29,6 @@ class LoginController extends Controller
      */
     // protected $redirectTo = RouteServiceProvider::HOME;
 
-    protected function redirectTo()
-    {
-        // Auth::logout();
-        var_dump('loginController'); // ログイン後通らない TODO
-        $user = \Auth::user();
-        if ($user->role_code === 'ADMIN') {
-            return view('/admin/account/list');
-        } else if ($user->role_code === 'ORDINARY') {
-            return view('/user/account/index');
-        } else {
-            Auth::logout();
-            return view('/login');
-        }
-    }
-
     /**
      * Create a new controller instance.
      *
@@ -54,13 +39,4 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    /**
-     * use name Login
-     *
-     * @return void
-     */
-    public function username()
-    {
-        return 'name';
-    }
 }

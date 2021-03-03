@@ -2,32 +2,32 @@
 
 @section('content')
 @if (Session::has('flash_error_message'))
- <div class="container-fluid alert myAlert alert-warning">
- <div class="container">
-   <div class="row">
-   <div class="col-xs-12 col-sm-12 col-md-12">
-  <div>{{ Session::get('flash_error_message') }}</div>
-  </div>
- </div>
+<div class="container-fluid alert myAlert alert-warning">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div>{{ Session::get('flash_error_message') }}</div>
+            </div>
+        </div>
     </div>
- </div>
+</div>
 @endif
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header">{{ __('ログイン情報入力') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
-                        <!-- コメントアウト　Email→Userログイン
+                        {{-- メールアドレスにてログイン --}}
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Eメールアドレス') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="email" maxlength="100" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -36,28 +36,12 @@
                                 @enderror
                             </div>
                         </div>
-                        -->
-
-                        <!-- ログインをユーザーに変更した箇所 -->
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 control-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
-
-                                 @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('パスワード') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input id="password" type="password" maxlength="100" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -82,7 +66,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
+                                    {{ __('ログイン') }}
                                 </button>
 
                                 {{-- @if (Route::has('password.request'))

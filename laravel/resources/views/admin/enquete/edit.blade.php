@@ -4,12 +4,14 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('アンケート配信（編集内容を記載し登録してください。）') }}</div>
+                <div class="card-header">{{ __('配信アンケート登録画面') }}</div>
                 <div class="card-body">
                     <form method="POST" action="{{url('/admin/enquete/edit')}}">
                         @csrf
                         @method('patch')
                         <input type="hidden" name="question_group" value="{{$now}}">
+                        <p class="font-weight-bold text-danger">「出題する質問／回答していただく形式／回答していただく選択肢」を設定してください。<br />
+                            質問の数を追加したい際は、画面左下の＋ボタンを押して行を追加してください。</p>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -27,7 +29,7 @@
                                 <td scope="row">{{$key+1}}</td>
                                 <td>
                                     <div class="form-group">
-                                        <textarea class="form-control" name="content{{$key+1}}" rows="2">{{$question->content}}</textarea>
+                                        <textarea class="form-control" name="content{{$key+1}}" rows="2" placeholder="業務の進捗についてお聞かせください。">{{$question->content}}</textarea>
                                     </div>
                                 </td>
                                 <td>

@@ -15,10 +15,10 @@
                             <div class="col-sm-10"><input id="full_name" type="text" name="full_name" class="form-control" value="{{$user->full_name}}"></div>
                         </div>
 
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label for="name" class="col-sm-2 col-form-label">ログインID</label>
                             <div class="col-sm-10"><input id="name" type="text" name="name" class="form-control" value="{{$user->name}}"></div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group row">
                             <label for="code" class="col-sm-2 col-form-label">社員コード</label>
@@ -26,12 +26,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="role_code" class="col-sm-2 col-form-label">登録ユーザーの種別</label>
+                            <label for="role_code" class="col-sm-2 col-form-label">当該システムの権限選択（社長以外は一般ユーザー）</label>
                             <div class="col-sm-10"><input id="role_code" type="text" name="role_code" class="form-control" value="{{$user->role_code}}"></div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-sm-2 col-form-label">E-Mail アドレス</label>
+                            <label for="email" class="col-sm-2 col-form-label">メールアドレス（ログインID）</label>
                             <div class="col-sm-10"><input id="email" type="text" name="email" class="form-control" value="{{$user->email}}"></div>
                         </div>
 

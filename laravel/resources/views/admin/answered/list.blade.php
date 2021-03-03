@@ -11,12 +11,12 @@
                 <table class="table table-sm" style="table-layout: fixed;">
                     <tr>
                         <th scope="col" class="w-25">社員番号</th>
-                        <th scope="col">氏名</th>
+                        <th scope="col">氏　名</th>
                     </tr>
                     @foreach ($users as $user)
                     <tr>
                         <td>{{$user->code}}</td>
-                        <td><a href="/admin/answered/date/{{$user->id}}">{{$user->full_name}}／{{$user->name}}</a></td>
+                        <td><a href="/admin/answered/date/{{$user->id}}">{{$user->full_name}}</a></td>
                     </tr>
                     @endforeach
                 </table>

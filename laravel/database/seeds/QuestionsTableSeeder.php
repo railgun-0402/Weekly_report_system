@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class QuestionsTableSeeder extends Seeder
 {
@@ -11,8 +12,7 @@ class QuestionsTableSeeder extends Seeder
      */
     public function run()
     {
-        // factory(\App\Question::class, 3)->create();
-        \DB::table('questions')->insert([
+        DB::table('questions')->insert([
             ['id' => 1, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
             ['id' => 2, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
             ['id' => 3, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],

@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-        <div class="mb-3">ユーザーTop画面</div>
+        <div class="mb-3">{{$user->full_name}}さん Top画面</div>
         <a href="{{ url('/user/enquete/index') }}">アンケートに回答する</a>
         </div>
         <div class="col">

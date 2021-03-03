@@ -8,20 +8,18 @@
                 <div class="p-2 bd-highlight"><a class="btn btn-secondary" href="{{ url('/admin/top') }}">戻る</a></div>
                 <div class="ml-auto p-2 bd-highlight"><a class="btn btn-secondary" href="{{ url('/admin/account/create') }}">新規作成</a></div>
             </div>
-            <div class="mb-3">アカウント一覧</div>
+            <div class="mb-3 h5">アカウント一覧</div>
                 <table class="table table-sm">
                     <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">ユーザーID</th>
-                        <th scope="col">氏名</th>
-                        <th scope="col">Eメール</th>
-                        <th scope="col">作成日</th>
-                        <th scope="col" class="text-center">操作</th>
+                        <th scope="col">社員コード</th>
+                        <th scope="col">氏　名</th>
+                        <th scope="col">Eメールアドレス</th>
+                        <th scope="col">ユーザー登録日時</th>
+                        <th scope="col" class="text-center">操　作</th>
                     </tr>
                     @foreach ($users as $key => $user)
                         <tr>
-                            <td>{{ $user->id }}</td>
-                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->code }}</td>
                             <td>{{ $user->full_name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->created_at }}</td>
@@ -39,7 +37,7 @@
                     @endforeach
                 </table>
             </div>
-            
+
         <div class="col">
             <div id="example"></div>
         </div>

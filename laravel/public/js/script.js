@@ -4,12 +4,14 @@ $(function() {
     confirmAlert('#regist', '登録');
     hideElement();
     buttonAction();
+    sendBtnRemove();
 
 });
 
 
 $(window).on('load', function() {
     reloadInactiveInputTag();
+    sendBtnRemove();
 
 });
 
@@ -113,5 +115,15 @@ function buttonAction() {
     var t_array = $('textarea[name^=content]').get();
     if (t_array[t_array.length - 1].textContent != '') {
         $('#plus').hide();
+    }
+}
+
+// アンケート回答画面にて質問データの登録がない場合送信ボタンを消す
+function sendBtnRemove() {
+    var path = location.pathname;
+    if (path == '/user/enquete/index') {
+        if ($('.not_yet').length) {
+            $('.send').remove();
+        }
     }
 }

@@ -6,6 +6,18 @@ $textNumber = 0;
 $checkNumber = 0;
 $radioNumber= 0;
 $dropNumber = 0;
+
+// 質問が全て用意されていない事を確認
+$is_exist = true;
+$results = [];
+foreach ($items as $item) {
+    array_push($results, $item->content);
+}
+if (count($results) === 7) {
+    if (array_unique($results)[0] === null);
+    $is_exist = false;
+}
+
 @endphp
 
 <style>
@@ -25,7 +37,12 @@ $dropNumber = 0;
     <form action="/user/enquete/confirmation" method="POST" class="row">
     @csrf
         <div class="col-sm-8 col-sm-offset-2">
-            <h4 class="mb-3">アンケート</h4>
+            <h4 class="mb-3">アンケート回答画面</h4>
+
+                @if (!$is_exist)
+                <p class="not_yet h5 mb-3">質問データがまだ用意されておりません。</p>
+                @endif
+
                 @foreach ($items as $key => $item)
                     @php $key = $key + 1 @endphp
 
@@ -80,12 +97,13 @@ $dropNumber = 0;
                         </div>
 
                     @else
-                        <p style="color: red;">質問が存在しません。</p>
+                        {{-- <p style="color: red;">質問が存在しません。</p> --}}
                     @endif
 
                 @endforeach
+
                 <a class="btn btn-secondary mr-1" href="{{ url('/user/top') }}">戻る</a>
-            <button type="submit" class="btn btn-success">送信する</button>
+            <button type="submit" class="btn btn-success send">送信する</button>
         </div>
     </form>
 </div>
