@@ -17,8 +17,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id')->comment('ID');
             $table->string('code')->nullable()->comment('社員番号');
             $table->string('role_code')->nullable()->comment('社員番号');
-            $table->string('full_name')->nullable()->comment('氏名');
-            // $table->string('name')->nullable();
+            $table->string('name')->nullable()->comment('氏名');
             $table->string('email')->nullable()->comment('Eメールアドレス');
             // $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->comment('パスワード');

@@ -3,7 +3,7 @@
 <div class='container'>
     <div class='row'>
         <div class="col-sm-12">
-        <div class="mb-3">{{ $user->full_name }} さん</div>
+        <div class="mb-3">{{ $user->name }} さん</div>
             <div class="mb-3">アンケート回答内容確認</div>
                 <table class="table table-sm">
                     <tr>

@@ -11,14 +11,9 @@
                         @method('patch')
 
                         <div class="form-group row">
-                            <label for="full_name" class="col-sm-2 col-form-label">氏名（フルネーム）</label>
-                            <div class="col-sm-10"><input id="full_name" type="text" name="full_name" class="form-control" value="{{$user->full_name}}"></div>
-                        </div>
-
-                        {{-- <div class="form-group row">
-                            <label for="name" class="col-sm-2 col-form-label">ログインID</label>
+                            <label for="name" class="col-sm-2 col-form-label">氏　名</label>
                             <div class="col-sm-10"><input id="name" type="text" name="name" class="form-control" value="{{$user->name}}"></div>
-                        </div> --}}
+                        </div>
 
                         <div class="form-group row">
                             <label for="code" class="col-sm-2 col-form-label">社員コード</label>
@@ -26,30 +21,20 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="role_code" class="col-sm-2 col-form-label">当該システムの権限選択（社長以外は一般ユーザー）</label>
-                            <div class="col-sm-10"><input id="role_code" type="text" name="role_code" class="form-control" value="{{$user->role_code}}"></div>
+                            <label for="role_code" class="col-sm-2 col-form-label">システムを扱う権限</label>
+                            <div class="col-sm-10">
+                                <select id="role_code" name="role_code" class="form-control" required>
+                                    <option value="">選択してください</option>
+                                    <option value="ORDINARY"<?php if ($user->role_code === 'ORDINARY') { echo ' selected'; }?>>一般社員</option>
+                                    <option value="ADMIN"<?php if ($user->role_code === 'ADMIN') { echo ' selected'; }?>>管理者</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-sm-2 col-form-label">メールアドレス（ログインID）</label>
+                            <label for="email" class="col-sm-2 col-form-label">Eメール</label>
                             <div class="col-sm-10"><input id="email" type="text" name="email" class="form-control" value="{{$user->email}}"></div>
                         </div>
-
-
-                        {{-- <div class="form-group row">
-                            <label for="created_at" class="col-sm-2 col-form-label">created_at</label>
-                            <div class="col-sm-10"><input id="created_at" type="text" name="created_at" class="form-control" value="{{$user->created_at}}"></div>
-                        </div> --}}
-
-                        {{-- <div class="form-group row">
-                            <label for="updated_at" class="col-sm-2 col-form-label">updated_at</label>
-                            <div class="col-sm-10"><input id="updated_at" type="text" name="updated_at" class="form-control" value="{{$user->updated_at}}"></div>
-                        </div> --}}
-
-                        {{-- <div class="form-group row">
-                            <label for="deleted_at" class="col-sm-2 col-form-label">deleted_at</label>
-                            <div class="col-sm-10"><input id="deleted_at" type="text" name="deleted_at" class="form-control" value="{{$user->deleted_at}}"></div>
-                        </div> --}}
 
                         <div class="item form-group text-center">
                             <div class="bd-example">

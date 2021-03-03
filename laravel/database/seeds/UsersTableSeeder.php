@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
             [
                 'code' => '111',
                 'role_code' => 'ADMIN',
-                'full_name' => 'アドミン 太郎',
+                'name' => 'アドミン 太郎',
                 'email' => 'admin@admin.com',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
             [
                 'code' => '222',
                 'role_code' => 'ORDINARY',
-                'full_name' => 'ユーザー 次郎',
+                'name' => 'ユーザー 次郎',
                 'email' => 'user@user.com',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
@@ -36,7 +36,7 @@ class UsersTableSeeder extends Seeder
             [
                 'code' => '000',
                 'role_code' => 'ADMIN',
-                'full_name' => '高橋 達',
+                'name' => '高橋 達',
                 'email' => 'takahashi@barnet.co.jp',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
@@ -46,7 +46,7 @@ class UsersTableSeeder extends Seeder
             [
                 'code' => '003',
                 'role_code' => 'ORDINARY',
-                'full_name' => '西宮 良治',
+                'name' => '西宮 良治',
                 'email' => 'y-nishimiya@barnet.co.jp',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
@@ -56,7 +56,7 @@ class UsersTableSeeder extends Seeder
             [
                 'code' => '009',
                 'role_code' => 'ORDINARY',
-                'full_name' => '冨澤 奈奈',
+                'name' => '冨澤 奈奈',
                 'email' => 'tomizawa@barnet.co.jp',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
@@ -66,7 +66,7 @@ class UsersTableSeeder extends Seeder
             [
                 'code' => '011',
                 'role_code' => 'ORDINARY',
-                'full_name' => '小林 泰徳',
+                'name' => '小林 泰徳',
                 'email' => 'kobayashi@barnet.co.jp',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
@@ -76,7 +76,7 @@ class UsersTableSeeder extends Seeder
             [
                 'code' => '014',
                 'role_code' => 'ORDINARY',
-                'full_name' => '高橋 圭',
+                'name' => '高橋 圭',
                 'email' => 'kei@barnet.co.jp',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
@@ -86,7 +86,7 @@ class UsersTableSeeder extends Seeder
             [
                 'code' => '016',
                 'role_code' => 'ORDINARY',
-                'full_name' => '村畑 一樹',
+                'name' => '村畑 一樹',
                 'email' => 'murahata@barnet.co.jp',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
@@ -96,7 +96,7 @@ class UsersTableSeeder extends Seeder
             [
                 'code' => '023',
                 'role_code' => 'ORDINARY',
-                'full_name' => '吉崎 裕貴',
+                'name' => '吉崎 裕貴',
                 'email' => 'yoshizaki@barnet.co.jp',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
@@ -106,7 +106,7 @@ class UsersTableSeeder extends Seeder
             [
                 'code' => '025',
                 'role_code' => 'ORDINARY',
-                'full_name' => '亀田 朋幸',
+                'name' => '亀田 朋幸',
                 'email' => 'kameda@barnet.co.jp',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
@@ -116,7 +116,7 @@ class UsersTableSeeder extends Seeder
             [
                 'code' => '027',
                 'role_code' => 'ORDINARY',
-                'full_name' => '米澤 健一郎',
+                'name' => '米澤 健一郎',
                 'email' => 'yonezawa@barnet.co.jp',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
@@ -126,7 +126,7 @@ class UsersTableSeeder extends Seeder
             [
                 'code' => '029',
                 'role_code' => 'ORDINARY',
-                'full_name' => '大川 泰慶',
+                'name' => '大川 泰慶',
                 'email' => 'ohkawa@barnet.co.jp',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
@@ -136,7 +136,7 @@ class UsersTableSeeder extends Seeder
             [
                 'code' => '035',
                 'role_code' => 'ORDINARY',
-                'full_name' => '松尾 治仁',
+                'name' => '松尾 治仁',
                 'email' => 'matsuo@barnet.co.jp',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
@@ -146,7 +146,7 @@ class UsersTableSeeder extends Seeder
             [
                 'code' => '036',
                 'role_code' => 'ORDINARY',
-                'full_name' => '星 孝明',
+                'name' => '星 孝明',
                 'email' => 'hoshi@barnet.co.jp',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
@@ -156,7 +156,7 @@ class UsersTableSeeder extends Seeder
             [
                 'code' => '037',
                 'role_code' => 'ORDINARY',
-                'full_name' => '牛山 聡子',
+                'name' => '牛山 聡子',
                 'email' => 'ushiyama@barnet.co.jp',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
@@ -166,7 +166,7 @@ class UsersTableSeeder extends Seeder
             [
                 'code' => '038',
                 'role_code' => 'ORDINARY',
-                'full_name' => '簾 実梨',
+                'name' => '簾 実梨',
                 'email' => 'sudare@barnet.co.jp',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
@@ -176,7 +176,7 @@ class UsersTableSeeder extends Seeder
             [
                 'code' => '040',
                 'role_code' => 'ORDINARY',
-                'full_name' => '清水 卓也',
+                'name' => '清水 卓也',
                 'email' => 'shimizu@barnet.co.jp',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
@@ -186,7 +186,7 @@ class UsersTableSeeder extends Seeder
             [
                 'code' => '041',
                 'role_code' => 'ORDINARY',
-                'full_name' => '高橋 美咲',
+                'name' => '高橋 美咲',
                 'email' => 'm-takahashi@barnet.co.jp',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
@@ -196,7 +196,7 @@ class UsersTableSeeder extends Seeder
             [
                 'code' => '043',
                 'role_code' => 'ORDINARY',
-                'full_name' => 'Lotino Ron Jefferson',
+                'name' => 'Lotino Ron Jefferson',
                 'email' => 'lotino@barnet.co.jp',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
@@ -206,7 +206,7 @@ class UsersTableSeeder extends Seeder
             [
                 'code' => '044',
                 'role_code' => 'ORDINARY',
-                'full_name' => '高木 航暉',
+                'name' => '高木 航暉',
                 'email' => 'takagi@barnet.co.jp',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
@@ -216,7 +216,7 @@ class UsersTableSeeder extends Seeder
             [
                 'code' => '045',
                 'role_code' => 'ORDINARY',
-                'full_name' => '鍵村 和範',
+                'name' => '鍵村 和範',
                 'email' => 'kagimura@barnet.co.jp',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
@@ -226,7 +226,7 @@ class UsersTableSeeder extends Seeder
             [
                 'code' => '046',
                 'role_code' => 'ORDINARY',
-                'full_name' => '菅原 大輝',
+                'name' => '菅原 大輝',
                 'email' => 'd-sugawara@barnet.co.jp',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
@@ -236,7 +236,7 @@ class UsersTableSeeder extends Seeder
             [
                 'code' => '047',
                 'role_code' => 'ORDINARY',
-                'full_name' => '関川 康裕',
+                'name' => '関川 康裕',
                 'email' => 'sekikawa@barnet.co.jp',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
@@ -246,7 +246,7 @@ class UsersTableSeeder extends Seeder
             [
                 'code' => '048',
                 'role_code' => 'ORDINARY',
-                'full_name' => '藤井 祐輔',
+                'name' => '藤井 祐輔',
                 'email' => 'fujii@barnet.co.jp',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', $user->full_name)
+@section('title', $user->name)
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -25,9 +25,9 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="full_name" class="col-sm-2 col-form-label">氏　名</label>
+                            <label for="name" class="col-sm-2 col-form-label">氏　名</label>
                             <div class="col-sm-10">
-                                <input id="full_name" type="text" name="full_name" class="form-control-plaintext" value="{{ $user->full_name }}">
+                                <input id="name" type="text" name="name" class="form-control-plaintext" value="{{ $user->name }}">
                             </div>
                         </div>
 

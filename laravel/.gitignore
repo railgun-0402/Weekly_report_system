@@ -3,7 +3,15 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=laravel
 
 ### Laravel ###
-/vendor/
+/vendor/*
+!/vendor/laravel/
+/vendor/laravel/ui/*
+/vendor/laravel/tinker/*
+/vendor/laravel/framework/*
+!/vendor/laravel/ui/auth-backend
+
+
+
 node_modules/
 npm-debug.log
 yarn-error.log

@@ -13,13 +13,13 @@ class QuestionsTableSeeder extends Seeder
     public function run()
     {
         DB::table('questions')->insert([
-            ['id' => 1, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['id' => 2, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['id' => 3, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['id' => 4, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['id' => 5, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['id' => 6, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['id' => 7, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 1, 'created_at' => now(), 'updated_at' => now()],
+            ['id' => 2, 'created_at' => now(), 'updated_at' => now()],
+            ['id' => 3, 'created_at' => now(), 'updated_at' => now()],
+            ['id' => 4, 'created_at' => now(), 'updated_at' => now()],
+            ['id' => 5, 'created_at' => now(), 'updated_at' => now()],
+            ['id' => 6, 'created_at' => now(), 'updated_at' => now()],
+            ['id' => 7, 'created_at' => now(), 'updated_at' => now()],
 
         ]);
     }

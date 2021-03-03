@@ -20,7 +20,7 @@
                     @foreach ($users as $key => $user)
                         <tr>
                             <td>{{ $user->code }}</td>
-                            <td>{{ $user->full_name }}</td>
+                            <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->created_at }}</td>
                             <td class="text-center">

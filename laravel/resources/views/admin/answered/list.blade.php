@@ -16,7 +16,7 @@
                     @foreach ($users as $user)
                     <tr>
                         <td>{{$user->code}}</td>
-                        <td><a href="/admin/answered/date/{{$user->id}}">{{$user->full_name}}</a></td>
+                        <td><a href="/admin/answered/date/{{$user->id}}">{{$user->name}}</a></td>
                     </tr>
                     @endforeach
                 </table>

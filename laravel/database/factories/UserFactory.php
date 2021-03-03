@@ -38,7 +38,7 @@ $factory->define(User::class, function (Faker $faker) {
         // 'name' => $name,
         'code' => sprintf('%03d', $faker->unique()->numberBetween(003, 050)),
         'role_code' => $roleCode,
-        'full_name' => $faker->name,
+        'name' => $faker->name,
 
     ];
 });

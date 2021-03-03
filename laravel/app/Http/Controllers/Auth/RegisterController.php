@@ -30,10 +30,7 @@ class RegisterController extends Controller
      * @var string
      */
     // protected $redirectTo = RouteServiceProvider::HOME;
-
-     // アカウント新規登録後のリダイレクト先
     protected $redirectTo = '/admin/account/list';
-
     /**
      * Create a new controller instance.
      *
@@ -41,8 +38,6 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        // ログイン可能ユーザーのみ新規登録可能にする
-        // $this->middleware('guest');
         $this->middleware('auth');
     }
 
@@ -70,10 +65,10 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
+            'name' => $data['name'],
             'code' => $data['code'],
-            'full_name' => $data['full_name'],
-            'email' => $data['email'],
             'role_code' => $data['role_code'],
+            'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
     }

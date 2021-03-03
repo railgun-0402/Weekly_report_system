@@ -25,9 +25,11 @@ class AdminController extends Controller
      */
     public function accountList()
     {
+        /*
         $users = DB::table('users')->orderBy('code', 'asc')->get();
         $usersArray = $users->toArray();
         // $users = User::orderBy('id', 'asc');
+
         foreach($usersArray as $user)
         {
             // 論理削除した個所を取り出す
@@ -42,6 +44,9 @@ class AdminController extends Controller
         return view('/admin/account/list')
         ->with('usersArray', $usersArray)
         ->with('users', $users);
+        */
+        $users = User::orderBy('code', 'asc')->get();
+        return view('/admin/account/list', compact('users'));
     }
 
 
