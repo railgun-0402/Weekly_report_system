@@ -25,26 +25,7 @@ class AdminController extends Controller
      */
     public function accountList()
     {
-        /*
-        $users = DB::table('users')->orderBy('code', 'asc')->get();
-        $usersArray = $users->toArray();
-        // $users = User::orderBy('id', 'asc');
 
-        foreach($usersArray as $user)
-        {
-            // 論理削除した個所を取り出す
-            $softDeleteSearch = $user->deleted_at;
-            if ($softDeleteSearch != null)
-            {
-                // dd($user->name);
-            }
-            $test = $user->email;
-        }
-
-        return view('/admin/account/list')
-        ->with('usersArray', $usersArray)
-        ->with('users', $users);
-        */
         $users = User::orderBy('code', 'asc')->get();
         return view('/admin/account/list', compact('users'));
     }
@@ -199,27 +180,6 @@ class AdminController extends Controller
         $form_types = FormType::get();
         return view('/admin/enquete/show', compact('questions', 'form_types'));
     }
-
-
-    /**
-     * アンケート更新（一応残す）
-    */
-    // public function enqueteUpdateSub(Request $req)
-    // {
-    //     $updates = [
-    //         ['question_group' => $req->question_group, 'content' => $req->content1, 'form_types_code' => $req->form_types_code1, 'item_content1' => $req->item_content11, 'item_content2' => $req->item_content21, 'item_content3' => $req->item_content31, 'item_content4' => $req->item_content41, 'item_content5' => $req->item_content51, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-    //         ['question_group' => $req->question_group, 'content' => $req->content2, 'form_types_code' => $req->form_types_code2, 'item_content1' => $req->item_content12, 'item_content2' => $req->item_content22, 'item_content3' => $req->item_content32, 'item_content4' => $req->item_content42, 'item_content5' => $req->item_content52, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-    //         ['question_group' => $req->question_group, 'content' => $req->content3, 'form_types_code' => $req->form_types_code3, 'item_content1' => $req->item_content13, 'item_content2' => $req->item_content23, 'item_content3' => $req->item_content33, 'item_content4' => $req->item_content43, 'item_content5' => $req->item_content53, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-    //         ['question_group' => $req->question_group, 'content' => $req->content4, 'form_types_code' => $req->form_types_code4, 'item_content1' => $req->item_content14, 'item_content2' => $req->item_content24, 'item_content3' => $req->item_content34, 'item_content4' => $req->item_content44, 'item_content5' => $req->item_content54, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-    //         ['question_group' => $req->question_group, 'content' => $req->content5, 'form_types_code' => $req->form_types_code5, 'item_content1' => $req->item_content15, 'item_content2' => $req->item_content25, 'item_content3' => $req->item_content35, 'item_content4' => $req->item_content45, 'item_content5' => $req->item_content55, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-    //         ['question_group' => $req->question_group, 'content' => $req->content6, 'form_types_code' => $req->form_types_code6, 'item_content1' => $req->item_content16, 'item_content2' => $req->item_content26, 'item_content3' => $req->item_content36, 'item_content4' => $req->item_content46, 'item_content5' => $req->item_content56, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-    //         ['question_group' => $req->question_group, 'content' => $req->content7, 'form_types_code' => $req->form_types_code7, 'item_content1' => $req->item_content17, 'item_content2' => $req->item_content27, 'item_content3' => $req->item_content37, 'item_content4' => $req->item_content47, 'item_content5' => $req->item_content57, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-    //     ];
-    //     for ($i=1; $i<=7; $i++) {
-    //         DB::table('questions')->whereIn('id', [$i])->update($updates[$i-1]);
-    //     }
-    //     return redirect('/admin/enquete/edit');
-    // }
 
     /**
      * 回答済みアンケート参照
