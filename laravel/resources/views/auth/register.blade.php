@@ -80,7 +80,8 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">{{ __('登録') }}</button>
+                                <a class="mx-2 btn btn-secondary" onclick="history.back();">{{ __('戻る') }}</a>
+                                <button type="submit" class="mx-2 btn btn-primary">{{ __('登録') }}</button>
                             </div>
                         </div>
                     </form>
