@@ -4,7 +4,12 @@ $(function() {
     confirmAlert('#regist', '登録');
     hideElement();
     buttonAction();
-    sendBtnRemove();
+
+});
+
+
+$(document).ready(function() {
+    notEnteredQARemove();
 
 });
 
@@ -12,6 +17,7 @@ $(function() {
 $(window).on('load', function() {
     reloadInactiveInputTag();
     sendBtnRemove();
+
 
 });
 
@@ -125,5 +131,19 @@ function sendBtnRemove() {
         if ($('.not_yet').length) {
             $('.send').remove();
         }
+    }
+}
+
+// adminの回答内容閲覧でDBに登録のない質問/回答は非表示にする
+function notEnteredQARemove() {
+    var path = location.pathname;
+    if (path.match(/admin\/answered\/show/)) {
+        var q_array = $('.q_info').get();
+        $.each(q_array, function(index, elem) {
+            var text = $(elem).text();
+            if (text.length == 0) {
+                $(elem).closest('dl').remove();
+            }
+        });
     }
 }

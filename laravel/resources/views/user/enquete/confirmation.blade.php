@@ -11,7 +11,7 @@ $dropNumber = 0;
 <style>
 </style>
 <div class="container">
-    <form action="{{ action('QuestionController@complete') }}" method="GET" class="row">
+    <form action="{{ action('QuestionController@complete') }}" method="get" class="row">
     @csrf
         <div class="kakuninn">
             <h4 class="mb">回答内容確認</h4><br>
@@ -20,33 +20,33 @@ $dropNumber = 0;
             @foreach ($items as $key => $item)
                 @php $key = $key + 1 @endphp
                 @if ($item->form_types_code === '1') {{-- <!-- テキストボックス --> --}}
-                    @php $textNumber = $textNumber + 1 @endphp    
+                    @php $textNumber = $textNumber + 1 @endphp
                     @php $texts = "text".$textNumber @endphp
                     <div class="form-group">
-                    
-                        <label for="text{{ $key }}">Q{{ $key }}.&nbsp;{{ $item->content }}<br>   
-                                             
+
+                        <label for="text{{ $key }}">Q{{ $key }}.&nbsp;{{ $item->content }}<br>
+
                             &emsp;{{ $data[$texts] }}
                         </label>
                         <input type="hidden" name="text{{ $textNumber }}" value="{{ $data[$texts] }}">
-                        
+
                     </div>
-                    
+
                 @elseif ($item->form_types_code === '2') {{-- <!-- ラジオボタン --> --}}
                     @php $radioNumber = $radioNumber + 1 @endphp
                     @php $item_contents = "radio".$radioNumber @endphp
                     <div class="form-group">
                         <label>Q{{ $key }}.&nbsp;{{ $item->content }}<br>
-                        &emsp;{{ $data[$item_contents] }}                            
-                        </label>   
-                        <input type="hidden" name="radio{{ $radioNumber }}" value="{{ $data[$item_contents] }}">                                                                                                         
+                        &emsp;{{ $data[$item_contents] }}
+                        </label>
+                        <input type="hidden" name="radio{{ $radioNumber }}" value="{{ $data[$item_contents] }}">
                     </div>
-                    
+
                 @elseif ($item->form_types_code === '3') {{-- <!-- チェックボックス --> --}}
                     @php $checkNumber = $checkNumber + 1 @endphp
-                    @php $check_item_contents = "checkbox".$checkNumber @endphp 
-                    @php $check_item = $_POST[$check_item_contents]; @endphp  
-                                                          
+                    @php $check_item_contents = "checkbox".$checkNumber @endphp
+                    @php $check_item = $_POST[$check_item_contents]; @endphp
+
                     <div class="form-group">
                         <label>Q{{ $key }}.&nbsp;{{ $item->content }}<br>
                             @foreach ($check_item as $check)
@@ -54,9 +54,9 @@ $dropNumber = 0;
                                 <input type="hidden" name="check{{ $checkNumber }}[]" value="{{ $check }}">
                             @endforeach
                         </label>
-                        
+
                     </div>
-                    
+
                 @elseif ($item->form_types_code === '4') {{-- <!-- ドロップダウンメニュー --> --}}
                     @php $dropNumber = $dropNumber + 1 @endphp
                     @php $drop_item_contents = "selects".$dropNumber @endphp
@@ -64,8 +64,8 @@ $dropNumber = 0;
                         <label>Q{{ $key }}.&nbsp;{{ $item->content }}<br>
                             &emsp;{{ $data[$drop_item_contents] }}
                         </label>
-                        <input type="hidden" name="drop{{ $dropNumber }}" value="{{ $data[$drop_item_contents] }}">     
-                        
+                        <input type="hidden" name="drop{{ $dropNumber }}" value="{{ $data[$drop_item_contents] }}">
+
                     </div>
                 @else
                     <p style="color: red;"></p>
@@ -74,7 +74,7 @@ $dropNumber = 0;
 
             <a class="btn btn-secondary mr-1" href="{{ url('/user/enquete/index ') }}">戻る</a>
             <button type="submit" class="btn btn-success">送信する</button>
-        
+
         </div>
     </form>
 </div>

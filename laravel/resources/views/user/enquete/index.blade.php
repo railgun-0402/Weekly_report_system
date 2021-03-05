@@ -7,15 +7,16 @@ $checkNumber = 0;
 $radioNumber= 0;
 $dropNumber = 0;
 
-// 質問が全て用意されていない事を確認
-$is_exist = true;
+// 質問が全て用意されていないcontentが全てnullかどうか判定
+$flg = false;
 $results = [];
 foreach ($items as $item) {
     array_push($results, $item->content);
 }
-if (count($results) === 7) {
-    if (array_unique($results)[0] === null);
-    $is_exist = false;
+
+$array_unique = array_unique($results);
+if (count($array_unique) == 1 && $array_unique[0] == null) {
+    $flg = true;
 }
 
 @endphp
@@ -39,10 +40,10 @@ if (count($results) === 7) {
         <div class="col-sm-8 col-sm-offset-2">
             <h4 class="mb-3">アンケート回答画面</h4>
 
-                @if (!$is_exist)
+                <?php if ($flg): ?>
                 <p class="not_yet h5 mb-3">質問データがまだ用意されておりません。</p>
-                @endif
 
+                <?php else : ?>
                 @foreach ($items as $key => $item)
                     @php $key = $key + 1 @endphp
 
@@ -50,17 +51,14 @@ if (count($results) === 7) {
                         @php $textNumber = $textNumber + 1 @endphp
                         <div class="form-group">
                             <label for="text{{ $textNumber }}"><span class="badge badge-danger">必須</span>&nbsp;Q{{ $key }}.&nbsp;{{ $item->content }}</label>
-                            <textarea rows="3" value="" id="text{{ $textNumber }}" name="text{{ $textNumber }}" class="form-control" placeholder="placeholder" required></textarea>
-
+                            <textarea rows="3" value="" id="text{{ $textNumber }}" name="text{{ $textNumber }}" class="form-control" placeholder="○○です。" required></textarea>
                         </div>
 
                     @elseif ($item->form_types_code === '2') {{-- <!-- ラジオボタン --> --}}
                         @php $radioNumber = $radioNumber + 1 @endphp
                         <div class="form-group">
                             <label><span class="badge badge-danger">必須</span>&nbsp;Q{{ $key }}.&nbsp;{{ $item->content }}</label><br>
-
                             @for ($i = 1; $i <= $item->selectable_item; $i++)
-
                                 @php $item_contents = "item_content".$i @endphp
                                 <div class="form-group">
                                     <input type="radio" name="radio{{ $radioNumber }}" id="radio{{ $key }}{{ $i }}" value="{{ $item -> $item_contents }}">
@@ -84,7 +82,6 @@ if (count($results) === 7) {
 
                     @elseif ($item->form_types_code === '4') {{-- <!-- ドロップダウンメニュー --> --}}
                         @php $dropNumber = $dropNumber + 1 @endphp
-
                         <div class="form-group">
                             <label><span class="badge badge-danger">必須</span>&nbsp;Q{{ $key }}.&nbsp;{{ $item->content }}</label>
                             <select id="" name="selects{{ $dropNumber }}" class="form-control" required>
@@ -101,6 +98,8 @@ if (count($results) === 7) {
                     @endif
 
                 @endforeach
+
+                <?php endif; ?>
 
                 <a class="btn btn-secondary mr-1" href="{{ url('/user/top') }}">戻る</a>
             <button type="submit" class="btn btn-success send">送信する</button>

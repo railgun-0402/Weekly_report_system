@@ -17,9 +17,11 @@
             $answerContent = $answer['content'];
         @endphp
         <div class="row">
-            <div class="col-md-8 mb-4">
-                <label for="">Q{{$i+1}} {{$questionContent}}？</label>
-                <div>A{{$i+1}} {{$answerContent}}</div>
+            <div class="col-md-8 mb-2">
+                <dl>
+                    <dt class="mb-3">質問{{$i+1}}／<span class="q_info">{{$questionContent}}</span></dt>
+                    <dd>回答{{$i+1}}／<span class="a_info">{{$answerContent}}</span></dd>
+                </dl>
             </div>
         </div>
     @endfor
