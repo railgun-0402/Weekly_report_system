@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-// 論理削除有効化
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
@@ -14,29 +13,8 @@ class User extends Authenticatable
     use SoftDeletes;
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-
-    /*
-    protected $fillable = [
-        // 'id',
-        'code',
-        'role_code',
-        'name',
-        'email',
-        'name',
-        // 'email_verified_at',
-        'password',
-        // 'remember_token',
-        // 'created_at',
-        // 'updated_at',
-        // 'deleted_at',
-    ];
-    */
-    protected $guarded = []; //一旦これ
+    // 代入を許可しない属性を配列で設定
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -58,13 +36,5 @@ class User extends Authenticatable
 
     // timestampの自動更新を利用する
     public $timestamps = true;
-
-    // ==============================
-    // リレーション定義
-    // ==============================
-    // public function answers()
-    // {
-    //     return $this->hasMany(Answer::class, 'user_code');
-    // }
 
 }

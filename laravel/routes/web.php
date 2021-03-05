@@ -19,10 +19,6 @@ Route::group(['middleware' => 'auth'], function() {
 
     // 一般ユーザー機能
     Route::get('/user/top', 'UserController@top');                                         //一般ユーザーTOP画面
-    Route::get('/user/account/index', 'UserController@accountIndex');                      //アカウント情報画面
-    Route::get('/user/account/edit', 'UserController@accountEdit');                        //アカウント情報編集画面
-    Route::post('/user/account/edit', 'UserController@accountUpdate');
-    Route::get('/user/enquete/list', 'QuestionController@questionList');                   //アンケート回答一覧
     Route::get('/user/enquete/index', 'QuestionController@questionIndex');                 //アンケート回答画面
     Route::post('/user/enquete/confirmation', 'QuestionController@questionConfirmation');  //アンケート回答確認画面
     Route::post('/user/enquete/complete', 'UserController@complete');                      //完了画面
