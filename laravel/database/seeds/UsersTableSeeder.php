@@ -14,9 +14,9 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'code' => '111',
+                'code' => '100',
                 'role_code' => 'ADMIN',
-                'name' => 'アドミン 太郎',
+                'name' => 'テスト（admin）',
                 'email' => 'admin@admin.com',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
@@ -24,9 +24,9 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'code' => '222',
+                'code' => '200',
                 'role_code' => 'ORDINARY',
-                'name' => 'ユーザー 次郎',
+                'name' => 'テスト（user）',
                 'email' => 'user@user.com',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => Str::random(10),
