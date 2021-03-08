@@ -33,7 +33,7 @@
 
                         <div class="form-group row">
                             <label for="email" class="col-sm-2 col-form-label">Eメール</label>
-                            <div class="col-sm-10"><input id="email" type="text" name="email" class="form-control" value="{{$user->email}}"></div>
+                            <div class="col-sm-10"><input id="email" type="email" name="email" class="form-control" value="{{$user->email}}"></div>
                         </div>
 
                         <div class="item form-group text-center">
