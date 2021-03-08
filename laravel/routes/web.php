@@ -23,6 +23,12 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/user/enquete/confirmation', 'QuestionController@questionConfirmation');  //アンケート回答確認画面
     Route::post('/user/enquete/complete', 'UserController@complete');                      //完了画面
     Route::get('/user/enquete/complete', 'QuestionController@complete');                   //完了画面
+    // Route::get('/user/enquete/changePass', 'UserController@editPassword');                       // パスワード変更画面
+
+    Route::group(['middleware' => ['auth', 'web']], function () {
+        Route::get('/user/enquete/changePass', 'UserController@editPassword')->name('user.password.edit');
+        Route::post('/user/password/', 'UserController@updatePassword')->name('user.password.update');
+    });
 
     // 管理者機能
     Route::get('/admin/top', 'AdminController@top');                                       // TOP画面
