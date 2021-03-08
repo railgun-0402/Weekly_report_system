@@ -167,7 +167,7 @@ class AdminController extends Controller
             $update = ['question_group' => $date, 'user_code' => $user_code, 'selectable_item' => $selectable_item, 'content' => $outContent, 'form_types_code' => $form_types_code_num, 'item_content1' => $item_content1, 'item_content2' => $item_content2, 'item_content3' => $item_content3, 'item_content4' => $item_content4, 'item_content5' => $item_content5, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
             DB::table('questions')->whereIn('id', [$i])->update($update);
         }
-        return redirect('/admin/enquete/edit');
+        return redirect('/admin/enquete/edit')->with('complete_message', 'アンケートを更新しました');
     }
 
 
