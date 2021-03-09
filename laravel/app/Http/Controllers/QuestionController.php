@@ -79,12 +79,12 @@ class QuestionController extends Controller
                 foreach ($first_array as $arr){
                     $con .= $arr . ' ' ;
                 }
-                $update = ['question_id' => $item->question_group, 'user_code' => $user_code, 'content' => $con, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
+                $update = ['question_id' => date('Ymd'), 'user_code' => $user_code, 'content' => $con, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
                 DB::table('answers')->insert($update);
             }
             # 配列でない場合、先頭だけ取ればよい
             else {
-                $update = ['question_id' => $item->question_group, 'user_code' => $user_code, 'content' => $first_array, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
+                $update = ['question_id' => date('Ymd'), 'user_code' => $user_code, 'content' => $first_array, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
                 DB::table('answers')->insert($update);
             }
         }

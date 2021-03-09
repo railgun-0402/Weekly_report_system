@@ -24,8 +24,7 @@ class AdminController extends Controller
      * アカウント一覧
      */
     public function accountList()
-    {
-
+    {        
         $users = User::orderBy('code', 'asc')->get();
         return view('/admin/account/list', compact('users'));
     }
