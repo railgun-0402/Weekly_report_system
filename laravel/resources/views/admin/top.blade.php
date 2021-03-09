@@ -8,6 +8,7 @@
                 <li><a href="{{url('/admin/enquete/edit')}}">配信するアンケートを登録</a></li>
                 <li><a href="{{url('/admin/account/list')}}">登録アカウント一覧を操作</a></li>
                 <li><a href="{{url('/admin/answered/list')}}">回答アンケートを参照</a></li>
+                <li><a href="{{ url('/user/enquete/changePass') }}">パスワードを変更する</a></li>
             </ul>
         </div>
         <div class="col">

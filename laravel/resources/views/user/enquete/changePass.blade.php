@@ -51,7 +51,7 @@
                 </div>
 
                 <div>
-                    <a class="btn btn-secondary mr-1" href="{{ url('/user/top') }}">戻る</a>
+                    <a class="btn btn-secondary mr-1" href="{{ url($role_check) }}">戻る</a>
 
                     <button type="submit" class="btn btn-primary">変更</button>
                 </div>
