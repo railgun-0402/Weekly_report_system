@@ -16,7 +16,7 @@
                                     <th scope="col">No</th>
                                     <th scope="col">出題する質問</th>
                                     <th scope="col">回答させる形式</th>
-                                    <th scope="col">ラジオボタンで回答者が選ぶ選択肢</th>
+                                    <th scope="col">選択肢</th>
                                 </tr>
                             </thead>
                             <tbody>

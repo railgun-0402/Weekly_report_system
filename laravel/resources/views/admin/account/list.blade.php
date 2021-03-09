@@ -8,7 +8,7 @@
                 <div class="p-2 bd-highlight"><a class="btn btn-secondary" href="{{ url('/admin/top') }}">戻る</a></div>
                 <div class="ml-auto p-2 bd-highlight"><a class="btn btn-secondary" href="{{ url('/register') }}">新規作成</a></div>
             </div>
-            <div class="mb-3 h5">アカウント一覧</div>
+            <div class="mb-3 h5">社員一覧</div>
                 <table class="table table-sm">
                     <tr>
                         <th scope="col">社員コード</th>

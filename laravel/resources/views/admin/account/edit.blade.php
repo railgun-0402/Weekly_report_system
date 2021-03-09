@@ -12,12 +12,12 @@
 
                         <div class="form-group row">
                             <label for="name" class="col-sm-2 col-form-label">氏　名</label>
-                            <div class="col-sm-10"><input id="name" type="text" name="name" class="form-control" value="{{$user->name}}"></div>
+                            <div class="col-sm-10"><input maxlength="30" id="name" type="text" name="name" class="form-control" value="{{$user->name}}"></div>
                         </div>
 
                         <div class="form-group row">
                             <label for="code" class="col-sm-2 col-form-label">社員コード</label>
-                            <div class="col-sm-10"><input id="code" type="text" name="code" class="form-control" value="{{$user->code}}"></div>
+                            <div class="col-sm-10"><input maxlength="3" id="code" type="text" name="code" class="form-control" value="{{$user->code}}"></div>
                         </div>
 
                         <div class="form-group row">
@@ -34,7 +34,7 @@
 
                         <div class="form-group row">
                             <label for="email" class="col-sm-2 col-form-label">Eメール</label>
-                            <div class="col-sm-10"><input id="email" type="email" name="email" class="form-control" value="{{$user->email}}"></div>
+                            <div class="col-sm-10"><input maxlength="64" id="email" type="email" name="email" class="form-control" value="{{$user->email}}"></div>
                         </div>
 
                         <div class="item form-group text-center">

@@ -28,7 +28,7 @@
                                     <th scope="col">No</th>
                                     <th scope="col">出題する質問</th>
                                     <th scope="col">回答させる形式</th>
-                                    <th scope="col">ラジオボタンで回答者が選ぶ選択肢</th>
+                                    <th scope="col">選択肢</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -39,7 +39,7 @@
                                 <td scope="row">{{$key+1}}</td>
                                 <td>
                                     <div class="form-group">
-                                        <textarea class="form-control" name="content{{$key+1}}" rows="2" placeholder="業務の進捗についてお聞かせください。">{{$question->content}}</textarea>
+                                        <textarea maxlength="255" class="form-control" name="content{{$key+1}}" rows="2" placeholder="業務の進捗についてお聞かせください。">{{$question->content}}</textarea>
                                     </div>
                                 </td>
                                 <td>
@@ -52,19 +52,19 @@
                                 </td>
                                 <td>
                                     <div class="form-group row">
-                                        <div class="col-sm-12"><input type="text" name="item_content1{{$key+1}}" class="form-control form-control-sm not_radio{{$key+1}}" placeholder="例）大変良好" value="{{$question->item_content1}}"></div>
+                                        <div class="col-sm-12"><input maxlength="30" type="text" name="item_content1{{$key+1}}" class="form-control form-control-sm not_radio{{$key+1}}" placeholder="例）大変良好" value="{{$question->item_content1}}"></div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-12"><input type="text" name="item_content2{{$key+1}}" class="form-control form-control-sm not_radio{{$key+1}}" placeholder="例）良好" value="{{$question->item_content2}}"></div>
+                                        <div class="col-sm-12"><input maxlength="30" type="text" name="item_content2{{$key+1}}" class="form-control form-control-sm not_radio{{$key+1}}" placeholder="例）良好" value="{{$question->item_content2}}"></div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-12"><input type="text" name="item_content3{{$key+1}}" class="form-control form-control-sm not_radio{{$key+1}}" placeholder="例）どちらともいえない" value="{{$question->item_content3}}"></div>
+                                        <div class="col-sm-12"><input maxlength="30" type="text" name="item_content3{{$key+1}}" class="form-control form-control-sm not_radio{{$key+1}}" placeholder="例）どちらともいえない" value="{{$question->item_content3}}"></div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-12"><input type="text" name="item_content4{{$key+1}}" class="form-control form-control-sm not_radio{{$key+1}}" placeholder="例）悪い" value="{{$question->item_content4}}"></div>
+                                        <div class="col-sm-12"><input maxlength="30" type="text" name="item_content4{{$key+1}}" class="form-control form-control-sm not_radio{{$key+1}}" placeholder="例）悪い" value="{{$question->item_content4}}"></div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-12"><input type="text" name="item_content5{{$key+1}}" class="form-control form-control-sm not_radio{{$key+1}}" placeholder="例）非常に悪い" value="{{$question->item_content5}}"></div>
+                                        <div class="col-sm-12"><input maxlength="30" type="text" name="item_content5{{$key+1}}" class="form-control form-control-sm not_radio{{$key+1}}" placeholder="例）非常に悪い" value="{{$question->item_content5}}"></div>
                                     </div>
                                 </td>
                             </tr>

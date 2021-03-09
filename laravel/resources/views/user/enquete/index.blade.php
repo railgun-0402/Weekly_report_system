@@ -51,7 +51,7 @@ if (count($array_unique) == 1 && $array_unique[0] == null) {
                         @php $textNumber = $textNumber + 1 @endphp
                         <div class="form-group">
                             <label for="text{{ $textNumber }}"><span class="badge badge-danger">必須</span>&nbsp;Q{{ $key }}.&nbsp;{{ $item->content }}</label>
-                            <textarea rows="3" value="" id="text{{ $textNumber }}" name="text{{ $textNumber }}" class="form-control" placeholder="○○です。" required></textarea>
+                            <textarea maxlength="255" rows="3" value="" id="text{{ $textNumber }}" name="text{{ $textNumber }}" class="form-control" placeholder="○○です。" required></textarea>
                         </div>
 
                     @elseif ($item->form_types_code === '2') {{-- <!-- ラジオボタン --> --}}

@@ -32,21 +32,21 @@
                 <div class="form-group">
                     <label for="current">現在のパスワード</label>
                     <div>
-                        <input id="current" type="password" class="form-control" name="current-password" required autofocus>
+                        <input maxlength="16" id="current" type="password" class="form-control" name="current-password" required autofocus>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="password">新しいパスワード</label>
                     <div>
-                        <input id="password" type="password" class="form-control" name="new-password" required>
+                        <input maxlength="16" id="password" type="password" class="form-control" name="new-password" required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="confirm">新しいパスワード (確認用)</label>
                     <div>
-                        <input id="confirm" type="password" class="form-control" name="new-password_confirmation" required>
+                        <input maxlength="16" id="confirm" type="password" class="form-control" name="new-password_confirmation" required>
                     </div>
                 </div>
 

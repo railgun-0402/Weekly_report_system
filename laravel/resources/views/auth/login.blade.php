@@ -27,7 +27,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Eメールアドレス') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" maxlength="100" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input maxlength="64" id="email" type="email" maxlength="100" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="off" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -41,7 +41,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('パスワード') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" maxlength="100" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input maxlength="16" id="password" type="password" maxlength="100" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
