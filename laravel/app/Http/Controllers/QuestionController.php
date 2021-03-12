@@ -64,6 +64,12 @@ class QuestionController extends Controller
         // 「question_id」 「user_code」 「content」
         foreach ($itemsArray as $item)
         {
+            // 質問がnullだったらDB更新の必要なし
+            if ($item->content == null)
+            {
+                break;
+            }
+
             $key = $key + 1;
             # 答えの配列から一つずつ取り出し
             $add_answer = array_slice($answer, $key, 1);
@@ -77,7 +83,7 @@ class QuestionController extends Controller
             if ($judge == 'true'){
                 $con = '';
                 foreach ($first_array as $arr){
-                    $con .= $arr . ' ' ;
+                    $con .= $arr . '  ';
                 }
                 $update = ['question_id' => date('Ymd'), 'user_code' => $user_code, 'content' => $con, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
                 DB::table('answers')->insert($update);

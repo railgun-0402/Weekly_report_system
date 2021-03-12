@@ -91,7 +91,7 @@ function reloadInactiveInputTag() {
 function hideElement() {
     var tr_tag_array = $('tbody').children('tr').get();
     $.each(tr_tag_array, function (index, elem) {
-        if (index == 3 || index == 4 || index == 5 || index == 6) {
+        if (3<=index || index <= 6) {
             if ($(elem).find('textarea').val().length == 0) {
                 $(elem).hide();
             }
@@ -109,7 +109,7 @@ function buttonAction() {
             }
         });
         $.each(tr_tag_array, function (index, elem) {
-            if (index == 3 || index == 4 || index == 5 || index == 6) {
+            if (3<=index || index <= 6) {
                 if ($(elem).attr('style') == 'display: none;') {
                     $(elem).show();
                     return false;

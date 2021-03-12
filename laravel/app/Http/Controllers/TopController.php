@@ -11,6 +11,7 @@ class TopController extends Controller
     {
         // ユーザー情報により遷移先URLの振り分け
         $user = Auth::user();
+        // dd($user->role_code);
         if ($user->role_code === 'ORDINARY') {
             return view('/user/top');
         } elseif ($user->role_code === 'ADMIN') {

@@ -105,6 +105,8 @@ class AdminController extends Controller
         // これがanswerテーブルのuser_codeにあたる
         $user_code = $user->code;
 
+        dd($req);
+
         // 現在日(question_group)
         $date = date("Ymd");
         // dd($req);
