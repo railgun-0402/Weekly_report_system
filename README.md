@@ -13,6 +13,12 @@
 ■コンテナ起動
 `docker-compose up -d`
 
+■コンテナ起動確認（mysql, php-fpm, nginx）
+`docker-compose ps`
+
+※mysqlコンテナが起動していなかったら以下実行
+`chmod -R 777 ./mysql/`
+
 ■php-fpmへログイン
 `docker-compose exec php-fpm /bin/bash`
 
