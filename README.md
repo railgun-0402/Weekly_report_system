@@ -9,6 +9,13 @@
 | Windows Server 2019 | [http://192.168.21.251](http://192.168.21.251) |
 
 ## 環境構築手順
+
+■OS等の設定は以下に記載
+```
+"\\192.168.21.203\share\users\SEKIKAWA\サーバー\WindowsServer2019設定メモ.xlsx"
+```
+
+
 ■サービスのビルドを実行
 ```
 docker-compose build --no-cache
