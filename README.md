@@ -8,38 +8,58 @@
 
 ## 環境構築手順
 ■サービスのビルドを実行
-`docker-compose build --no-cache`
+```
+docker-compose build --no-cache
+```
 
 ■コンテナ起動
-`docker-compose up -d`
+```
+docker-compose up -d
+```
 
 ■コンテナ起動確認（mysql, php-fpm, nginx）
-`docker-compose ps`
+```
+docker-compose ps
+```
 
 ※mysqlコンテナが起動していなかったら以下実行
-`chmod -R 777 ./mysql/`
+```
+chmod -R 777 ./mysql/
+```
 
 ■php-fpmへログイン
-`docker-compose exec php-fpm /bin/bash`
+```
+docker-compose exec php-fpm /bin/bash
+```
 
 ■権限設定
-`chmod -R 777 ./storage/`
+```
+chmod -R 777 ./storage/
+```
 
 ■パッケージインストール
-`composer install`
+```
+composer install
+```
 
-■envファイル配置
-ページ下部に記載
+■envファイル配置<br>
+※ページ下部に記載
 
 ■キャッシュファイル作成とAPPキー生成
-`php artisan config:cache && php artisan key:generate && php artisan config:cache`
+```
+php artisan config:cache && php artisan key:generate && php artisan config:cache
+```
 
 ■マイグレーション
-`php artisan migrate`
+```
+php artisan migrate
+```
 
 ■必要に応じてlaravelUIとbootstrap導入
-`composer require laravel/ui:~2.0`
-`php artisan ui bootstrap --auth`
+```
+composer require laravel/ui:~2.0
+php artisan ui bootstrap --auth
+```
 
 ■必要に応じてフロントのモジュールインストール
 ```
@@ -96,5 +116,6 @@ PUSHER_APP_CLUSTER=mt1
 
 MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
 MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
+
 ```
 以上
