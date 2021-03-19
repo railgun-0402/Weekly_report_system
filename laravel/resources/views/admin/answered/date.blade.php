@@ -1,6 +1,9 @@
 @php
     $date = '';
     $checkDate = '';
+    //空の配列
+    $checkArray = array();
+    $questionCount = '';
 @endphp
 @extends('layouts.app')
 @section('title', '回答日時一覧')
@@ -13,16 +16,31 @@
             </div>
             <div class="mb-3">回答日時一覧【{{$user->name}}】さん</div>
                 <table class="table table-sm" style="table-layout: fixed;">
+                <?php 
+                    // answerに該当のユーザーコードが存在するかを確認
+                    // 一度でも存在すれば、回答履歴が存在することになる
+                    
+                    // リンクで選択したユーザーコード
+                    $userCode = $user->code;
+                    // 質問から対象のユーザーの回答があるかを確認
+                    foreach ($answersArray as $ans){
+                        if ($userCode == $ans->user_code){
+                            // 回答があれば配列に加える(→要素が０であれば回答履歴なしと判断できる)
+                            array_push($checkArray, $ans->user_code);
+                        }
+                    }
+                    $questionCount = count($checkArray);
+                ?>
+                    <?php if($questionCount == 0):?>
+                    <tr>
+                        <th scope="col">回答が有りません</th>
+                    </tr>
+                    <?php else:?>
                     <tr>
                         <th scope="col">閲覧したい回答日を選択してください</th>
                     </tr>
-
-                    <?php if(empty($answersArray)):?>
-                    <tr>
-                        <td>回答した履歴がありません。</td>
-                    </tr>
                     <?php endif; ?>
-
+                    
                     @foreach ($answersArray as $ans)
                         @php
                             if ($checkDate != $ans->user_code){
