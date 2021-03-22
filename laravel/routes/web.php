@@ -23,8 +23,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/user/enquete/confirmation', 'QuestionController@questionConfirmation');  //アンケート回答確認画面
     Route::post('/user/enquete/complete', 'UserController@complete');                      //完了画面
     Route::get('/user/enquete/complete', 'QuestionController@complete');                   //完了画面
-    // Route::get('/user/enquete/changePass', 'UserController@editPassword');                       // パスワード変更画面
-
     Route::group(['middleware' => ['auth', 'web']], function () {
         Route::get('/user/enquete/changePass', 'UserController@editPassword')->name('user.password.edit');
         Route::post('/user/password/', 'UserController@updatePassword')->name('user.password.update');
@@ -36,8 +34,12 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/admin/account/edit/{id}', 'AdminController@accountEdit');                 // アカウント編集
     Route::patch('/admin/account/edit/{id}', 'AdminController@accountUpdate');             // アカウント更新
     Route::delete('/admin/account/list/{user}', 'AdminController@accountDestroy');         // アカウント削除
+
     Route::get('/admin/enquete/edit', 'AdminController@enqueteEdit');                      // アンケート編集
     Route::patch('/admin/enquete/edit','AdminController@enqueteUpdate');                   // アンケート更新
+    Route::get('/admin/enquete/questionList', 'AdminController@enqueteList');              // アンケート一覧(出題日ごと)
+    Route::get('/admin/enquete/makeList/{makeDate}', 'AdminController@makeList');          // 作成済みアンケート一覧
+
     Route::get('/admin/account/deleteList', 'AdminController@accountDeleteList');
     Route::get('/admin/answered/list', 'AdminController@answeredList');                    // アンケート回答者一覧
     Route::get('/admin/answered/date/{id}', 'AdminController@answeredDate');               // アンケート回答者日付一覧

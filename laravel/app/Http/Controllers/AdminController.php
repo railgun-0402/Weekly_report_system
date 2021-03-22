@@ -85,13 +85,48 @@ class AdminController extends Controller
 
 
     /**
+     * 作成済みアンケート一覧
+     * 
+    */
+    public function makeList($makeDate)
+    {
+        // 質問内容
+        $questions = Question::all();
+        $form_types = FormType::all();
+        // 本日の日時
+        $now = date("Ymd");
+
+        return view('/admin/enquete/makeList', compact('questions', 'form_types', 'now', 'makeDate'));
+    }
+
+    /**
+     * アンケート一覧
+     * 作成日ごとにグループ化させる
+     * 作成日をリンクとして扱い、押下すると対象リンク記述名の
+     * 質問が出てくる仕組みになる
+    */
+    public function enqueteList()
+    {
+        // 質問を全部表示
+        $questions = \DB::table('questions')->get();
+        $questionsArray = $questions->toArray();
+
+        return view('/admin/enquete/questionList', compact('questions', 'questionsArray'));
+    }
+
+
+    /**
      * アンケート参照・編集
+     * 前画面で押下されたリンクの記述日が反映される
     */
     public function enqueteEdit()
     {
+        // 質問内容
         $questions = Question::all();
         $form_types = FormType::all();
+        // 本日の日時
         $now = date("Ymd");
+
         return view('/admin/enquete/edit', compact('questions', 'form_types', 'now'));
     }
 
@@ -102,17 +137,16 @@ class AdminController extends Controller
     {
         // ユーザー
         $user = \Auth::user();
+
         // これがanswerテーブルのuser_codeにあたる
         $user_code = $user->code;
 
-        // dd($req);
-
         // 現在日(question_group)
-        $date = date("Ymd");
-        // dd($req);
+        $date = date("Ymd");        
 
         // 選択肢→nullではない数を数えるortextBox
         for ($i=1; $i<=7; $i++) {
+         
             // 選択肢の数
             $selectable_item = 5;
 
@@ -162,13 +196,18 @@ class AdminController extends Controller
 
                 if ($item_content5 == null){
                     $selectable_item -= 1;
-                }
+                }            
             }
 
-            $update = ['question_group' => $date, 'user_code' => $user_code, 'selectable_item' => $selectable_item, 'content' => $outContent, 'form_types_code' => $form_types_code_num, 'item_content1' => $item_content1, 'item_content2' => $item_content2, 'item_content3' => $item_content3, 'item_content4' => $item_content4, 'item_content5' => $item_content5, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
-            DB::table('questions')->whereIn('id', [$i])->update($update);
+            // 内容が「null」であれば空欄で出したと思われるので登録はしない
+            if ($outContent != null)
+            {
+                $insert = ['question_group' => $date, 'user_code' => $user_code, 'selectable_item' => $selectable_item, 'content' => $outContent, 'form_types_code' => $form_types_code_num, 'item_content1' => $item_content1, 'item_content2' => $item_content2, 'item_content3' => $item_content3, 'item_content4' => $item_content4, 'item_content5' => $item_content5, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
+                DB::table('questions')->whereIn('id', [$i])->insert($insert);
+            }
+        
         }
-        return redirect('/admin/enquete/edit')->with('complete_message', 'アンケートを更新しました');
+        return redirect('/admin/enquete/questionList')->with('complete_message', 'アンケートを登録しました');
     }
 
 

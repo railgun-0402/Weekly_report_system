@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+@php
+    $today = date("Ymd");
+@endphp
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -13,6 +16,7 @@
                 });
             @endif
             </script>
+            
             <div class="card">
                 <div class="card-header">{{ __('配信アンケート登録画面') }}</div>
                 <div class="card-body">
@@ -32,51 +36,54 @@
                                 </tr>
                             </thead>
                             <tbody>
-
                             {{-- ７問 --}}
-                            @foreach ($questions as $key => $question)
+                            
+                            @for ($i=1; $i <= 5; $i++)
                             <tr>
-                                <td scope="row">{{$key+1}}</td>
+                                <td scope="row">{{$i}}</td>
                                 <td>
                                     <div class="form-group">
-                                        <textarea maxlength="255" class="form-control" name="content{{$key+1}}" rows="2" placeholder="業務の進捗についてお聞かせください。">{{$question->content}}</textarea>
+                                        <textarea maxlength="255" class="form-control" name="content{{$i+1}}" rows="2" placeholder="業務の進捗についてお聞かせください。"></textarea>
                                     </div>
                                 </td>
                                 <td>
-                                    @foreach ($form_types as $key2 => $form_type)
+                                    @foreach ($form_types as $i2 => $form_type)
                                     <div class="form-check my-1">
-                                        <input class="form-check-input" type="radio" name="form_types_code{{$key+1}}" id="q{{$key+1}}{{$key2+1}}" value="{{$form_type->code}}" <?php if ($question->form_types_code == $form_type->code) { echo 'checked'; } ?>>
-                                        <label class="form-check-label" for="q{{$key+1}}{{$key2+1}}">{{$form_type->name}}</label>
+                                    <input class="form-check-input" type="radio" name="form_types_code{{$i+1}}" id="q{{$i+1}}{{$i2+1}}" value="{{$form_type->code}}">
+                                        <label class="form-check-label" for="q{{$i+1}}{{$i2+1}}">{{$form_type->name}}</label>
                                     </div>
                                     @endforeach
                                 </td>
                                 <td>
                                     <div class="form-group row">
-                                        <div class="col-sm-12"><input maxlength="30" type="text" name="item_content1{{$key+1}}" class="form-control form-control-sm not_radio{{$key+1}}" placeholder="例）大変良好" value="{{$question->item_content1}}"></div>
+                                        <div class="col-sm-12"><input maxlength="30" type="text" name="item_content1{{$i+1}}" class="form-control form-control-sm not_radio{{$i+1}}" placeholder="例）大変良好" value=""></div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-12"><input maxlength="30" type="text" name="item_content2{{$key+1}}" class="form-control form-control-sm not_radio{{$key+1}}" placeholder="例）良好" value="{{$question->item_content2}}"></div>
+                                        <div class="col-sm-12"><input maxlength="30" type="text" name="item_content2{{$i+1}}" class="form-control form-control-sm not_radio{{$i+1}}" placeholder="例）良好" value=""></div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-12"><input maxlength="30" type="text" name="item_content3{{$key+1}}" class="form-control form-control-sm not_radio{{$key+1}}" placeholder="例）どちらともいえない" value="{{$question->item_content3}}"></div>
+                                        <div class="col-sm-12"><input maxlength="30" type="text" name="item_content3{{$i+1}}" class="form-control form-control-sm not_radio{{$i+1}}" placeholder="例）どちらともいえない" value=""></div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-12"><input maxlength="30" type="text" name="item_content4{{$key+1}}" class="form-control form-control-sm not_radio{{$key+1}}" placeholder="例）悪い" value="{{$question->item_content4}}"></div>
+                                        <div class="col-sm-12"><input maxlength="30" type="text" name="item_content4{{$i+1}}" class="form-control form-control-sm not_radio{{$i+1}}" placeholder="例）悪い" value=""></div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-12"><input maxlength="30" type="text" name="item_content5{{$key+1}}" class="form-control form-control-sm not_radio{{$key+1}}" placeholder="例）非常に悪い" value="{{$question->item_content5}}"></div>
+                                        <div class="col-sm-12"><input maxlength="30" type="text" name="item_content5{{$i+1}}" class="form-control form-control-sm not_radio{{$i+1}}" placeholder="例）非常に悪い" value=""></div>
                                     </div>
                                 </td>
                             </tr>
-                            @endforeach
+                            @endfor                                                        
+                            
+                            
+                            
                             {{-- ７問 --}}
 
                             </tbody>
                         </table>
-                        <button id="plus" type="button" class="btn btn-primary rounded-circle p-0" style="width:2rem;height:2rem;">＋</button>
+                                                
                         <div class="item form-group text-center">
                             <div class="bd-example">
-                                <a href="/admin/top" class="btn btn-secondary mx-3">戻る</a>
+                                <a href="/admin/enquete/questionList" class="btn btn-secondary mx-3">戻る</a>
                                 <input type="submit" class="btn btn-primary mx-3" value="登録">
                             </div>
                         </div>

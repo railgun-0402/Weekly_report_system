@@ -11,8 +11,22 @@ class QuestionController extends Controller
 {
     public function questionIndex(Request $request)
     {
-        $items = \DB::table('questions')->get();
-        $itemsArray = $items->toArray();
+        // 最新の値を得たい
+        $newDate = '';
+
+        $dateArray = \DB::table('questions')->select('question_group')->get();
+        foreach ($dateArray as $date){
+            if ($date->question_group > $newDate){
+                $newDate = $date->question_group;
+
+            } elseif ($newDate == ''){
+                $newDate = $date->question_group;
+            }
+        }
+
+        // 最新の日付の質問だけ表示
+        $items = \DB::table('questions')->where('question_group', $newDate)->get();
+        $itemsArray = $items->toArray(); 
 
         // 受け取りデータ渡し
         return view('/user/enquete/index')
@@ -26,8 +40,21 @@ class QuestionController extends Controller
     */
     public function questionConfirmation(Request $request)
     {
+        // 最新の値を得たい
+        $newDate = '';
+
+        $dateArray = \DB::table('questions')->select('question_group')->get();
+        foreach ($dateArray as $date){
+            if ($date->question_group > $newDate){
+                $newDate = $date->question_group;
+
+            } elseif ($newDate == ''){
+                $newDate = $date->question_group;
+            }
+        }
+
         // アンケート取得
-        $items = \DB::table('questions')->get();
+        $items = \DB::table('questions')->where('question_group', $newDate)->get();
         $itemsArray = $items->toArray();
 
         // 受け取りデータ渡し
@@ -47,8 +74,20 @@ class QuestionController extends Controller
         // これがanswerテーブルのuser_codeにあたる
         $user_code = $user->code;
 
+        // 最新の値を得たい
+        $newDate = '';
+
+        $dateArray = \DB::table('questions')->select('question_group')->get();
+        foreach ($dateArray as $date){
+            if ($date->question_group > $newDate){
+                $newDate = $date->question_group;
+
+            } elseif ($newDate == ''){
+                $newDate = $date->question_group;
+            }
+        }
         // 質問FK
-        $items = \DB::table('questions')->get();
+        $items = \DB::table('questions')->where('question_group', $newDate)->get();
         $itemsArray = $items->toArray();
 
         // 答え

@@ -45,7 +45,8 @@ if (count($array_unique) == 1 && $array_unique[0] == null) {
 
                 <?php else : ?>
                 @foreach ($items as $key => $item)
-                    @php $key = $key + 1 @endphp
+                    
+                    @php $key = $key + 1 @endphp                       
 
                     @if ($item->form_types_code === '1') {{-- <!-- テキストボックス --> --}}
                         @php $textNumber = $textNumber + 1 @endphp
@@ -96,7 +97,6 @@ if (count($array_unique) == 1 && $array_unique[0] == null) {
                     @else
                         {{-- <p style="color: red;">質問が存在しません。</p> --}}
                     @endif
-
                 @endforeach
 
                 <?php endif; ?>

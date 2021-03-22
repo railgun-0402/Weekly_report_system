@@ -4,6 +4,7 @@ $(function() {
     confirmAlert('#regist', '登録');
     hideElement();
     buttonAction();
+    // questionDelete();
 
 });
 
@@ -35,6 +36,22 @@ function accountDestroy() {
         });
     }
 }
+
+// // 質問削除
+// function questionDelete(){
+
+//     var target = $('.deldel');
+//     var i;
+//     for (i = 0;i < target.length; i++){
+//         target.eq(i).on('click', function(e){
+//             e.preventDefault();
+//             var delConfirm = confirm('この質問を削除しますが、よろしいですか？');
+//             if (delConfirm == true){
+//                 $(".form_" + this.dataset.id).submit();
+//             }
+//         });    
+//     }       
+// }
 
 // 確認アラート
 function confirmAlert(elem, word) {
@@ -93,7 +110,7 @@ function hideElement() {
     $.each(tr_tag_array, function (index, elem) {
         if (3<=index || index <= 6) {
             if ($(elem).find('textarea').val().length == 0) {
-                $(elem).hide();
+                // $(elem).hide();
             }
         }
     });
@@ -105,22 +122,24 @@ function buttonAction() {
         var tr_tag_array = $('tbody').children('tr').get();
         $.each(tr_tag_array, function (i, e) {
             if ($(e).attr('style') != 'display: none;' && i == 5) {
-                $('#plus').hide();
+                // $('#plus').hide();
             }
         });
         $.each(tr_tag_array, function (index, elem) {
-            if (3<=index || index <= 6) {
-                if ($(elem).attr('style') == 'display: none;') {
-                    $(elem).show();
-                    return false;
-                }
+            if (0<=index || index <= 6) {
+                
+                // if ($(elem).attr('style') == 'display: none;') {
+                //     console.log("OK");
+                $(elem).show();
+                return false;
             }
+            
         });
     });
     // 最後のテキストエリアに値があれば＋ボタンを隠す
     var t_array = $('textarea[name^=content]').get();
     if (t_array[t_array.length - 1].textContent != '') {
-        $('#plus').hide();
+        // $('#plus').hide();
     }
 }
 
@@ -147,3 +166,5 @@ function notEnteredQARemove() {
         });
     }
 }
+
+
