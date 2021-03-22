@@ -261,9 +261,10 @@ class AdminController extends Controller
      */
     public function answeredShow($question_id, $user_id)
     {
-        // 質問を全部表示
-        $questions = \DB::table('questions')->get();
+        // 質問を該当の日付のみ表示
+        $questions = \DB::table('questions')->where('question_group', $question_id)->get();
         $questionsArray = $questions->toArray();
+        
 
         // 回答した日「question_id」と誰の答え「user_code」がほしい
         $answers = Answer::where('question_id', $question_id)
