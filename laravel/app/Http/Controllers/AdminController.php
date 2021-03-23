@@ -24,7 +24,7 @@ class AdminController extends Controller
      * アカウント一覧
      */
     public function accountList()
-    {        
+    {
         $users = User::orderBy('code', 'asc')->get();
         return view('/admin/account/list', compact('users'));
     }
@@ -86,7 +86,7 @@ class AdminController extends Controller
 
     /**
      * 作成済みアンケート一覧
-     * 
+     *
     */
     public function makeList($makeDate)
     {
@@ -142,11 +142,11 @@ class AdminController extends Controller
         $user_code = $user->code;
 
         // 現在日(question_group)
-        $date = date("Ymd");        
+        $date = date("Ymd");
 
         // 選択肢→nullではない数を数えるortextBox
         for ($i=1; $i<=7; $i++) {
-         
+
             // 選択肢の数
             $selectable_item = 5;
 
@@ -196,7 +196,7 @@ class AdminController extends Controller
 
                 if ($item_content5 == null){
                     $selectable_item -= 1;
-                }            
+                }
             }
 
             // 内容が「null」であれば空欄で出したと思われるので登録はしない
@@ -205,7 +205,7 @@ class AdminController extends Controller
                 $insert = ['question_group' => $date, 'user_code' => $user_code, 'selectable_item' => $selectable_item, 'content' => $outContent, 'form_types_code' => $form_types_code_num, 'item_content1' => $item_content1, 'item_content2' => $item_content2, 'item_content3' => $item_content3, 'item_content4' => $item_content4, 'item_content5' => $item_content5, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
                 DB::table('questions')->whereIn('id', [$i])->insert($insert);
             }
-        
+
         }
         return redirect('/admin/enquete/questionList')->with('complete_message', 'アンケートを登録しました');
     }
@@ -220,6 +220,17 @@ class AdminController extends Controller
         $form_types = FormType::get();
         return view('/admin/enquete/show', compact('questions', 'form_types'));
     }
+
+
+    /**
+     * 質問の集合体の削除
+     */
+    public function destroyGroupQuestion($question_group)
+    {
+        DB::table('questions')->where('question_group', $question_group)->delete();
+        return redirect()->back();
+    }
+
 
     /**
      * 回答済みアンケート参照
@@ -295,7 +306,7 @@ class AdminController extends Controller
                     dump($question_group);
 
                 }
-                
+
             }
 
 
