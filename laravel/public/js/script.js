@@ -37,9 +37,27 @@ function accountDestroy() {
     }
 }
 
+
+
+// 質問の集合体の削除
+destroyGroupQuestion();
+
+function destroyGroupQuestion() {
+    var target = $('.del-question-group');
+    var i;
+    for (i = 0; i < target.length; i++) {
+        target.eq(i).on('click', function(e) {
+            e.preventDefault();
+            if (confirm('削除します。宜しいですか？')) {
+                $('#form_' + this.dataset.id).submit();
+            }
+        });
+    }
+}
+
+
 // // 質問削除
 // function questionDelete(){
-
 //     var target = $('.deldel');
 //     var i;
 //     for (i = 0;i < target.length; i++){
@@ -49,8 +67,8 @@ function accountDestroy() {
 //             if (delConfirm == true){
 //                 $(".form_" + this.dataset.id).submit();
 //             }
-//         });    
-//     }       
+//         });
+//     }
 // }
 
 // 確認アラート
@@ -127,13 +145,13 @@ function buttonAction() {
         });
         $.each(tr_tag_array, function (index, elem) {
             if (0<=index || index <= 6) {
-                
+
                 // if ($(elem).attr('style') == 'display: none;') {
                 //     console.log("OK");
                 $(elem).show();
                 return false;
             }
-            
+
         });
     });
     // 最後のテキストエリアに値があれば＋ボタンを隠す
