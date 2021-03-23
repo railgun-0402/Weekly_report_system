@@ -4,7 +4,7 @@ $(function() {
     confirmAlert('#regist', '登録');
     hideElement();
     buttonAction();
-    // questionDelete();
+    destroyGroupQuestion();
 
 });
 
@@ -38,10 +38,7 @@ function accountDestroy() {
 }
 
 
-
 // 質問の集合体の削除
-destroyGroupQuestion();
-
 function destroyGroupQuestion() {
     var target = $('.del-question-group');
     var i;
@@ -55,22 +52,6 @@ function destroyGroupQuestion() {
     }
 }
 
-
-// // 質問削除
-// function questionDelete(){
-//     var target = $('.deldel');
-//     var i;
-//     for (i = 0;i < target.length; i++){
-//         target.eq(i).on('click', function(e){
-//             e.preventDefault();
-//             var delConfirm = confirm('この質問を削除しますが、よろしいですか？');
-//             if (delConfirm == true){
-//                 $(".form_" + this.dataset.id).submit();
-//             }
-//         });
-//     }
-// }
-
 // 確認アラート
 function confirmAlert(elem, word) {
     $(elem).on('click', function(e) {
@@ -82,6 +63,7 @@ function confirmAlert(elem, word) {
         }
     });
 }
+
 
 // inputタグ無効/有効
 function inactivateInputTag() {
@@ -97,6 +79,7 @@ function inactivateInputTag() {
         }
     });
 }
+
 
 // reload時のinputタグ無効/有効
 function reloadInactiveInputTag() {
@@ -122,6 +105,7 @@ function reloadInactiveInputTag() {
     });
 }
 
+
 // ページ読み込み時に質問4～7が空なら要素を隠す
 function hideElement() {
     var tr_tag_array = $('tbody').children('tr').get();
@@ -133,6 +117,7 @@ function hideElement() {
         }
     });
 }
+
 
 // +ボタンクリック時に要素を表示し限界まで表示したらボタンを隠す
 function buttonAction() {
@@ -161,6 +146,7 @@ function buttonAction() {
     }
 }
 
+
 // アンケート回答画面にて質問データの登録がない場合送信ボタンを消す
 function sendBtnRemove() {
     var path = location.pathname;
@@ -170,6 +156,7 @@ function sendBtnRemove() {
         }
     }
 }
+
 
 // adminの回答内容閲覧でDBに登録のない質問/回答は非表示にする
 function notEnteredQARemove() {
@@ -184,5 +171,3 @@ function notEnteredQARemove() {
         });
     }
 }
-
-
