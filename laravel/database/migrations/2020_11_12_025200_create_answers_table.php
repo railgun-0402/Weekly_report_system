@@ -16,6 +16,7 @@ class CreateAnswersTable extends Migration
         Schema::create('answers', function (Blueprint $table) {
             $table->bigIncrements('id')->comment('ID');
             $table->string('question_id')->nullable()->comment('質問内容を紐づける値');
+            $table->string('make_question')->nullable()->comment('質問作成日');
             $table->string('user_code')->nullable()->comment('社員コード');
             $table->string('content')->nullable()->comment('回答内容');
             $table->timestamps();

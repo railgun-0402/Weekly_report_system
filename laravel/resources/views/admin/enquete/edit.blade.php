@@ -24,8 +24,7 @@
                         @csrf
                         @method('patch')
                         <input type="hidden" name="question_group" value="{{$now}}">
-                        <p class="font-weight-bold text-danger">「出題する質問／回答していただく形式／回答していただく選択肢」を設定してください。<br />
-                            質問の数を追加したい際は、画面左下の＋ボタンを押して行を追加してください。</p>
+                        <p class="font-weight-bold text-danger">「出題する質問／回答していただく形式／回答していただく選択肢」を設定してください。</p>
                         <table class="table">
                             <thead>
                                 <tr>

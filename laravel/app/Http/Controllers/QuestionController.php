@@ -116,6 +116,8 @@ class QuestionController extends Controller
             $first_array = array_shift($add_answer);
             # チェックボックスの場合、複数あることから配列になるので判断する
             $judge = is_array($first_array);
+            # 質問作成日を取得する
+            $make_question = $item->question_group;
 
             # 配列すなわちチェックボックスの場合
             # 全部取り出してやる
@@ -124,12 +126,12 @@ class QuestionController extends Controller
                 foreach ($first_array as $arr){
                     $con .= $arr . '  ';
                 }
-                $update = ['question_id' => date('Ymd'), 'user_code' => $user_code, 'content' => $con, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
+                $update = ['question_id' => date('Ymd'), 'make_question' => $make_question, 'user_code' => $user_code, 'content' => $con, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
                 DB::table('answers')->insert($update);
             }
             # 配列でない場合、先頭だけ取ればよい
             else {
-                $update = ['question_id' => date('Ymd'), 'user_code' => $user_code, 'content' => $first_array, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
+                $update = ['question_id' => date('Ymd'), 'make_question' => $make_question, 'user_code' => $user_code, 'content' => $first_array, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
                 DB::table('answers')->insert($update);
             }
         }

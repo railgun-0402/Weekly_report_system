@@ -244,11 +244,6 @@ class AdminController extends Controller
         $answers = \DB::table('answers')->get();
         $answersArray = $answers->toArray();
 
-        // dd($answersArray);
-
-        // $answers = Answer::where($user_code);
-        // Question::where('question_group', '=', $question_group)->get();
-
         return view('/admin/answered/date')
         ->with('user', $user)
         ->with('answersArray', $answersArray);
@@ -261,17 +256,50 @@ class AdminController extends Controller
      */
     public function answeredShow($question_id, $user_id)
     {
-        // 質問を該当の日付のみ表示
-        $questions = \DB::table('questions')->where('question_group', $question_id)->get();
+
+        // Request(質問の回答日_question_id)該当の答えをまず持ってくる
+        // 質問作成日の「question_group」と「make_question」が同一のものをとってくる
+
+        // Questionテーブルで必要なのは「question_group」と「content」
+        // 質問を全部取得
+        $questions = \DB::table('questions')->get();
         $questionsArray = $questions->toArray();
-        
 
         // 回答した日「question_id」と誰の答え「user_code」がほしい
-        $answers = Answer::where('question_id', $question_id)
+        $answers = Answer::where('question_id', $question_id) // 質問を作成した日と回答した日付が一緒
                          ->where('user_code', $user_id)
                          ->get();
-
         $answersArray = $answers->toArray();
+
+        // 質問作成日の「question_group」と「make_question」のデータを管理する配列
+        dd(count($questionsArray));
+
+
+        // ここで、$answersArrayと$questionsArrayから、「question_group」と「make_question」
+        // の等しいものをとってくる
+        for ($i = 0; $i < $questionsArray; $i++)
+        {
+            // dd($questionsArray[$i]);
+            // Questionテーブルの「question_group」
+            $question_group = $questionsArray[$i]->question_group;
+
+            // Answerテーブルの「make_question」
+            // AnswerとQuestionのデータ数は異なるのでネストして調べる
+            foreach ($answers as $ans)
+            {
+                $ans_data = $ans->make_question;
+                if ($ans_data == $question_group)
+                {
+                    echo "OK!";
+                    dump($ans_data);
+                    dump($question_group);
+
+                }
+                
+            }
+
+
+        }
 
         return view('/admin/answered/show')
         ->with('questions', $questions)
