@@ -4,13 +4,15 @@ $(function() {
     confirmAlert('#regist', '登録');
     hideElement();
     buttonAction();
-    destroyGroupQuestion();
 
 });
 
 
 $(document).ready(function() {
     notEnteredQARemove();
+    destroyGroupQuestion();
+    destroyQuestion();
+    warnRemovePrePage();
 
 });
 
@@ -18,7 +20,6 @@ $(document).ready(function() {
 $(window).on('load', function() {
     reloadInactiveInputTag();
     sendBtnRemove();
-
 
 });
 
@@ -37,7 +38,6 @@ function accountDestroy() {
     }
 }
 
-
 // 質問の集合体の削除
 function destroyGroupQuestion() {
     var target = $('.del-question-group');
@@ -51,6 +51,33 @@ function destroyGroupQuestion() {
         });
     }
 }
+
+
+// 個別の質問を削除
+function destroyQuestion() {
+    var target = $('.del-question');
+    var i;
+    for (i = 0; i < target.length; i++) {
+        target.eq(i).on('click', function(e) {
+            e.preventDefault();
+            if (confirm('削除します。宜しいですか？')) {
+                console.log(this.dataset.id);
+                $('#form_' + this.dataset.id).submit();
+            }
+        });
+    }
+}
+
+
+// 個別の質問を削除する場合、前のページから削除してもらうよう促す
+function warnRemovePrePage() {
+    var len = $('.del-question').get().length;
+    if (len == 1) {
+        $('.del-question').remove();
+        $('.btn-group').append('<p>一つ前のページから<br>削除してください</p>')
+    }
+}
+
 
 // 確認アラート
 function confirmAlert(elem, word) {

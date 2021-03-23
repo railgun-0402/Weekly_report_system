@@ -224,10 +224,21 @@ class AdminController extends Controller
 
     /**
      * 質問の集合体の削除
+     * 引数に渡された値をquestionsのquestion_groupの条件に指定し対象行を削除
      */
     public function destroyGroupQuestion($question_group)
     {
         DB::table('questions')->where('question_group', $question_group)->delete();
+        return redirect()->back();
+    }
+
+
+    /**
+     * 個別で質問を削除
+     */
+    public function destroyQuestion($id)
+    {
+        DB::table('questions')->where('id', $id)->delete();
         return redirect()->back();
     }
 
@@ -291,7 +302,7 @@ class AdminController extends Controller
         // ここで、$answersArrayと$questionsArrayから、「question_group」と「make_question」
         // の等しいものをとってくる
         for ($i = 0; $i < count($questionsArray); $i++)
-        {            
+        {
             // Questionテーブルの「question_group」
             $question_group = $questionsArray[$i]->question_group;
 
@@ -301,7 +312,7 @@ class AdminController extends Controller
             {
                 $make_question = $ans->make_question;
                 if ($make_question == $question_group)
-                {                    
+                {
                  // 配列に追加
                  array_push($judgeQuestionArray, $questionsArray[$i]->content);
                  array_push($judgeAnswerArray, $ans->content);

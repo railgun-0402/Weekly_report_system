@@ -13,7 +13,7 @@
                 });
             @endif
             </script>
-            
+
             <div class="card">
                 <div class="card-header">{{ __('作成済アンケート一覧画面') }}</div>
                 <div class="card-body">
@@ -29,56 +29,45 @@
                                     <th scope="col">出題する質問</th>
                                     <th scope="col">回答させる形式</th>
                                     <th scope="col">選択肢</th>
+                                    <th scope="col">操作</th>
                                 </tr>
                             </thead>
                             <tbody>
                             {{-- ７問 --}}
                             @php $questionNo = 1; @endphp
-                            @foreach ($questions as $key => $question)                                                        
+                            @foreach ($questions as $key => $question)
                             @if ($question->question_group == $makeDate)
                             <tr>
                                 <td scope="row">{{$questionNo}}</td>
+                                <td><div class="form-group">{{$question->content}}</div></td>
                                 <td>
                                     <div class="form-group">
-                                        {{$question->content}}
+                                        @if ($question->form_types_code == '1')
+                                            テキストボックス
+                                        @elseif ($question->form_types_code == '2')
+                                            ラジオボタン
+                                        @elseif ($question->form_types_code == '3')
+                                            チェックボックス
+                                        @elseif ($question->form_types_code == '4')
+                                            ドロップダウン
+                                        @endif
                                     </div>
-                                   
                                 </td>
                                 <td>
-                                <div class="form-group">
-                                    @if ($question->form_types_code == '1')
-                                        テキストボックス
-                                    @elseif ($question->form_types_code == '2')
-                                        ラジオボタン
-                                    @elseif ($question->form_types_code == '3')
-                                        チェックボックス
-                                    @elseif ($question->form_types_code == '4')
-                                        ドロップダウン
-                                    @endif
-                                </div>
+                                    <div class="form-group">{{$question->item_content1}}</div>
+                                    <div class="form-group">{{$question->item_content2}}</div>
+                                    <div class="form-group">{{$question->item_content3}}</div>
+                                    <div class="form-group">{{$question->item_content4}}</div>
+                                    <div class="form-group">{{$question->item_content5}}</div>
                                 </td>
-
-                                <td>                                
-                                    <div class="form-group">
-                                        {{$question->item_content1}}
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                        <a href="#" type="button" class="btn btn-danger del-question" data-id="{{$question->id}}">削除</a>
+                                        <form method="post" action="/admin/enquete/makeList/{{$question->id}}/{{$question->id}}" id="form_{{$question->id}}">
+                                            @csrf
+                                            @method('delete')
+                                        </form>
                                     </div>
-
-                                    <div class="form-group">
-                                        {{$question->item_content2}}
-                                    </div>
-
-                                    <div class="form-group">
-                                        {{$question->item_content3}}
-                                    </div>
-
-                                    <div class="form-group">
-                                        {{$question->item_content4}}
-                                    </div>
-
-                                    <div class="form-group">
-                                        {{$question->item_content5}}
-                                    </div>
-
                                 </td>
                             </tr>
                             @php $questionNo = $questionNo + 1; @endphp

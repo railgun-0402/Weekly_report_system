@@ -46,7 +46,6 @@
                     <tr>
                         <td>{{$makeDate}}</td>
                         <td><a href="/admin/enquete/makeList/{{$makeDate}}">{{$makeDate}} に作成した質問</a></td>
-
                         <td class="text-center">
                             <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                 <a href="#" type="button" class="btn btn-danger del-question-group" data-id="{{$arr->question_group}}">削除</a>
@@ -56,7 +55,6 @@
                                 </form>
                             </div>
                         </td>
-
                     </tr>
                     @endif
                     @php
