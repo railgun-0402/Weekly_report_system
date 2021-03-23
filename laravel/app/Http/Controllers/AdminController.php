@@ -272,13 +272,16 @@ class AdminController extends Controller
         $answersArray = $answers->toArray();
 
         // 質問作成日の「question_group」と「make_question」のデータを管理する配列
-        dd(count($questionsArray));
-
+        // 質問側
+        $judgeQuestionArray = [];
+        // 答え側
+        $judgeAnswerArray = [];
 
         // ここで、$answersArrayと$questionsArrayから、「question_group」と「make_question」
         // の等しいものをとってくる
-        for ($i = 0; $i < $questionsArray; $i++)
+        for ($i = 0; $i < count($questionsArray); $i++)
         {
+            
             // dd($questionsArray[$i]);
             // Questionテーブルの「question_group」
             $question_group = $questionsArray[$i]->question_group;
@@ -287,24 +290,25 @@ class AdminController extends Controller
             // AnswerとQuestionのデータ数は異なるのでネストして調べる
             foreach ($answers as $ans)
             {
-                $ans_data = $ans->make_question;
-                if ($ans_data == $question_group)
-                {
-                    echo "OK!";
-                    dump($ans_data);
-                    dump($question_group);
-
+                $make_question = $ans->make_question;
+                if ($make_question == $question_group)
+                {                    
+                 // 配列に追加
+                 array_push($judgeQuestionArray, $questionsArray[$i]->content);
+                 array_push($judgeAnswerArray, $ans->content);
                 }
-                
             }
-
-
         }
+        // 重複を取り除く(これが表示する配列となる)
+        $resultQuestionArray = array_unique($judgeQuestionArray);
+        $resultAnswerArray = array_unique($judgeAnswerArray);
 
         return view('/admin/answered/show')
         ->with('questions', $questions)
         ->with('questionsArray', $questionsArray)
         ->with('answers', $answers)
-        ->with('answersArray', $answersArray);
+        ->with('answersArray', $answersArray)
+        ->with('resultQuestionArray', $resultQuestionArray)
+        ->with('resultAnswerArray', $resultAnswerArray);
     }
 }

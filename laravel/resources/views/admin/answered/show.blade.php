@@ -7,14 +7,11 @@
 
     @for ($i=0;$i < count($questions);$i++)
         @php
-            $que = array_slice($questionsArray,$i, 1);
-            $question = array_shift($que);
-            $questionArr = (array)$question;
-            $questionContent = $questionArr['content'];
+            $que = array_slice($resultQuestionArray,$i, 1);
+            $questionContent = array_shift($que);            
 
-            $ans = array_slice($answersArray, $i, 1);
-            $answer = array_shift($ans);
-            $answerContent = $answer['content'];
+            $ans = array_slice($resultAnswerArray, $i, 1);
+            $answerContent = array_shift($ans);            
         @endphp
         <div class="row">
             <div class="col-md-8 mb-2">
