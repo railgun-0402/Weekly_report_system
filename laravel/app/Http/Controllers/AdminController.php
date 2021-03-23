@@ -280,9 +280,7 @@ class AdminController extends Controller
         // ここで、$answersArrayと$questionsArrayから、「question_group」と「make_question」
         // の等しいものをとってくる
         for ($i = 0; $i < count($questionsArray); $i++)
-        {
-            
-            // dd($questionsArray[$i]);
+        {            
             // Questionテーブルの「question_group」
             $question_group = $questionsArray[$i]->question_group;
 
