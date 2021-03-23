@@ -306,10 +306,6 @@ class AdminController extends Controller
                  array_push($judgeQuestionArray, $questionsArray[$i]->content);
                  array_push($judgeAnswerArray, $ans->content);
                 }
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/improve-seki
             }
         }
         // 重複を取り除く(これが表示する配列となる)
