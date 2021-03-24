@@ -1,19 +1,18 @@
 $(function() {
     accountDestroy();
-    inactivateInputTag();
-    confirmAlert('#regist', '登録');
-    hideElement();
-    buttonAction();
+    confirmAlert('#regist', '登録');    
+    if (location.pathname.match(/admin\/enquete\/edit/)){
+        inactivateInputTag();
+    }
+    noActive();
 
 });
 
 
 $(document).ready(function() {
-    notEnteredQARemove();
     destroyGroupQuestion();
     destroyQuestion();
     warnRemovePrePage();
-
 });
 
 
@@ -22,6 +21,7 @@ $(window).on('load', function() {
     sendBtnRemove();
 
 });
+
 
 
  // アカウント削除
@@ -51,27 +51,6 @@ function destroyGroupQuestion() {
         });
     }
 }
-
-// jQuery(function() {
-//     var target = $('.del-question-group');
-//     var i;
-//     for (i = 0; i < target.length; i++) {
-//         target.eq(i).modaal({
-//             type:'Confirm',
-//             confirm_button_text:'Confirm',
-//             confirm_cancel_button_text:'Cancel',
-//             confirm_title:'Confirm Action XYZ',
-//             confirm_content:'削除します。よろしいですか？',
-//             confirm_callback:function() {
-//                 alert('you have confirmed this action');
-//             },
-//             confirm_cancel_callbback: function(){
-//                 alert('you have canceled this action');
-//             }
-//         });
-//     }
-// });
-
 
 
 // 個別の質問を削除
@@ -154,47 +133,6 @@ function reloadInactiveInputTag() {
 }
 
 
-// ページ読み込み時に質問4～7が空なら要素を隠す
-function hideElement() {
-    var tr_tag_array = $('tbody').children('tr').get();
-    $.each(tr_tag_array, function (index, elem) {
-        if (3<=index || index <= 6) {
-            if ($(elem).find('textarea').val().length == 0) {
-                // $(elem).hide();
-            }
-        }
-    });
-}
-
-
-// +ボタンクリック時に要素を表示し限界まで表示したらボタンを隠す
-function buttonAction() {
-    $('#plus').on('click', function () {
-        var tr_tag_array = $('tbody').children('tr').get();
-        $.each(tr_tag_array, function (i, e) {
-            if ($(e).attr('style') != 'display: none;' && i == 5) {
-                // $('#plus').hide();
-            }
-        });
-        $.each(tr_tag_array, function (index, elem) {
-            if (0<=index || index <= 6) {
-
-                // if ($(elem).attr('style') == 'display: none;') {
-                //     console.log("OK");
-                $(elem).show();
-                return false;
-            }
-
-        });
-    });
-    // 最後のテキストエリアに値があれば＋ボタンを隠す
-    var t_array = $('textarea[name^=content]').get();
-    if (t_array[t_array.length - 1].textContent != '') {
-        // $('#plus').hide();
-    }
-}
-
-
 // アンケート回答画面にて質問データの登録がない場合送信ボタンを消す
 function sendBtnRemove() {
     var path = location.pathname;
@@ -206,16 +144,30 @@ function sendBtnRemove() {
 }
 
 
-// adminの回答内容閲覧でDBに登録のない質問/回答は非表示にする
-function notEnteredQARemove() {
-    var path = location.pathname;
-    if (path.match(/admin\/answered\/show/)) {
-        var q_array = $('.q_info').get();
-        $.each(q_array, function(index, elem) {
-            var text = $(elem).text();
-            if (text.length == 0) {
-                $(elem).closest('dl').remove();
+// テキストボックス非活性
+ function noActive(){
+     var path = location.pathname;
+     if (path.indexOf('/admin/enquete/editQuestion') != -1) {
+        $('.hoge').on('click', function(){
+            // 選択されるラジオボタンのvalue
+            var radilval = $(this).val();
+
+            // テキストボックスの場合は非活性
+            if (radilval == '1')
+            {
+               for(var i=1; i<=5; i++){
+                   var name = 'item_content' + i;
+                   $('input[name=' + name + ']').prop('disabled', true);
+               }
+            }
+            else
+            {
+               for(var i=1; i<=5; i++){
+                   var name = 'item_content' + i;
+                   $('input[name=' + name + ']').prop('disabled', false);
+               }
             }
         });
-    }
-}
+     }
+ }
+

@@ -23,16 +23,18 @@
                                 </td>
 
                                 <td>
+                                    @php $key = 0; @endphp
                                     @foreach ($form_types as $form_type)
+                                    @php $key = $key + 1; @endphp
                                     @if ($form_typed != $form_type->code)
                                     <div class="form-check my-1">
-                                    <input class="form-check-input" type="radio" name="form_types_code" id="q" value="{{$form_type->code}}">
-                                        <label class="form-check-label" for="q">{{$form_type->name}}</label>
+                                        <input class="form-check-input hoge" type="radio" name="form_types_codes" id="q{{$key}}" value="{{$form_type->code}}">
+                                        <label class="form-check-label" for="q{{$key}}">{{$form_type->name}}</label>
                                     </div>
                                     @else
                                     <div class="form-check my-1">
-                                    <input class="form-check-input" checked="checked" type="radio" name="form_types_code" id="q" value="{{$form_type->code}}">
-                                        <label class="form-check-label" for="q">{{$form_type->name}}</label>
+                                    <input class="form-check-input hoge" checked="checked" type="radio" name="form_types_codes" id="q{{$key}}" value="{{$form_type->code}}">
+                                        <label class="form-check-label" for="q{{$key}}">{{$form_type->name}}</label>
                                     </div>
                                     @endif
                                     @endforeach
