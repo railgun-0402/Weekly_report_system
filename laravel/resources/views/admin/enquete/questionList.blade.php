@@ -24,6 +24,7 @@
                 <div class="ml-auto p-2 bd-highlight"><a class="btn btn-secondary" href="/admin/enquete/edit">質問を新規に作成する</a></div>
             </div>
             <div class="mb-3">アンケート一覧</div>
+            <div class="mb-3" style="font-size:18px;">アンケートの編集は各日ごとに実施してください。</div>
                 <table class="table table-sm" style="table-layout: fixed;">
                     <tr>
                         <th scope="col" class="w-25">作成日</th>
@@ -68,7 +69,7 @@
             </div>
 
         <div class="col">
-            <div class="text-danger" style="font-size:18px;">現時点では、{{$newDate}}に作成した質問が出題されます。</div>
+            <div class="text-danger" style="font-size:18px;">～現時点では、{{$newDate}}に作成した質問が出題されます～</div>
         </div>
     </div>
 </div>

@@ -35,6 +35,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::patch('/admin/account/edit/{id}', 'AdminController@accountUpdate');             // アカウント更新
     Route::delete('/admin/account/list/{user}', 'AdminController@accountDestroy');         // アカウント削除
 
+    Route::get('/admin/enquete/questionComplete', 'AdminController@editQuestionDo');
+    Route::get('/admin/enquete/editQuestion/{makeDate}/{id}', 'AdminController@editQuestion');             // アンケート編集 
     Route::get('/admin/enquete/edit', 'AdminController@enqueteEdit');                      // アンケート編集
     Route::patch('/admin/enquete/edit','AdminController@enqueteUpdate');                   // アンケート更新
     Route::get('/admin/enquete/questionList', 'AdminController@enqueteList');              // アンケート一覧(出題日ごと)

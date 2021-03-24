@@ -29,10 +29,10 @@
                                     <th scope="col">出題する質問</th>
                                     <th scope="col">回答させる形式</th>
                                     <th scope="col">選択肢</th>
+                                    <th scope="col">編集する</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            {{-- ７問 --}}
                             @php $questionNo = 1; @endphp
                             @foreach ($questions as $key => $question)                                                        
                             @if ($question->question_group == $makeDate)
@@ -58,7 +58,13 @@
                                 </div>
                                 </td>
 
-                                <td>                                
+                                <td>                         
+                                    @if ($question->form_types_code == '1')
+                                    <div class="form-group">
+                                        なし
+                                    </div>
+                                    @endif
+
                                     <div class="form-group">
                                         {{$question->item_content1}}
                                     </div>
@@ -78,13 +84,14 @@
                                     <div class="form-group">
                                         {{$question->item_content5}}
                                     </div>
-
+                                </td>
+                                <td>
+                                    <a href='/admin/enquete/editQuestion/{{$makeDate}}/{{$question->id}} ' type="button" class="btn btn-info mr-1">編集</a>
                                 </td>
                             </tr>
                             @php $questionNo = $questionNo + 1; @endphp
                             @endif
                             @endforeach
-                            {{-- ７問 --}}
 
                             </tbody>
                         </table>
