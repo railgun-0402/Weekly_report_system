@@ -19,8 +19,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/modaal.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/modaal.min.css') }}">
 </head>
 <body>
     <div id="app">
@@ -83,13 +81,6 @@
         
         <script src='//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
         <script src="{{ asset('/js/script.js') }}"></script>
-        <script src="{{ asset('/js/modaal.js') }}"></script>
-        <script src="{{ asset('/js/modaal.min.js') }}"></script>
-        <script>
-            jQuery(function(){
-                jQuery(".del-question-group").modaal();
-            });
-        </script>
     </div>
 </body>
 </html>
