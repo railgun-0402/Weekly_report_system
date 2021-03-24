@@ -29,11 +29,7 @@
                                     <th scope="col">出題する質問</th>
                                     <th scope="col">回答させる形式</th>
                                     <th scope="col">選択肢</th>
-<<<<<<< HEAD
                                     <th scope="col">操作</th>
-=======
-                                    <th scope="col">編集する</th>
->>>>>>> origin/merge_test
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,6 +53,11 @@
                                     </div>
                                 </td>
                                 <td>
+                                    @if ($question->form_types_code == '1')
+                                    <div class="form-group">
+                                        なし
+                                    </div>
+                                    @endif
                                     <div class="form-group">{{$question->item_content1}}</div>
                                     <div class="form-group">{{$question->item_content2}}</div>
                                     <div class="form-group">{{$question->item_content3}}</div>
