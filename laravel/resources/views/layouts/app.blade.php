@@ -86,8 +86,8 @@
         <script src="{{ asset('/js/modaal.js') }}"></script>
         <script src="{{ asset('/js/modaal.min.js') }}"></script>
         <script>
-            $(function(){
-                $(".del-question-group").modaal();
+            jQuery(function(){
+                jQuery(".del-question-group").modaal();
             });
         </script>
     </div>
