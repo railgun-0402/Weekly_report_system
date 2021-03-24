@@ -281,7 +281,7 @@ class AdminController extends Controller
     public function destroyGroupQuestion($question_group)
     {
         DB::table('questions')->where('question_group', $question_group)->delete();
-        return redirect()->back();
+        return redirect('/admin/enquete/questionList')->with('complete_message', '質問を削除しました');
     }
 
 
@@ -291,7 +291,7 @@ class AdminController extends Controller
     public function destroyQuestion($id)
     {
         DB::table('questions')->where('id', $id)->delete();
-        return redirect()->back();
+        return redirect('/admin/enquete/questionList')->with('complete_message', '質問を削除しました');
     }
 
 
