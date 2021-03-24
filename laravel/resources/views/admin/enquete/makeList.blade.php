@@ -29,11 +29,14 @@
                                     <th scope="col">出題する質問</th>
                                     <th scope="col">回答させる形式</th>
                                     <th scope="col">選択肢</th>
+<<<<<<< HEAD
                                     <th scope="col">操作</th>
+=======
+                                    <th scope="col">編集する</th>
+>>>>>>> origin/merge_test
                                 </tr>
                             </thead>
                             <tbody>
-                            {{-- ７問 --}}
                             @php $questionNo = 1; @endphp
                             @foreach ($questions as $key => $question)
                             @if ($question->question_group == $makeDate)
@@ -62,6 +65,7 @@
                                 </td>
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                        <a href='/admin/enquete/editQuestion/{{$makeDate}}/{{$question->id}} ' type="button" class="btn btn-info mr-1">編集</a>
                                         <a href="#" type="button" class="btn btn-danger del-question" data-id="{{$question->id}}">削除</a>
                                         <form method="post" action="/admin/enquete/makeList/{{$question->id}}/{{$question->id}}" id="form_{{$question->id}}">
                                             @csrf
@@ -73,7 +77,6 @@
                             @php $questionNo = $questionNo + 1; @endphp
                             @endif
                             @endforeach
-                            {{-- ７問 --}}
 
                             </tbody>
                         </table>

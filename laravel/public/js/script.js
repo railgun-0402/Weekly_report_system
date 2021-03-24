@@ -52,6 +52,27 @@ function destroyGroupQuestion() {
     }
 }
 
+// jQuery(function() {
+//     var target = $('.del-question-group');
+//     var i;
+//     for (i = 0; i < target.length; i++) {
+//         target.eq(i).modaal({
+//             type:'Confirm',
+//             confirm_button_text:'Confirm',
+//             confirm_cancel_button_text:'Cancel',
+//             confirm_title:'Confirm Action XYZ',
+//             confirm_content:'削除します。よろしいですか？',
+//             confirm_callback:function() {
+//                 alert('you have confirmed this action');
+//             },
+//             confirm_cancel_callbback: function(){
+//                 alert('you have canceled this action');
+//             }
+//         });
+//     }
+// });
+
+
 
 // 個別の質問を削除
 function destroyQuestion() {

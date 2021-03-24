@@ -145,7 +145,8 @@ class AdminController extends Controller
         $date = date("Ymd");
 
         // 選択肢→nullではない数を数えるortextBox
-        for ($i=1; $i<=7; $i++) {
+        // 質問は最大5~6問とのことだったので数字を指定する
+        for ($i=1; $i<=6; $i++) {
 
             // 選択肢の数
             $selectable_item = 5;
@@ -202,7 +203,12 @@ class AdminController extends Controller
             // 内容が「null」であれば空欄で出したと思われるので登録はしない
             if ($outContent != null)
             {
-                $insert = ['question_group' => $date, 'user_code' => $user_code, 'selectable_item' => $selectable_item, 'content' => $outContent, 'form_types_code' => $form_types_code_num, 'item_content1' => $item_content1, 'item_content2' => $item_content2, 'item_content3' => $item_content3, 'item_content4' => $item_content4, 'item_content5' => $item_content5, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
+                $insert = ['question_group' => $date, 'user_code' => $user_code, 'selectable_item' => $selectable_item, 
+                'content' => $outContent, 'form_types_code' => $form_types_code_num, 'item_content1' => $item_content1, 
+                'item_content2' => $item_content2, 'item_content3' => $item_content3, 'item_content4' => $item_content4, 
+                'item_content5' => $item_content5, 'created_at' => Carbon::now()];
+
+                // idを指定してアンケートを登録
                 DB::table('questions')->whereIn('id', [$i])->insert($insert);
             }
 
@@ -219,6 +225,52 @@ class AdminController extends Controller
         $questions = Question::where('question_group', '=', $question_group)->get();
         $form_types = FormType::get();
         return view('/admin/enquete/show', compact('questions', 'form_types'));
+    }
+
+    /**
+     * アンケート編集実行
+     */
+    public function editQuestionDo(Request $request)
+    {
+        // 全てのRequestデータを表示
+        $data = $request->all();
+
+        // DBにそれぞれ更新をかける(更新日時も)
+        $update = ['content' => $request->content, 'form_types_code' => $request->form_types_code, 
+        'item_content1' => $request->item_content1, 'item_content2' => $request->item_content2, 
+        'item_content3' => $request->item_content3, 'item_content4' => $request->item_content4, 
+        'item_content5' => $request->item_content5, 'updated_at' => Carbon::now()];
+
+
+        DB::table('questions')->where('id', $request->id)->update($update);
+
+        return redirect('/admin/enquete/questionList')->with('complete_message', 'アンケートを更新しました');
+    }
+
+    /**
+     * アンケート編集
+     */
+    public function editQuestion($makeDate, $id)
+    {
+        // リンクから押下した対象の質問
+        $question_data = Question::findorFail($id);
+        
+        // 質問内容
+        $question_content = $question_data->content;
+        
+        // 選択肢
+        $question_items = [];
+        for($i=1;$i<=5;$i++)
+        {
+            $data = "item_content".$i;
+            array_push($question_items, $question_data->$data);
+        }
+
+        // 回答形式
+        $form_typed = $question_data->form_types_code;
+
+        $form_types = FormType::get();
+        return view('/admin/enquete/editQuestion', compact('form_types', 'makeDate', 'id', 'question_content', 'question_items', 'form_typed'));
     }
 
 
@@ -251,6 +303,7 @@ class AdminController extends Controller
         $users = User::orderBy('code', 'asc')->where('role_code', 'ORDINARY')->get();
         return view('/admin/answered/list', compact('users'));
     }
+
     /**
      * アンケート回答者日付一覧
      */
