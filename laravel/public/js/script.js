@@ -41,19 +41,40 @@ function accountDestroy() {
 
 // 質問の集合体の削除
 destroyGroupQuestion();
+// function destroyGroupQuestion() {
+//     var target = $('.del-question-group');
+//     var i;
+//     for (i = 0; i < target.length; i++) {
+//         target.eq(i).on('click', function(e) {
+//             e.preventDefault();
+//             if (confirm('削除します。宜しいですか？')) {
+//                 $('#form_' + this.dataset.id).submit();
+//             }
+//         });
+//     }
+// }
 
 function destroyGroupQuestion() {
-    var target = $('.del-question-group');
+    var target = $('.del-question-group'); 
     var i;
+    modaal:true;
     for (i = 0; i < target.length; i++) {
-        target.eq(i).on('click', function(e) {
-            e.preventDefault();
-            if (confirm('削除します。宜しいですか？')) {
-                $('#form_' + this.dataset.id).submit();
+        target.eq(i).modaal({
+            type:'Confirm',
+            confirm_button_text:'Confirm',
+            confirm_cancel_button_text:'Cancel',
+            confirm_title:'Confirm Action XYZ',
+            confirm_content:'削除します。よろしいですか？',
+            confirm_callback:function() {
+                alert('you have confirmed this action');            
+            },
+            confirm_cancel_callbback: function(){
+                alert('you have canceled this action');
             }
         });
     }
 }
+    
 
 
 // // 質問削除
