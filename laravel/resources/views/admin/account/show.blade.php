@@ -46,7 +46,7 @@
                         </div>
 
                         <a class="btn btn-secondary" href="{{ url('/admin/account/list') }}">戻る</a>
-                        <button type="submit" class="btn btn-success">更新</button>
+                        <button type="button" class="btn btn-success" onclick="submit();">更新</button>
                     </form>
                 </div>
             </div>

@@ -61,7 +61,7 @@
                         <div class="item form-group text-center">
                             <div class="bd-example">
                                 <a href="/admin/enquete/list" class="btn btn-secondary mx-3">戻る</a>
-                                <input type="submit" class="btn btn-primary mx-3" value="更新">
+                                <input type="button" class="btn btn-primary mx-3" value="更新" onclick="submit();">
                             </div>
                         </div>
                     </form>

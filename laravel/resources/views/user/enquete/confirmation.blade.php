@@ -73,7 +73,7 @@ $dropNumber = 0;
             @endforeach
 
             <a class="btn btn-secondary mr-1" href="{{ url('/user/enquete/index ') }}">戻る</a>
-            <button type="submit" class="btn btn-success">送信する</button>
+            <button type="button" class="btn btn-success" onclick="submit();">送信する</button>
 
         </div>
     </form>

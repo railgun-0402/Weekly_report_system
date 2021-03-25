@@ -29,7 +29,7 @@
                     <tr>
                         <th scope="col" class="w-25">作成日</th>
                         <th scope="col">質問グループ</th>
-                        <th scope="col" class="text-center">操　作</th>
+                        <th scope="col" class="text-center" style="text-align:center;">操　作</th>
                     </tr>
                     @foreach ($questionsArray as $arr)
                         @php

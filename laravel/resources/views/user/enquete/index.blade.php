@@ -102,7 +102,7 @@ if (count($array_unique) == 1 && $array_unique[0] == null) {
                 <?php endif; ?>
 
                 <a class="btn btn-secondary mr-1" href="{{ url('/user/top') }}">戻る</a>
-            <button type="submit" class="btn btn-success send">送信する</button>
+            <button type="button" class="btn btn-success send" onclick="submit();">送信する</button>
         </div>
     </form>
 </div>

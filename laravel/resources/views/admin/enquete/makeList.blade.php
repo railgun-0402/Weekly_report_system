@@ -25,11 +25,11 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">No</th>
+                                    <th scope="col" style="text-align:center;">No</th>
                                     <th scope="col">出題する質問</th>
-                                    <th scope="col">回答させる形式</th>
-                                    <th scope="col">選択肢</th>
-                                    <th scope="col">操作</th>
+                                    <th scope="col" style="text-align:center;">回答させる形式</th>
+                                    <th scope="col" style="text-align:center;">選択肢</th>
+                                    <th scope="col" style="text-align:center;">操作</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -37,9 +37,9 @@
                             @foreach ($questions as $key => $question)
                             @if ($question->question_group == $makeDate)
                             <tr>
-                                <td scope="row">{{$questionNo}}</td>
+                                <td scope="row" style="text-align:center;">{{$questionNo}}</td>
                                 <td><div class="form-group">{{$question->content}}</div></td>
-                                <td>
+                                <td style="text-align:center;">
                                     <div class="form-group">
                                         @if ($question->form_types_code == '1')
                                             テキストボックス
@@ -52,7 +52,7 @@
                                         @endif
                                     </div>
                                 </td>
-                                <td>
+                                <td style="text-align:center;">
                                     @if ($question->form_types_code == '1')
                                     <div class="form-group">
                                         なし
@@ -64,7 +64,7 @@
                                     <div class="form-group">{{$question->item_content4}}</div>
                                     <div class="form-group">{{$question->item_content5}}</div>
                                 </td>
-                                <td>
+                                <td style="text-align:center;">
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                         <a href='/admin/enquete/editQuestion/{{$makeDate}}/{{$question->id}} ' type="button" class="btn btn-info mr-1">編集</a>
                                         <a href="#" type="button" class="btn btn-danger del-question" data-id="{{$question->id}}">削除</a>
