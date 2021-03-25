@@ -23,7 +23,6 @@ class CreateUsersTable extends Migration
             $table->string('password')->comment('パスワード');
             $table->rememberToken()->comment('ログイン保持トークン');
             $table->timestamps();
-            $table->softDeletes();
 
         });
     }

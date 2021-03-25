@@ -4,6 +4,16 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+            <script>
+            @if(Session('complete_message'))
+                $(function(){
+                    toastr.success('{{ session('complete_message') }}')
+                });
+            @endif
+            </script>
             <div class="d-flex bd-highlight mb-3">
                 <div class="p-2 bd-highlight"><a class="btn btn-secondary" href="{{ url('/admin/top') }}">戻る</a></div>
                 <div class="ml-auto p-2 bd-highlight"><a class="btn btn-secondary" href="{{ url('/register') }}">新規作成</a></div>

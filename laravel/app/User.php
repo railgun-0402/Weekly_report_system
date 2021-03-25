@@ -5,12 +5,11 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
     // 論理削除有効化 ： Eloquentのdestory,delete methodをした際に論理削除されるようになります。
-    use SoftDeletes;
+    // use SoftDeletes;
     use Notifiable;
 
     // 代入を許可しない属性を配列で設定

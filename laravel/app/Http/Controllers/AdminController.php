@@ -80,7 +80,7 @@ class AdminController extends Controller
     public function accountDestroy(User $user)
     {
         $user->delete();
-        return redirect()->back();
+        return redirect('/admin/account/list')->with('complete_message', 'アカウントを削除しました');
     }
 
 
